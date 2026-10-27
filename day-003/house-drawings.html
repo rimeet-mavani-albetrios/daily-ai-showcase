@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G+1 House · Dimensional Drawings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;600;700&display=swap">
+<style>
+/* Layout: Apple-style dimensional drawing set for an Indian G+1 house with two 2 BHK flats (12 sheets), black on white, single light theme by design. */
+:root{--paper:#ececec;--sheet:#ffffff;--ink:#111;--ink2:#444;--ink3:#7a7a7a;--fill:#f3f3f3;--fill2:#e6e6e6;--fill3:#cfcfcf;--f:'Arimo','Helvetica Neue',Helvetica,Arial,sans-serif;color-scheme:light}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f)}
+.wrap{max-width:1760px;margin:0 auto;padding-block:24px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.scroll{overflow-x:auto;background:var(--sheet);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+svg{display:block;width:100%;min-width:1100px;height:auto}
+.tb{background:var(--sheet);display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;margin-bottom:24px;border:1.2px solid var(--ink);border-radius:16px;overflow:hidden}
+.tb>div{border-right:.8px solid var(--ink);border-bottom:.8px solid var(--ink);padding:10px 14px;min-width:0}
+.tb>div:nth-child(4),.tb>div:nth-child(7){border-right:0}
+.tb .big{grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.tb h1{line-height:1;margin:4px 0 0;font-weight:400;letter-spacing:.1em;font-size:clamp(28px,4vw,44px);text-transform:uppercase}
+.lbl{text-transform:uppercase;font-size:9.5px;font-weight:400;letter-spacing:.06em;color:var(--ink2)}
+.tb .v{font-size:13px;margin-top:2px;letter-spacing:.05em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.tb .big .v{font-size:11px;color:var(--ink2);line-height:1.6}
+.tb .stamp{display:inline-block;border:1.2px solid var(--ink);padding:3px 8px;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--ink)}
+.tb .notes{grid-column:1/-1;border-right:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 24px;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;line-height:1.9}
+.tb .notes ol{margin:4px 0 0;padding-left:20px}
+.tb .nh{font-weight:700;font-size:13px;letter-spacing:.06em}
+.tb .nh span{font-weight:400;font-size:11.5px;margin-left:6px}
+.tb .figs{grid-column:1/-1;border-right:0;border-bottom:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px 18px}
+.tb .figs>div{border-left:.8px solid var(--ink);padding-left:14px}
+.tb .figs>div:first-child{border-left:0;padding-left:0}
+.tb .figs .v{font-size:18px;letter-spacing:.06em;text-transform:none;margin-top:4px}
+@media (max-width:640px){.tb{grid-template-columns:1fr 1fr}.tb .big{grid-column:1/-1;grid-row:auto}.tb>div:nth-child(n){border-right:0}}
+.sheetwrap{margin-bottom:28px}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);padding:10px 2px 0}
+.foot b{font-weight:700;color:var(--ink)}
+/* drawing */
+.border{fill:none;stroke:var(--ink);stroke-width:1.2}
+.obj{fill:var(--sheet);stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+.objn{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+.well{fill:var(--fill);stroke:none}
+.slot{fill:none;stroke:var(--ink2);stroke-width:.8;stroke-dasharray:4 3}
+.hug{fill:var(--fill2);stroke:var(--ink);stroke-width:.8}
+.hug3{fill:var(--fill3);stroke:var(--ink);stroke-width:.8}
+.thin{fill:none;stroke:var(--ink);stroke-width:.8}
+.thinw{fill:var(--sheet);stroke:var(--ink);stroke-width:.8}
+.far{fill:none;stroke:var(--ink3);stroke-width:.6}
+.farw{fill:var(--sheet);stroke:var(--ink3);stroke-width:.6}
+.farf{fill:#f6f6f6;stroke:#9a9a9a;stroke-width:.6}
+.glz{fill:var(--fill);stroke:var(--ink);stroke-width:.8}
+.winp{fill:var(--sheet);stroke:var(--ink);stroke-width:.7}
+.gap{fill:var(--sheet);stroke:none}
+.swing{fill:none;stroke:var(--ink2);stroke-width:.6;stroke-dasharray:3 2}
+.ph{fill:none;stroke:var(--ink3);stroke-width:.8;stroke-dasharray:14 3 3 3}
+.cl{fill:none;stroke:var(--ink3);stroke-width:.7;stroke-dasharray:16 3 2 3}
+.grid{fill:none;stroke:var(--ink2);stroke-width:.7;stroke-dasharray:18 4 3 4}
+.beam{fill:none;stroke:var(--ink);stroke-width:2.4;stroke-dasharray:8 4}
+.secl{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:18 4 3 4}
+.pipe{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-dasharray:7 3}
+.wpipe{fill:none;stroke:var(--ink2);stroke-width:1.4;stroke-dasharray:1.5 2.5}
+.cut{fill:none;stroke:var(--ink);stroke-width:2.2}
+.solid{fill:var(--ink);stroke:var(--ink);stroke-width:.6}
+.colm{fill:#222;stroke:var(--ink);stroke-width:.5}
+.m1{fill:#ececec;stroke:var(--ink);stroke-width:.7;stroke-linejoin:round}
+.m2{fill:#d2d2d2;stroke:var(--ink);stroke-width:.7;stroke-linejoin:round}
+.m3{fill:#9d9d9d;stroke:var(--ink);stroke-width:.5}
+.dl{stroke:var(--ink);stroke-width:.7;fill:none}
+.ext{stroke:var(--ink);stroke-width:.55;fill:none}
+.arrow{fill:var(--ink)}
+.hl{stroke:var(--ink2);stroke-width:.7}
+.gl{stroke:var(--ink3);stroke-width:.6}
+.hs{stroke:var(--ink);stroke-width:.7}
+.hsn{stroke:none}
+.env{fill:none;stroke:var(--ink);stroke-width:.8;stroke-dasharray:10 3 2 3}
+.iso *{vector-effect:non-scaling-stroke}
+.dt{font:400 11px var(--f);fill:var(--ink);paint-order:stroke;stroke:var(--sheet);stroke-width:4px;stroke-linejoin:round}
+.dts{font:400 9.5px var(--f);fill:var(--ink2);letter-spacing:.06em;text-transform:uppercase;paint-order:stroke;stroke:var(--sheet);stroke-width:3px}
+.sl{font:400 9px var(--f);fill:var(--ink2);letter-spacing:.08em;text-transform:uppercase;paint-order:stroke;stroke:var(--sheet);stroke-width:3px}
+.rn{font:700 9.5px var(--f);fill:var(--ink);letter-spacing:.08em;text-transform:uppercase;paint-order:stroke;stroke:var(--sheet);stroke-width:3px}
+.nt{font:400 11.5px var(--f);fill:var(--ink);letter-spacing:.06em;text-transform:uppercase}
+.nth{font:700 13px var(--f);fill:var(--ink);letter-spacing:.06em}
+.vt{font:400 12px var(--f);fill:var(--ink);letter-spacing:.1em;text-transform:uppercase;paint-order:stroke;stroke:var(--sheet);stroke-width:3px}
+.stp{font:700 13px var(--f);fill:var(--ink);letter-spacing:.14em}
+.nb{fill:var(--sheet);stroke:var(--ink);stroke-width:.9}
+.nbt{font:400 9.5px var(--f);fill:var(--ink)}
+.lead{stroke:var(--ink);stroke-width:.7;fill:none}
+.dot{fill:var(--ink)}
+.th{font:400 10.5px var(--f);fill:var(--ink);letter-spacing:.05em;text-transform:uppercase}
+.tc{font:400 10.5px var(--f);fill:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="tb">
+    <div class="big">
+      <div><div class="lbl">Architectural concept · dimensional drawing set</div><h1>G+1 House</h1></div>
+      <div class="v">Indian urban house, ground + first floor: two 2 BHK flats, shared stair, car porch and two-wheeler bay, on a 9 × 18 m plot.<br><span class="stamp">NOT FOR CONSTRUCTION</span></div>
+    </div>
+    <div><div class="lbl">Dwg no.</div><div class="v">AR-HSE-001 · 12 sheets</div></div>
+    <div><div class="lbl">Rev</div><div class="v">A · 2026-10-27</div></div>
+    <div><div class="lbl">Sheets</div><div class="v">A-000 … A-601</div></div>
+    <div><div class="lbl">Units</div><div class="v">mm · plot in m · levels from GF FFL ±0</div></div>
+    <div><div class="lbl">Scale</div><div class="v">As noted, true only when printed full-width on A3</div></div>
+    <div><div class="lbl">Source</div><div class="v">Design assumptions · no site survey</div></div>
+    <div class="notes">
+      <div><span class="nh">NOTES:<span>(UNLESS OTHERWISE SPECIFIED)</span></span><ol>
+        <li>Do not scale from screen. Read the numbers.</li>
+        <li>Dimensions in mm, overall plot in m. Levels relative to ground-floor FFL ±0. Room tags give clear internal sizes.</li>
+        <li>Plot, road side, setbacks and every size are design assumptions, not a survey.</li>
+        <li>Every chain dimension is a code (T1, A1, FTF…). Values are in the tables on each sheet.</li></ol></div>
+      <div><span class="nh" aria-hidden="true">&nbsp;</span><ol start="5">
+        <li>[TBD] = not decided yet. [VERIFY] = check against NBC 2016 and local building bye-laws.</li>
+        <li>Grid, plumbing and electrical sheets are preliminary concepts, not engineering designs.</li>
+        <li>Concept only. Not for permit or construction. Structure and foundations need a structural engineer.</li>
+        <li>Grayscale by design. Materials and finishes are out of scope.</li></ol></div>
+    </div>
+    <div class="figs">
+      <div><div class="lbl">Plot · PL × PW</div><div class="v">18.0 × 9.0 m</div></div>
+      <div><div class="lbl">Building · BL × BW</div><div class="v">13500 × 7000</div></div>
+      <div><div class="lbl">FTF · floor-floor</div><div class="v">n · r</div></div>
+      <div><div class="lbl">CH · ceiling</div><div class="v">ftf − sl</div></div>
+      <div><div class="lbl">Stair · R / T</div><div class="v">170 / 250</div></div>
+      <div><div class="lbl">Flats</div><div class="v">2 × 2 BHK</div></div>
+      <div><div class="lbl">Parking</div><div class="v">1 car + 2 bikes</div></div>
+    </div>
+  </header>
+  <div id="sheets"></div>
+</div>
+
+<script>
+(function(){
+const SHEETS=[['s0','A-000 Site plan + area statement','Sheet A-000: site plan with plot, setbacks, road, parking and gates; area statement; drawing index; design assumptions'],
+ ['s1','A-101 Ground floor plan','Sheet A-101: dimensioned ground floor plan with flat, stair hall, car porch, two-wheeler bay'],
+ ['s2','A-102 First floor plan','Sheet A-102: dimensioned first floor plan with flat, kitchen over porch, balcony, stair landing'],
+ ['s3','A-103 Terrace plan','Sheet A-103: terrace and roof plan with parapet, stair room, water tank, roof drainage'],
+ ['s4','A-201 Elevations','Sheet A-201: front, rear and two side elevations with levels'],
+ ['s5','A-301 Sections','Sheet A-301: sections A-A and B-B with floor levels, ceiling heights, stair and porch clearance'],
+ ['s6','A-401 Staircase detail','Sheet A-401: staircase plans, section, tread and handrail details'],
+ ['s7','A-501 Door + window schedule','Sheet A-501: door and window schedule with type elevations'],
+ ['s8','S-101 Column grid (preliminary)','Sheet S-101: preliminary column and beam grid'],
+ ['s9','P-101 Plumbing concept','Sheet P-101: preliminary plumbing and drainage concept, both floors'],
+ ['s10','E-101 Electrical concept','Sheet E-101: preliminary electrical layout concept, both floors'],
+ ['s11','A-601 Axonometric','Sheet A-601: axonometric of the complete house and exploded floor plates']];
+document.getElementById('sheets').innerHTML=SHEETS.map(([id,t,al],i)=>'<div class="sheetwrap"><div class="scroll"><svg id="'+id+'" viewBox="0 0 1700 1060" role="img" aria-label="'+al+'"></svg></div><div class="foot"><span>2026-10-27 &nbsp;|&nbsp; Architectural concept reference</span><span><b>'+t+'</b> &nbsp;|&nbsp; '+(i+1)+' of 12</span></div></div>').join('');
+
+const NS='http://www.w3.org/2000/svg';let sv,A,HAT,GH,uid=0;
+function mk(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)if(a[k]!=null)e.setAttribute(k,a[k]);(p||sv).appendChild(e);return e}
+function tx(x,y,s,c,a,p){const t=mk('text',Object.assign({x:x,y:y,class:c||'dt'},a||{}),p);t.textContent=s;return t}
+function begin(id){sv=document.getElementById(id);sv.innerHTML='';const n=uid++;const d=mk('defs',{});const m=mk('marker',{id:'ar'+n,viewBox:'0 0 10 10',refX:10,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse',markerUnits:'userSpaceOnUse'},d);mk('path',{d:'M0,1.7 L10,5 L0,8.3 z',class:'arrow'},m);
+ let pt=mk('pattern',{id:'hat'+n,width:5,height:5,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},d);mk('line',{x1:0,y1:0,x2:0,y2:5,class:'hl'},pt);
+ pt=mk('pattern',{id:'gh'+n,width:9,height:9,patternUnits:'userSpaceOnUse',patternTransform:'rotate(-45)'},d);mk('line',{x1:0,y1:0,x2:0,y2:9,class:'gl'},pt);
+ A='url(#ar'+n+')';HAT='url(#hat'+n+')';GH='url(#gh'+n+')';rr(20,20,1660,1020,16,'border')}
+
+/* ---- kit (from the skill's examples) ---- */
+function dimH(x1,x2,y,e1,e2,l,o){o=o||{};[[x1,e1],[x2,e2]].forEach(([x,e])=>{if(e==null)return;const s=Math.sign(y-e)||1;mk('line',{x1:x,y1:e+s*3,x2:x,y2:y+s*5,class:'ext'})});
+ if(x2-x1>=28)mk('line',{x1:x1,y1:y,x2:x2,y2:y,class:'dl','marker-start':A,'marker-end':A});else{mk('line',{x1:x1-13,y1:y,x2:x1,y2:y,class:'dl','marker-end':A});mk('line',{x1:x2+13,y1:y,x2:x2,y2:y,class:'dl','marker-end':A});mk('line',{x1:x1,y1:y,x2:x2,y2:y,class:'dl'})}
+ tx((x1+x2)/2+(o.dx||0),(o.below?y+13:y-4)+(o.dy||0),l,o.c||'dt',{'text-anchor':'middle'})}
+function dimV(y1,y2,x,e1,e2,l,o){o=o||{};[[y1,e1],[y2,e2]].forEach(([y,e])=>{if(e==null)return;const s=Math.sign(x-e)||1;mk('line',{x1:e+s*3,y1:y,x2:x+s*5,y2:y,class:'ext'})});
+ if(y2-y1>=28)mk('line',{x1:x,y1:y1,x2:x,y2:y2,class:'dl','marker-start':A,'marker-end':A});else{mk('line',{x1:x,y1:y1-13,x2:x,y2:y1,class:'dl','marker-end':A});mk('line',{x1:x,y1:y2+13,x2:x,y2:y2,class:'dl','marker-end':A});mk('line',{x1:x,y1:y1,x2:x,y2:y2,class:'dl'})}
+ const c=(y1+y2)/2+(o.dy||0);if(o.side){const r=o.side==='r';tx(r?x+6:x-6,c+4,l,o.c||'dt',{'text-anchor':r?'start':'end'})}else tx(x-5,c,l,o.c||'dt',{'text-anchor':'middle',transform:'rotate(-90 '+(x-5)+' '+c+')'})}
+function callout(px,py,ex,ey,l,dir,c){const s=dir||(ex>=px?1:-1);mk('circle',{cx:px,cy:py,r:1.8,class:'dot'});mk('polyline',{points:px+','+py+' '+ex+','+ey+' '+(ex+s*10)+','+ey,class:'lead'});tx(ex+s*14,ey+4,l,c||'dt',{'text-anchor':s>0?'start':'end'})}
+function nb(x,y,n){mk('rect',{x:x-6,y:y-6,width:12,height:12,class:'nb'});tx(x,y+3.5,String(n),'nbt',{'text-anchor':'middle'})}
+function rr(x,y,w,h,r,c){return mk('rect',{x:x,y:y,width:w,height:h,rx:r,class:c})}
+function title(x,y,t,s){tx(x,y,t,'vt',{'text-anchor':'middle'});if(s)tx(x,y+14,s,'dts',{'text-anchor':'middle'})}
+/* notes in a band: two columns, [n,text]; n=null → continuation */
+function notesBand(x1,x2,y,list){tx(x1,y,'NOTES:','nth');tx(x1+62,y,'(UNLESS OTHERWISE SPECIFIED)','nt');const h=Math.ceil(list.length/2);
+ list.forEach(([n,t],i)=>{const x=i<h?x1:x2,yy=y+28+(i%h)*21;if(n)nb(x+6,yy-4,n);tx(x+22,yy,t,'nt')})}
+function notesCol(x,y,list){tx(x,y,'NOTES:','nth');let yy=y+28;list.forEach(([n,t])=>{if(n)nb(x+6,yy-4,n);tx(x+22,yy,t,'nt');yy+=21});return yy}
+function table(x,y,ttl,rows,ws,hdr){ws=ws||[36,82,106];hdr=hdr||['Code','Variable','Value'];const rh=17;tx(x,y-8,ttl,'vt');
+ const all=[hdr].concat(rows);all.forEach((r,i)=>{let cx2=x;r.forEach((c,j)=>{mk('rect',{x:cx2,y:y+i*rh,width:ws[j],height:rh,class:'thin'});tx(cx2+(j?ws[j]/2:5),y+i*rh+12,c,i?'tc':'th',{'text-anchor':j?'middle':'start'});cx2+=ws[j]})});return y+all.length*rh+36}
+function lvl(x,y,l,right){mk('path',{d:'M'+x+','+y+' l-5,-7 h10 z',class:'solid'});mk('line',{x1:x-14,y1:y,x2:x+14,y2:y,class:'thin'});tx(right?x+18:x-18,y-2,l,'dts',{'text-anchor':right?'start':'end'})}
+function north(x,y){mk('circle',{cx:x,cy:y,r:16,class:'thin'});mk('path',{d:'M'+x+','+(y-14)+' l6,20 l-6,-5 l-6,5 z',class:'solid'});tx(x,y-22,'N','dts',{'text-anchor':'middle'})}
+function scalebar(x,y,k,m){for(let i=0;i<m;i++)mk('rect',{x:x+i*1000*k,y:y,width:1000*k,height:5,class:i%2?'thinw':'solid'});for(let i=0;i<=m;i++)tx(x+i*1000*k,y+16,String(i),'dts',{'text-anchor':'middle'});tx(x+m*1000*k+10,y+16,'M','dts')}
+const SC=N=>1700/(420*N);           /* sheet units per mm at 1:N when the 1700-unit sheet prints 420 mm wide (A3) */
+function P(ox,oy,k){return {k:k,X:v=>ox+v*k,Y:v=>oy+v*k}}
+function E(ox,oy,k){return {k:k,X:v=>ox+v*k,Z:h=>oy-h*k}}
+function pr(v,x,y,w,h,c,ex){return mk('rect',Object.assign({x:v.X(x),y:v.Y(y),width:w*v.k,height:h*v.k,class:c},ex||{}))}
+function er(v,u1,h1,u2,h2,c,ex){return mk('rect',Object.assign({x:v.X(Math.min(u1,u2)),y:v.Z(Math.max(h1,h2)),width:Math.abs(u2-u1)*v.k,height:Math.abs(h2-h1)*v.k,class:c},ex||{}))}
+function el(v,u1,h1,u2,h2,c){return mk('line',{x1:v.X(u1),y1:v.Z(h1),x2:v.X(u2),y2:v.Z(h2),class:c||'thin'})}
+function pl(v,x1,y1,x2,y2,c){return mk('line',{x1:v.X(x1),y1:v.Y(y1),x2:v.X(x2),y2:v.Y(y2),class:c||'thin'})}
+function door(v,h,c,o,cls){mk('line',{x1:v.X(h[0]),y1:v.Y(h[1]),x2:v.X(o[0]),y2:v.Y(o[1]),class:cls||'thin'});const r=Math.hypot(c[0]-h[0],c[1]-h[1])*v.k;
+ const cr=(c[0]-h[0])*(o[1]-h[1])-(c[1]-h[1])*(o[0]-h[0]);mk('path',{d:'M'+v.X(c[0])+','+v.Y(c[1])+' A'+r+','+r+' 0 0 '+(cr>0?1:0)+' '+v.X(o[0])+','+v.Y(o[1]),class:'swing'})}
+const R=(x,y,w,h,n)=>({x,y,w,h,n});
+const m2=a=>(a/1e6).toFixed(2);
+
+/* =================== DATA (design assumptions, mm) =================== */
+const V={PL:18000,PW:9000,SR:1500,SF:3000,SN:1000,SS:1000,BL:13500,BW:7000,T1:230,T2:100,
+ A1:3300,A2:1500,A3:3540,A4:4270,B1:3000,B2:3440,M1:1900,M2:2150,M3:2290,E1:2300,E2:4140,
+ PD:3165,LS:1275,SW:1000,GP:100,ML:1000,FG:2000,FL:1270,R:170,T:250,N:18,FTF:3060,SL:150,PLH:450,PFL:-300,BMD:450,
+ DH:2100,WSL:900,PH:1000,MH:2700,TKH:1000,BP:1200,BRH:1000,HRL:900,WST:150,CBW:2500,CBL:5000,GW:3000,PG:1200,TWW:800,TWL:2000};
+V.CH=V.FTF-V.SL;V.GL=-V.PLH;V.TR=2*V.FTF;V.PT=V.TR+V.PH;V.MT=V.TR+V.MH;V.TT=V.MT+V.TKH;V.PCH=V.FTF-V.BMD-V.PFL;V.PCW=4165-1300;V.HR=V.FTF-V.SL-V.R;
+const LV={GF:0,FF:V.FTF,TR:V.TR};
+const TYPES={D1:{w:1000,h:2100,s:0,k:'door',d:'Main door, stair hall (outside)'},D2:{w:1000,h:2100,s:0,k:'door',d:'Flat entrance door'},D3:{w:900,h:2100,s:0,k:'door',d:'Bedroom door'},
+ D4:{w:750,h:2100,s:0,k:'door',d:'Bath door, water-resistant'},FD:{w:900,h:2100,s:0,k:'door',d:'Balcony door, glazed'},TD:{w:900,h:2100,s:0,k:'door',d:'Terrace door (stair room)'},
+ W1:{w:1500,h:1200,s:900,k:'win',d:'Window, bedroom / lounge'},W2:{w:1200,h:1200,s:900,k:'win',d:'Window, kitchen'},W3:{w:1800,h:1200,s:900,k:'win',d:'Window, living'},
+ W4:{w:1200,h:1200,s:900,k:'win',d:'Window, bedroom (west)'},W5:{w:900,h:1200,s:900,k:'win',d:'Window, stair hall / kitchen'},W6:{w:900,h:900,s:1800,k:'win',d:'Stair window (high)'},
+ V1:{w:600,h:450,s:1650,k:'win',d:'Bath ventilator, louvred'},O1:{w:1000,h:2100,s:0,k:'open',d:'Opening kitchen ↔ living'},O2:{w:1000,h:2100,s:0,k:'open',d:'Opening lounge ↔ dining'},
+ O4:{w:1600,h:2100,s:0,k:'open',d:'Opening passage ↔ living'}};
+const WALLS={GF:[R(1500,1000,9000,230,'ext N'),R(1500,1230,230,6540,'ext W'),R(1500,7770,13500,230,'ext S'),R(10270,1230,230,6540,'party'),R(10500,4165,4500,230,'hall N'),R(14770,4395,230,3375,'hall E'),
+ R(5030,1230,100,6540,'P X2'),R(6630,1230,100,6540,'P X3'),R(1730,4230,3300,100,'P beds'),R(5130,3130,1500,100,'P bath2'),R(5130,5380,1500,100,'P bath1'),R(6730,3530,3540,100,'P kitchen')]};
+WALLS.FF=[R(1500,1000,13500,230,'ext N')].concat(WALLS.GF.slice(1).filter(w=>w.n!=='P kitchen'),[R(14770,1230,230,2935,'ext E porch')]);
+WALLS.TR=[R(1500,1000,13500,230,'parapet N'),R(1500,1230,230,6540,'parapet W'),R(1500,7770,8770,230,'parapet S'),R(14770,1230,230,2935,'parapet E'),
+ R(10270,4165,230,3835,'stair room W'),R(10500,4165,4500,230,'stair room N'),R(14770,4395,230,3375,'stair room E'),R(10500,7770,4500,230,'stair room S')];
+const GX=[1615,5080,6680,10385,14885],GY=[1115,4280,7885];
+const COLS=[R(1500,1000,230,300,'X1Y1'),R(4930,1000,300,230,'X2Y1'),R(6530,1000,300,230,'X3Y1'),R(10270,1000,230,300,'X4Y1'),R(14770,1000,230,300,'X5Y1'),
+ R(1500,4130,230,300,'X1Y2'),R(4965,4130,230,300,'X2Y2'),R(10270,4130,230,300,'X4Y2'),R(14770,4130,230,300,'X5Y2'),
+ R(1500,7700,230,300,'X1Y3'),R(4930,7770,300,230,'X2Y3'),R(6530,7770,300,230,'X3Y3'),R(10270,7700,230,300,'X4Y3'),R(14770,7700,230,300,'X5Y3')];
+const OPS=[
+ {f:'GF FF',c:'W1',o:'h',a:2600,b:4100,w:[1000,1230],r:'Bed 2'},{f:'GF FF',c:'V1',o:'h',a:5530,b:6130,w:[1000,1230],r:'Bath 2'},
+ {f:'GF FF',c:'W4',o:'v',a:1900,b:3100,w:[1500,1730],r:'Bed 2'},{f:'GF FF',c:'W4',o:'v',a:5500,b:6700,w:[1500,1730],r:'Bed 1'},
+ {f:'GF FF',c:'W1',o:'h',a:2600,b:4100,w:[7770,8000],r:'Bed 1'},{f:'GF FF',c:'V1',o:'h',a:5530,b:6130,w:[7770,8000],r:'Bath 1'},
+ {f:'GF FF',c:'W3',o:'h',a:7300,b:9100,w:[7770,8000],r:'Living'},{f:'GF FF',c:'W6',o:'h',a:11900,b:12800,w:[7770,8000],r:'Stair'},
+ {f:'GF FF',c:'D2',o:'v',a:4430,b:5430,w:[10270,10500],hg:[10270,5430],cl:[10270,4430],op:[9270,5430],tg:[10650,4300],r:'Flat entry'},
+ {f:'GF FF',c:'D3',o:'v',a:3230,b:4130,w:[5030,5130],hg:[5030,3230],cl:[5030,4130],op:[4130,3230],tg:[4620,4000],r:'Bed 2'},
+ {f:'GF FF',c:'D3',o:'v',a:4450,b:5350,w:[5030,5130],hg:[5030,5350],cl:[5030,4450],op:[4130,5350],tg:[4620,5530],r:'Bed 1'},
+ {f:'GF FF',c:'D4',o:'h',a:5500,b:6250,w:[3130,3230],hg:[5500,3230],cl:[6250,3230],op:[5500,3980],tg:[6450,3700],r:'Bath 2'},
+ {f:'GF FF',c:'D4',o:'v',a:6800,b:7550,w:[5030,5130],hg:[5030,7550],cl:[5030,6800],op:[4280,7550],tg:[4600,6650],r:'Bath 1'},
+ {f:'GF FF',c:'O4',o:'v',a:3700,b:5300,w:[6630,6730],tg:[6950,5500],r:'Passage'},
+ {f:'GF',c:'W2',o:'h',a:7800,b:9000,w:[1000,1230],r:'Kitchen'},{f:'GF',c:'W2',o:'v',a:1800,b:3000,w:[10270,10500],tg:[10780,2400],r:'Kitchen (porch side)'},
+ {f:'GF',c:'O1',o:'h',a:7000,b:8000,w:[3530,3630],tg:[7500,3830],r:'Kitchen'},
+ {f:'GF',c:'D1',o:'v',a:4500,b:5500,w:[14770,15000],hg:[14770,5500],cl:[14770,4500],op:[13770,5500],tg:[15250,4300],r:'Stair hall'},
+ {f:'FF',c:'W1',o:'h',a:7650,b:9150,w:[1000,1230],r:'Lounge'},{f:'FF',c:'O2',o:'v',a:1800,b:2800,w:[10270,10500],tg:[10780,2300],r:'Lounge'},
+{f:'FF',c:'W2',o:'h',a:13000,b:14200,w:[1000,1230],r:'Kitchen'},
+ {f:'FF',c:'W5',o:'v',a:2900,b:3800,w:[14770,15000],r:'Kitchen'},{f:'FF',c:'FD',o:'v',a:1850,b:2750,w:[14770,15000],hg:[14770,1850],cl:[14770,2750],op:[13870,1850],r:'Balcony'},
+ {f:'FF',c:'W5',o:'v',a:4500,b:5400,w:[14770,15000],r:'Stair hall'},
+ {f:'TR',c:'TD',o:'h',a:13800,b:14700,w:[4165,4395],hg:[13800,4165],cl:[14700,4165],op:[13800,3265],tg:[14250,3100],r:'Stair room'},
+ {f:'TR',c:'W5',o:'v',a:4500,b:5400,w:[14770,15000],r:'Stair room'}];
+OPS.forEach(o=>{o.fl=o.f.split(' ');o.rect=o.o==='h'?R(o.a,o.w[0],o.b-o.a,o.w[1]-o.w[0]):R(o.w[0],o.a,o.w[1]-o.w[0],o.b-o.a)});
+const ROOMS={GF:[['G1','Bed 2',1730,1230,3300,3000,'hab'],['G2','Bed 1',1730,4330,3300,3440,'hab'],['G3','Bath 2 (common)',5130,1230,1500,1900,'bath'],['G4','Passage',5130,3230,1500,2150,'circ'],
+ ['G5','Bath 1 (attached)',5130,5480,1500,2290,'bath'],['G6','Kitchen',6730,1230,3540,2300,'kit'],['G7','Living + dining',6730,3630,3540,4140,'hab'],['G8','Stair hall (common)',10500,4395,4270,3375,'circ']],
+ FF:[['F1','Bed 2',1730,1230,3300,3000,'hab'],['F2','Bed 1',1730,4330,3300,3440,'hab'],['F3','Bath 2 (common)',5130,1230,1500,1900,'bath'],['F4','Passage',5130,3230,1500,2150,'circ'],
+ ['F5','Bath 1 (attached)',5130,5480,1500,2290,'bath'],['F6','Living + lounge',6730,1230,3540,6540,'hab'],['F7','Kitchen + dining',10500,1230,4270,2935,'kit'],['F8','Stair hall (common)',10500,4395,4270,3375,'circ']]};
+const FURN={common:[R(1730,1980,2000,1500,'bed'),R(2000,3630,1800,600,'wardrobe'),R(1730,5500,2000,1500,'bed'),R(2000,4330,1800,600,'wardrobe'),
+  R(5150,1230,450,700,'wc'),R(6130,1230,500,400,'basin'),R(5130,2230,900,900,'shower'),R(5130,5480,500,400,'basin'),R(6180,5480,450,700,'wc'),R(5730,6870,900,900,'shower'),
+  R(6830,6000,800,1700,'sofa'),R(7900,6400,1000,600,'low table'),R(9870,5800,400,1600,'tv unit')],
+ GF:[R(6730,1230,3540,600,'counter'),R(9670,1830,600,1700,'counter'),R(6730,2630,700,700,'fridge'),R(7900,4100,1200,800,'dining table'),R(8000,3650,450,450,'chair'),R(8600,3650,450,450,'chair'),R(8000,4900,450,450,'chair'),R(8600,4900,450,450,'chair')],
+ FF:[R(6830,1500,800,1800,'sofa'),R(9070,1230,1200,400,'tv unit'),R(8000,2000,900,600,'low table'),R(12400,1230,2370,600,'counter'),R(14170,2800,600,1365,'counter'),
+  R(11300,2300,1200,800,'dining table'),R(11400,1850,450,450,'chair'),R(12000,1850,450,450,'chair'),R(11400,3100,450,450,'chair'),R(12000,3100,450,450,'chair')]};
+const SITE={carBay:R(10600,1350,V.CBL,V.CBW,'car bay'),car:R(10750,1700,4500,1800,'car'),bikes:[R(15500,6100,V.TWL,V.TWW,'bike 1'),R(15500,7000,V.TWL,V.TWW,'bike 2')],
+ steps:R(15000,4400,900,1200,'steps'),sump:R(16300,7950,1200,800,'sump'),gateCar:[1100,4100],gatePed:[4400,5600],balcony:R(15000,1230,V.BP,2540,'balcony'),tank:R(11000,5000,1500,1500,'tank')};
+/* stair geometry: flights run along x between ML (west) and FL (east) */
+const ST={x0:10500,xM:10500+V.ML,xF:10500+V.ML+V.FG,x1:14770,yU:[5670,6670],yL:[6770,7770]};
+
+/* =================== QA =================== */
+const QA=[];const chk=(n,a,b,cmp)=>QA.push({check:n,got:a,expected:b,ok:cmp?cmp(a,b):Math.abs(a-b)<1e-6});
+const ge=(a,b)=>a>=b-1e-6,le=(a,b)=>a<=b+1e-6;
+chk('PL = SR + BL + SF',V.SR+V.BL+V.SF,V.PL);chk('PW = SN + BW + SS',V.SN+V.BW+V.SS,V.PW);
+chk('BL = 3·T1 + A1 + A2 + A3 + A4 + 2·T2',3*V.T1+V.A1+V.A2+V.A3+V.A4+2*V.T2,V.BL);
+chk('BW = 2·T1 + B1 + T2 + B2 (bed column)',2*V.T1+V.B1+V.T2+V.B2,V.BW);
+chk('BW = 2·T1 + M1 + M2 + M3 + 2·T2 (bath column)',2*V.T1+V.M1+V.M2+V.M3+2*V.T2,V.BW);
+chk('BW = 2·T1 + E1 + T2 + E2 (living column)',2*V.T1+V.E1+V.T2+V.E2,V.BW);
+chk('BW = PD + T1 + LS + 2·SW + GP + T1 (hall + porch)',V.PD+V.T1+V.LS+2*V.SW+V.GP+V.T1,V.BW);
+chk('A4 = ML + FG + FL (stair hall length)',V.ML+V.FG+V.FL,V.A4);
+chk('FTF = N · R',V.N*V.R,V.FTF);chk('FG = (N/2 − 1) · T',(V.N/2-1)*V.T,V.FG);
+chk('2R + T within 550–700',2*V.R+V.T,[550,700],(a,b)=>a>=b[0]&&a<=b[1]);
+chk('Riser R ≤ 190 [VERIFY]',V.R,190,le);chk('Tread T ≥ 250 [VERIFY]',V.T,250,ge);chk('Risers per flight ≤ 15',V.N/2,15,le);
+chk('Stair width SW ≥ 1000 [VERIFY]',V.SW,1000,ge);chk('Landings ML, FL ≥ SW',Math.min(V.ML,V.FL),V.SW,ge);
+chk('Headroom over flights HR = FTF − SL − R ≥ 2200 [VERIFY]',V.HR,2200,ge);
+chk('Ceiling CH = FTF − SL ≥ 2750 [VERIFY]',V.CH,2750,ge);
+chk('Window head = sill + height = DH (W1–W5, V1)',['W1','W2','W3','W4','W5','V1'].every(c=>TYPES[c].s+TYPES[c].h===V.DH)?1:0,1);
+chk('Porch clear height PCH = FTF − BMD − PFL ≥ 2200',V.PCH,2200,ge);chk('Porch clear width PCW ≥ CBW + 300',V.PCW,V.CBW+300,ge);
+chk('Car bay depth A4 + SF ≥ CBL',V.A4+V.SF,V.CBL,ge);chk('Car gate GW ≥ CBW',V.GW,V.CBW,ge);
+chk('Drive slope (PFL − GL) / SF ≤ 1:8',(V.PFL-V.GL)/V.SF,1/8,le);
+/* rooms vs reference minimums (NBC 2016 Part 3 values as commonly cited) */
+const MIN={hab:[9.5e6,2400],kit:[5.0e6,1800],bath:[2.8e6,1200]};
+['GF','FF'].forEach(f=>ROOMS[f].forEach(([c,n,x,y,w,h,t])=>{if(MIN[t])chk(f+' '+n+' ≥ '+(MIN[t][0]/1e6)+' m², width ≥ '+MIN[t][1],w*h>=MIN[t][0]&&Math.min(w,h)>=MIN[t][1]?1:0,1)}));
+/* openings: right width, inside a wall of that floor, not on a column, not overlapping each other */
+const ov=(a,b)=>a.x<b.x+b.w-1&&b.x<a.x+a.w-1&&a.y<b.y+b.h-1&&b.y<a.y+a.h-1;
+const inside=(a,b)=>a.x>=b.x-1&&a.y>=b.y-1&&a.x+a.w<=b.x+b.w+1&&a.y+a.h<=b.y+b.h+1;
+const opErr=[];OPS.forEach((o,i)=>{if(o.b-o.a!==TYPES[o.c].w)opErr.push(o.c+' width');o.fl.forEach(f=>{if(!WALLS[f].some(w=>inside(o.rect,w)))opErr.push(o.c+' '+f+' not in wall');
+ if(f!=='TR'&&COLS.some(c=>ov(o.rect,c)))opErr.push(o.c+' '+f+' on column');OPS.forEach((p,j)=>{if(j>i&&p.fl.includes(f)&&ov(o.rect,p.rect))opErr.push(o.c+'×'+p.c+' '+f)})})});
+chk('Openings: width = schedule, inside a wall, clear of columns and each other',opErr.length,0);
+/* furniture / fixtures vs walls, columns, door swings, stair */
+const swing=o=>{const xs=[o.hg[0],o.cl[0],o.op[0]],ys=[o.hg[1],o.cl[1],o.op[1]];return R(Math.min(...xs),Math.min(...ys),Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys),o.c+' swing')};
+const furErr=[];['GF','FF'].forEach(f=>{const items=FURN.common.concat(FURN[f]);const sw=OPS.filter(o=>o.hg&&o.fl.includes(f)).map(swing);
+ const stair=[R(ST.xM,5670,V.FG,2100,'flights'),R(ST.x0,5670,V.ML,2100,'mid landing')];
+ items.forEach((a,i)=>{WALLS[f].concat(COLS).forEach(w=>{if(ov(a,w))furErr.push(f+' '+a.n+' × wall')});sw.concat(stair).forEach(s=>{if(ov(a,s))furErr.push(f+' '+a.n+' × '+s.n)});
+  items.forEach((b,j)=>{if(j>i&&ov(a,b))furErr.push(f+' '+a.n+' × '+b.n)})})});
+[SITE.carBay].forEach(b=>COLS.forEach(c=>{if(ov(b,c))furErr.push('car bay × column '+c.n)}));SITE.bikes.forEach(b=>{if(ov(b,SITE.steps)||ov(b,SITE.sump))furErr.push(b.n+' × steps/sump')});
+chk('No overlaps: furniture, fixtures, door swings, walls, columns, stair, parking',furErr.length,0);
+/* first-floor walls sit on ground-floor walls or on porch beams (grid lines Y1, X5) */
+const BEAMS=[R(1500,1000,13500,230,'Y1'),R(1500,7770,13500,230,'Y3'),R(1500,4165,13500,230,'Y2'),R(1500,1000,230,7000,'X1'),R(10270,1000,230,7000,'X4'),R(14770,1000,230,7000,'X5')];
+const alErr=WALLS.FF.filter(w=>!WALLS.GF.concat(BEAMS).some(g=>inside(w,g))).map(w=>w.n);
+chk('FF walls stand on GF walls or beams',alErr.length,0);
+chk('Wet areas stacked: FF baths directly over GF baths',['G3','G5'].every((c,i)=>{const g=ROOMS.GF.find(r=>r[0]===c),f=ROOMS.FF.find(r=>r[0]===['F3','F5'][i]);return g.slice(2,6).join()===f.slice(2,6).join()})?1:0,1);
+/* areas */
+const area=f=>ROOMS[f].filter(r=>!r[1].includes('common')).reduce((s,r)=>s+r[4]*r[5],0);
+const AR={plot:V.PL*V.PW,cover:V.BL*V.BW,gf:9000*7000+4500*3835,ff:9000*7000+4500*3165+4500*3835,mu:4500*3835,carGF:area('GF'),carFF:area('FF'),bal:V.BP*2540};
+AR.far=(AR.gf+AR.ff)/AR.plot;
+chk('Built-up FF = GF + covered porch (4500 × 3165)',AR.ff-AR.gf,4500*3165);
+window.QA={checks:QA,openingErrors:opErr,furnitureErrors:furErr,alignmentErrors:alErr,
+ areas:{plot:m2(AR.plot),coverage:m2(AR.cover),coveragePct:(AR.cover/AR.plot*100).toFixed(1),gfBUA:m2(AR.gf),ffBUA:m2(AR.ff),stairRoom:m2(AR.mu),far:AR.far.toFixed(2),carpetGF:m2(AR.carGF),carpetFF:m2(AR.carFF),balcony:m2(AR.bal)},
+ schedule:Object.keys(TYPES).map(c=>({c,GF:OPS.filter(o=>o.c===c&&o.fl.includes('GF')).length,FF:OPS.filter(o=>o.c===c&&o.fl.includes('FF')).length,TR:OPS.filter(o=>o.c===c&&o.fl.includes('TR')).length}))};
+
+/* =================== PLAN DRAWING =================== */
+function stairPlan(v,f,far,iso){const c=far?'far':'thin',X=v.X,Y=v.Y;
+ const flight=(y0,cls)=>{pr(v,ST.xM,y0,V.FG,V.SW,cls==='ph'?'ph':'thinw');for(let i=0;i<=8;i++)pl(v,ST.xM+i*V.T,y0,ST.xM+i*V.T,y0+V.SW,cls==='ph'?'ph':c)};
+ if(f==='GF'){flight(ST.yL[0],c);flight(ST.yU[0],'ph');pr(v,ST.x0,5670,V.ML,2100,'ph');pl(v,12000,7770,12450,6770,'thin');
+  if(!far&&!iso){pr(v,ST.x0,5670,V.ML,2100,'slot');tx(X(11000),Y(6620),'STORE','sl',{'text-anchor':'middle'});tx(X(11000),Y(6820)+2,'[TBD]','sl',{'text-anchor':'middle'})}}
+ else if(f==='FF'){flight(ST.yL[0],c);flight(ST.yU[0],c);pr(v,ST.x0,5670,V.ML,2100,'thinw')}
+ else {flight(ST.yU[0],c);flight(ST.yL[0],'ph');pr(v,ST.x0,5670,V.ML,2100,'thinw')}
+ pl(v,ST.xM,6720,ST.xF,6720,'thin');
+ if(!far&&!iso){const ar=(x1,x2,y,l)=>{mk('line',{x1:X(x1),y1:Y(y),x2:X(x2),y2:Y(y),class:'dl','marker-end':A});tx(X(x1)+(x2<x1?6:-6),Y(y)+3,l,'sl',{'text-anchor':x2<x1?'start':'end'})};
+  if(f==='GF')ar(13400,11950,7270,'UP');if(f==='FF'){ar(13400,11650,7270,'UP');ar(13400,11650,6170,'DN')}if(f==='TR')ar(13400,11650,6170,'DN')}}
+function planFloor(v,f,o){o=o||{};const X=v.X,Y=v.Y,k=v.k,far=o.far;
+ if(o.site!==false){/* plot boundary, compound wall with gates, road, setbacks */
+  const pb=[[18000,SITE.gateCar[0]],[18000,0],[0,0],[0,9000],[18000,9000],[18000,SITE.gatePed[1]]];mk('polyline',{points:pb.map(p=>X(p[0])+','+Y(p[1])).join(' '),class:'objn',style:'stroke-width:2.4'});
+  mk('line',{x1:X(18000),y1:Y(SITE.gateCar[1]),x2:X(18000),y2:Y(SITE.gatePed[0]),class:'objn',style:'stroke-width:2.4'});
+  mk('line',{x1:X(18000)+4,y1:Y(SITE.gateCar[0]),x2:X(18000)+4,y2:Y(SITE.gateCar[1]),class:'slot'});mk('line',{x1:X(18000)+4,y1:Y(SITE.gatePed[0]),x2:X(18000)+4,y2:Y(SITE.gatePed[1]),class:'slot'});
+  pr(v,18000,0,700,9000,'well');tx(X(18350),Y(4500),'ROAD · EAST · WIDTH [TBD]','sl',{'text-anchor':'middle',transform:'rotate(-90 '+X(18350)+' '+Y(4500)+')'});
+  if(f==='GF'){pr(v,10500,1000,4500,3165,'well');}}
+ if(f==='FF'||f==='TR'){/* balcony (FF) or balcony below (TR) */pr(v,SITE.balcony.x,SITE.balcony.y,SITE.balcony.w,SITE.balcony.h,f==='FF'?'thinw':'far');if(f==='FF')pl(v,16150,1230,16150,3770,'thin')}
+ if(f==='GF'&&o.site!==false){pr(v,SITE.steps.x,SITE.steps.y,SITE.steps.w,SITE.steps.h,'thinw');[300,600].forEach(d=>pl(v,15000+d,4400,15000+d,5600,'thin'));
+  if(!far){SITE.bikes.forEach(b=>pr(v,b.x,b.y,b.w,b.h,'slot'));pr(v,SITE.carBay.x,SITE.carBay.y,SITE.carBay.w,SITE.carBay.h,'env');pr(v,SITE.car.x,SITE.car.y,SITE.car.w,SITE.car.h,'slot');
+   tx(X(13000),Y(2600)+3,'CAR','sl',{'text-anchor':'middle'});tx(X(16500),Y(6500)+3,'2W','sl',{'text-anchor':'middle'});tx(X(16500),Y(7400)+3,'2W','sl',{'text-anchor':'middle'});
+   tx(X(12500),Y(3650),'CAR PORCH','rn',{'text-anchor':'middle'});}}
+ if(f==='TR'){pr(v,1500,1000,13500,7000,'obj');pr(v,10270,4165,4730,3835,'farf');}
+ WALLS[f].forEach(w=>pr(v,w.x,w.y,w.w,w.h,far?'farw':'hs',far?null:{fill:HAT}));
+ OPS.filter(p=>p.fl.includes(f)).forEach(p=>{const r=p.rect,t=TYPES[p.c];pr(v,r.x,r.y,r.w,r.h,'gap');
+  if(t.k==='win'){pr(v,r.x,r.y,r.w,r.h,far?'far':'winp');if(p.o==='h')pl(v,r.x,r.y+r.h/2,r.x+r.w,r.y+r.h/2,far?'far':'thin');else pl(v,r.x+r.w/2,r.y,r.x+r.w/2,r.y+r.h,far?'far':'thin')}
+  else if(t.k==='door'){door(v,p.hg,p.cl,p.op,far?'far':'thin')}
+  else{if(p.o==='h'){pl(v,r.x,r.y,r.x,r.y+r.h,far?'far':'thin');pl(v,r.x+r.w,r.y,r.x+r.w,r.y+r.h,far?'far':'thin')}else{pl(v,r.x,r.y,r.x+r.w,r.y,far?'far':'thin');pl(v,r.x,r.y+r.h,r.x+r.w,r.y+r.h,far?'far':'thin')}}
+  if(o.tags){const tg=p.tg||(p.o==='h'?[(p.a+p.b)/2,p.w[0]<4000?p.w[0]-260:p.w[1]+380]:[p.w[0]<4000?p.w[0]-330:p.w[1]+330,(p.a+p.b)/2]);tx(X(tg[0]),Y(tg[1])+3,p.c,'sl',{'text-anchor':'middle'})}});
+ if(f!=='TR'||true)if(o.cols!==false)COLS.forEach(c=>pr(v,c.x,c.y,c.w,c.h,'colm'));
+ stairPlan(v,f,far,o.iso);
+ if(o.furn&&f!=='TR'){FURN.common.concat(FURN[f]||[]).forEach(r=>{const cls=/bed|sofa|wardrobe|counter|tv/.test(r.n)?'hug':/wc|basin/.test(r.n)?'thinw':/shower/.test(r.n)?'slot':'thinw';pr(v,r.x,r.y,r.w,r.h,cls);
+   if(r.n==='wc')mk('ellipse',{cx:X(r.x+r.w/2),cy:Y(r.y+r.h-220),rx:150*k,ry:180*k,class:'thin'});if(r.n==='basin')mk('ellipse',{cx:X(r.x+r.w/2),cy:Y(r.y+r.h/2),rx:180*k,ry:120*k,class:'thin'});
+   if(r.n==='bed')pr(v,r.x,r.y+150,400,r.h-300,'thinw');if(r.n==='shower'){pl(v,r.x,r.y,r.x+r.w,r.y+r.h,'far');pl(v,r.x+r.w,r.y,r.x,r.y+r.h,'far')}})}
+ if(o.labels){(ROOMS[f]||[]).forEach(([c,n,x,y,w,h])=>{let cx=x+w/2,cy=y+h/2;if(/Bed/.test(n))cx=x+w*0.62;if(/Kitchen \+/.test(n))cy=y+h*0.62;if(/Stair/.test(n)){cx=12300;cy=5050}if(/Living/.test(n))cy=y+h*0.38+(f==='FF'?0:800);
+   tx(X(cx),Y(cy),n.replace(/ \((common|attached)\)/,''),'rn',{'text-anchor':'middle'});tx(X(cx),Y(cy)+11,w+' × '+h,'sl',{'text-anchor':'middle'})})}}
+
+/* plan sheet frame: chains around the plot */
+function planChains(v,f){const X=v.X,Y=v.Y;
+ const xs=[1500,1730,5030,5130,6630,6730,10270,10500,14770,15000],ls=['T1','A1','T2','A2','T2','A3','T1','A4','T1'],dy=[-12,0,-12,0,-12,0,-12,0,-12];
+ for(let i=0;i<9;i++)dimH(X(xs[i]),X(xs[i+1]),Y(0)-24,Y(1000),Y(1000),ls[i],{dy:dy[i]});
+ [[0,1500,'SR'],[1500,15000,'BL'],[15000,18000,'SF']].forEach(([a,b,l])=>dimH(X(a),X(b),Y(0)-62,Y(0)-28,Y(0)-28,l));dimH(X(0),X(18000),Y(0)-92,Y(0)-66,Y(0)-66,'PL = 18.00 M');
+ const ys=[0,1000,1230,4230,4330,7770,8000,9000],yl=['SN','T1','B1','T2','B2','T1','SS'];
+ for(let i=0;i<7;i++)dimV(Y(ys[i]),Y(ys[i+1]),X(0)-24,X(0),X(i===0||i===6?0:1500),yl[i],{side:(yl[i].startsWith('T'))?'l':undefined});
+ dimV(Y(0),Y(9000),X(0)-56,X(0)-28,X(0)-28,'PW = 9.00 M');
+ const ry=[1000,4165,4395,5670,6670,6770,7770,8000],rl=['PD','T1','LS','SW','GP','SW','T1'];
+ for(let i=0;i<7;i++)dimV(Y(ry[i]),Y(ry[i+1]),X(18000)+22,X(15000),X(15000),rl[i],{side:'r'});
+ const bx=[1500,15000];dimH(X(bx[0]),X(bx[1]),Y(9000)+24,Y(8000),Y(8000),'BL',{below:true});}
+const planTable=[['T1','ext / party wall','230'],['T2','partition (AAC)','100'],['A1','bed column','3300'],['A2','bath column','1500'],['A3','living column','3540'],['A4','hall / porch','4270'],
+ ['B1','bed 2 depth','3000'],['B2','bed 1 depth','3440'],['BL','building length','13500'],['BW','building width','7000'],['SR','rear setback','1500 [VERIFY]'],['SF','front setback','3000 [VERIFY]'],
+ ['SN / SS','side setbacks','1000 / 1000'],['PL × PW','plot','18.00 × 9.00 m'],['PD','porch depth','3165'],['LS','lobby strip','1275'],['SW','stair flight width','1000'],['GP','well gap','100']];
+function planSheet(id,f,ttl,notes,extra){begin(id);const v=P(400,215,SC(75));planFloor(v,f,{furn:true,labels:true,tags:true,cols:f!=='TR'});planChains(v,f);
+ /* section markers A–A (y 6200, looking north) and B–B (x 12500, looking west) */
+ const sec=(x1,y1,x2,y2,l,ax,ay)=>{mk('line',{x1:x1,y1:y1,x2:x2,y2:y2,class:'secl'});mk('circle',{cx:x1,cy:y1,r:10,class:'nb'});tx(x1,y1+4,l,'nbt',{'text-anchor':'middle'});mk('line',{x1:x1+ax*13,y1:y1+ay*13,x2:x1+ax*22,y2:y1+ay*22,class:'dl','marker-end':A})};
+ if(f!=='TR'){sec(v.X(500),v.Y(6200),v.X(1300),v.Y(6200),'A',0,-1);sec(v.X(17500),v.Y(6200),v.X(16700),v.Y(6200),'A',0,-1);sec(v.X(12500),v.Y(350),v.X(12500),v.Y(850),'B',-1,0);sec(v.X(12500),v.Y(8650),v.X(12500),v.Y(8150),'B',-1,0)}
+ north(1405,110);title(v.X(9000),v.Y(9000)+70,ttl,'Scale 1:75 @ A3 · FFL '+(f==='GF'?'±0':f==='FF'?'+3060':'+6120 (terrace)'));scalebar(v.X(0),v.Y(9000)+96,v.k,5);
+ notesBand(50,880,880,notes);
+ let y=table(1452,90,'Plan',planTable,[46,82,96]);if(extra)extra(v,y);}
+function roomTable(f,y){const rows=ROOMS[f].map(([c,n,x,yy,w,h])=>[c,n.replace(/ \((common|attached)\)/,'').replace('Kitchen + dining','Kitchen+din.').replace('Living + lounge','Living+lounge').replace('Living + dining','Living+din.'),w+' × '+h,m2(w*h)]);
+ rows.push(['Σ','carpet (flat)','',m2(area(f))]);return table(50,y,'Room schedule · '+f,rows,[34,80,80,46],['Code','Room','Clear mm','m²'])}
+function legend(y,items){tx(50,y-8,'LEGEND','vt');items.forEach(([c,t],i)=>{const yy=y+4+i*20;if(c==='route'||c==='pipe'||c==='wpipe'||c==='beam'||c==='grid')mk('line',{x1:50,y1:yy+5,x2:80,y2:yy+5,class:c});else mk('rect',{x:50,y:yy,width:30,height:11,class:c,fill:c==='hs'?HAT:null});tx(90,yy+9,t,'dts')});return y+items.length*20+30}
+
+/* =================== SHEET A-000 · SITE PLAN =================== */
+begin('s0');
+notesBand(50,880,58,[[1,'PLOT 18.00 × 9.00 M ASSUMED. ROAD ON EAST SIDE. NO SURVEY.'],[2,'SETBACKS SR / SF / SN / SS ARE ASSUMPTIONS [VERIFY] BYE-LAWS.'],[3,'COVERAGE AND FAR TO BE CHECKED AGAINST LOCAL RULES [VERIFY].'],
+ [4,'TWO INDEPENDENT 2 BHK FLATS (GF + FF), ONE SHARED STAIR.'],[5,'CAR IN PORCH UNDER FF KITCHEN, 2 TWO-WHEELERS IN FRONT SETBACK.'],[6,'SUMP, SEWER, SEPTIC AND STORMWATER CONNECTIONS [TBD].']]);
+{const v=P(110,300,SC(100)),X=v.X,Y=v.Y;planFloor(v,'GF',{far:false,tags:false});pr(v,1500,1000,13500,7000,'thin');
+ pr(v,SITE.sump.x,SITE.sump.y,SITE.sump.w,SITE.sump.h,'slot');tx(X(16900),Y(8800),'SUMP [TBD]','sl',{'text-anchor':'middle'});
+ tx(X(18000)-6,Y(2600)+3,'CAR GATE','sl',{'text-anchor':'end'});tx(X(18000)-6,Y(5000)+3,'GATE','sl',{'text-anchor':'end'});
+ [[0,1500,'SR'],[1500,15000,'BL'],[15000,18000,'SF']].forEach(([a,b,l])=>dimH(X(a),X(b),Y(0)-24,Y(1000),Y(1000),l));dimH(X(0),X(18000),Y(0)-54,Y(0)-28,Y(0)-28,'PL = 18.00 M');
+ [[0,1000,'SN'],[1000,8000,'BW'],[8000,9000,'SS']].forEach(([a,b,l])=>dimV(Y(a),Y(b),X(0)-24,X(1500),X(1500),l,{side:'l'}));dimV(Y(0),Y(9000),X(0)-62,X(0)-30,X(0)-30,'PW = 9.00 M');
+dimV(Y(SITE.gateCar[0]),Y(SITE.gateCar[1]),X(18700)+30,X(18000),X(18000),'GW',{side:'r'});nb(X(1000),Y(500),2);nb(X(16500),Y(5200),5);
+ north(960,300);title(X(9000),Y(9000)+48,'Site plan','Scale 1:100 @ A3 · road on east');scalebar(X(0),Y(9000)+72,v.k,5);}
+{let y=table(1000,300,'Area statement',[['PA','plot area',m2(AR.plot)+' m²'],['GC','ground coverage',m2(AR.cover)+' m² · '+(AR.cover/AR.plot*100).toFixed(1)+' %'],['BG','built-up GF',m2(AR.gf)+' m²'],['BF','built-up FF',m2(AR.ff)+' m²'],
+ ['BM','stair room',m2(AR.mu)+' m²'],['FAR','(BG+BF) ÷ PA',AR.far.toFixed(2)+' [VERIFY]'],['CG','carpet GF flat',m2(AR.carGF)+' m²'],['CF','carpet FF flat',m2(AR.carFF)+' m²'],['BAL','FF balcony',m2(AR.bal)+' m²']],[40,104,110]);
+ table(1000,y,'Design assumptions',[['—','plot / road','18 × 9 m · east'],['—','frame','RCC [VERIFY]'],['—','walls','230 brick · 100 AAC'],['FTF','floor-floor','18 × 170 = 3060'],['—','plinth','450 above road'],['—','reference','NBC 2016 [VERIFY]']],[40,104,110]);
+ table(1300,300,'Drawing index',SHEETS.map(([id,t])=>{const [c,...r]=t.split(' ');return [c,r.join(' ').replace(' (preliminary)','')]}),[56,220],['Sheet','Title']);}
+
+/* =================== SHEETS A-101 / A-102 / A-103 · PLANS =================== */
+planSheet('s1','GF','Ground floor plan',[[1,'GF FLAT: 2 BEDROOMS, LIVING + DINING, KITCHEN, 2 BATHS.'],[2,'STAIR HALL IS COMMON. MAIN DOOR D1 FROM FRONT STEPS.'],[3,'CAR PORCH UNDER FF KITCHEN. CLEAR HEIGHT PCH.'],[4,'PLINTH +450 ABOVE ROAD. 3 STEPS, NO RAMP [VERIFY] ACCESS.'],
+ [5,'WALLS: T1 230 BRICK, T2 100 AAC [VERIFY]. COLUMNS PRELIMINARY.'],[6,'UNDER-STAIR STORE, METER BOARD LOCATION [TBD].']],(v,y)=>{table(1452,y,'Parking',[['CBW × CBL','car bay','2500 × 5000'],['PCW','porch clear w','2865'],['PCH','porch clear h','2910'],['GW / PG','gates','3000 / 1200'],['TWW × TWL','2-wheeler bay','800 × 2000']],[62,62,94]);});
+{let y=roomTable('GF',230);legend(y,[['hs','CUT WALL'],['colm','COLUMN (PRELIMINARY)'],['hug','FIXED / FURNITURE'],['env','CAR BAY'],['slot','EQUIPMENT / TBD']]);}
+planSheet('s2','FF','First floor plan',[[1,'FF FLAT: 2 BEDROOMS, OPEN LIVING + LOUNGE, KITCHEN + DINING, 2 BATHS.'],[2,'KITCHEN + DINING OVER THE CAR PORCH, ON BEAMS Y1 / X5.'],[3,'BALCONY BP CANTILEVERS INTO FRONT SETBACK [VERIFY].'],
+ [4,'BATHS STACKED OVER GF BATHS. KITCHEN STACK RUNS DOWN PORCH.'],[5,'STAIR CONTINUES TO TERRACE (UP), FROM GF (DN).'],[6,'RAILING HEIGHT BRH 1000 [VERIFY]. MATERIALS [TBD].']],(v,y)=>{table(1452,y,'First floor',[['BP','balcony depth','1200'],['BRH','railing h','1000 [VERIFY]'],['FTF','floor-floor','3060']],[56,72,96]);});
+{let y=roomTable('FF',230);legend(y,[['hs','CUT WALL'],['colm','COLUMN (PRELIMINARY)'],['hug','FIXED / FURNITURE'],['slot','EQUIPMENT / TBD']]);}
+planSheet('s3','TR','Terrace plan',[[1,'ROOF SLAB FALLS 1:100 TO 4 OUTLETS → RWP [VERIFY].'],[2,'PARAPET PH 1000 ALL ROUND [VERIFY].'],[3,'STAIR ROOM OVER HALL, HEIGHT MH. TERRACE DOOR TD.'],[4,'WATER TANK ON STAIR-ROOM ROOF, CAPACITY [TBD].'],
+ [5,'WATERPROOFING, INSULATION, SOLAR ZONE [TBD].'],[6,'BALCONY BELOW SHOWN DASHED.']],(v,y)=>{const X=v.X,Y=v.Y;
+ pr(v,SITE.tank.x,SITE.tank.y,SITE.tank.w,SITE.tank.h,'slot');pl(v,11000,5000,12500,6500,'far');pl(v,12500,5000,11000,6500,'far');tx(X(11750),Y(6700),'TANK OVER','sl',{'text-anchor':'middle'});
+ [[3000,1600],[8000,1600],[3000,7400],[8000,7400]].forEach(([x,yy],i)=>{const tox=x,toy=yy<4000?1230:7770;mk('line',{x1:X(x),y1:Y(4500),x2:X(tox),y2:Y(toy+(yy<4000?120:-120)),class:'dl','marker-end':A});});
+ [[3000,1230],[8000,1230],[3000,7770],[8000,7770]].forEach(([x,yy])=>mk('rect',{x:X(x)-4,y:Y(yy)-(yy<4000?0:8),width:8,height:8,class:'solid'}));tx(X(5500),Y(4500)+3,'FALL 1:100 [VERIFY]','sl',{'text-anchor':'middle'});
+ pr(v,11000,1600,3000,2200,'slot');tx(X(12500),Y(2700)+3,'SOLAR / PLANT [TBD]','sl',{'text-anchor':'middle'});tx(X(6000),Y(2700),'TERRACE','rn',{'text-anchor':'middle'});tx(X(12300),Y(5050),'STAIR ROOM','rn',{'text-anchor':'middle'});
+ table(1452,y,'Roof',[['PH','parapet h','1000'],['MH','stair room h','2700'],['TKH','tank h','1000 [TBD]'],['—','roof fall','1:100 [VERIFY]']],[56,72,96]);});
+{legend(250,[['hs','PARAPET / STAIR-ROOM WALL'],['slot','TANK / PLANT (TBD)'],['far','BALCONY BELOW']]);}
+
+/* =================== SHEET A-201 · ELEVATIONS (1:125) =================== */
+begin('s4');
+notesBand(50,880,58,[[1,'LEVELS FROM GF FFL ±0. ROAD / GROUND GL AT −450 [VERIFY].'],[2,'LINTEL LEVEL DH 2100 ON EVERY FLOOR. SUNSHADES [TBD].'],[3,'BALCONY RAILING BRH, PARAPET PH, HEIGHTS [VERIFY].'],
+ [4,'STAIR ROOM AND TANK RISE ABOVE THE TERRACE AT THE FRONT.'],[5,'FACADE MATERIALS, COLOURS, SIGNAGE: OUT OF SCOPE [TBD].'],[6,'RWP = RAINWATER DOWNPIPE, POSITIONS [VERIFY].']]);
+const FACE={S:{u:(x,y)=>x-1500,sel:o=>o.o==='h'&&o.w[0]===7770},N:{u:(x,y)=>15000-x,sel:o=>o.o==='h'&&o.w[0]===1000},W:{u:(x,y)=>y-1000,sel:o=>o.o==='v'&&o.w[0]===1500},E:{u:(x,y)=>8000-y,sel:o=>o.o==='v'&&o.w[0]===14770}};
+function eOps(v,face,floors,cls){const F=FACE[face];OPS.filter(o=>F.sel(o)).forEach(o=>o.fl.filter(f=>!floors||floors.includes(f)).forEach(f=>{const t=TYPES[o.c];
+ const u1=o.o==='h'?F.u(o.a,0):F.u(0,o.a),u2=o.o==='h'?F.u(o.b,0):F.u(0,o.b),h0=LV[f]+t.s;
+ if(t.k==='door'){er(v,u1,h0,u2,h0+t.h,o.c==='FD'?'glz':(cls||'thinw'));el(v,Math.min(u1,u2)+80,h0+1000,Math.min(u1,u2)+80,h0+1150,'cut')}
+ else{er(v,u1,h0,u2,h0+t.h,cls||'glz');if(t.w>=1200)el(v,(u1+u2)/2,h0,(u1+u2)/2,h0+t.h)}}))}
+function ground(v,u1,u2){el(v,u1,V.GL,u2,V.GL,'cut');mk('rect',{x:v.X(u1),y:v.Z(V.GL),width:(u2-u1)*v.k,height:7,fill:GH,class:'hsn'})}
+function levelChain(v,u,list,side){list.forEach(([a,b,l])=>dimV(v.Z(b),v.Z(a),v.X(u),v.X(u)+(side==='r'?-8:8),v.X(u)+(side==='r'?-8:8),l,{side:side||'r'}))}
+const k125=SC(125);
+/* front (east), looking west: u = 8000 − y */
+{const v=E(110,505,k125),X=v.X,Z=v.Z;ground(v,-500,7500);
+ er(v,0,V.GL,7000,0,'thinw');er(v,0,0,3835,V.FTF,'obj');/* porch: back wall far, columns, beam */er(v,3835,0,7000,V.FTF,'farf');
+ opening:{const u1=8000-3000,u2=8000-1800;er(v,u1,900,u2,2100,'farw');}
+ er(v,3835,V.FTF-V.BMD,7000,V.FTF,'hug3');er(v,3570,V.PFL,3870,V.FTF,'colm');er(v,6700,V.PFL,7000,V.FTF,'colm');er(v,4050,V.PFL,6700,V.PFL+1400,'slot');tx(X(5400),Z(700)+3,'CAR','sl',{'text-anchor':'middle'});
+ er(v,0,V.FTF,7000,V.TR,'obj');er(v,3835,V.TR,7000,V.PT,'obj');er(v,0,V.TR,3835,V.MT,'obj');er(v,1500,V.MT,3000,V.TT,'thinw');tx(X(2250),Z(V.MT+500)+3,'TANK','sl',{'text-anchor':'middle'});
+ eOps(v,'E',['GF','FF','TR']);
+ [0,150,300].forEach((d,i)=>er(v,2400-i*0,V.GL+i*150,3600,V.GL+(i+1)*150,'thinw'));
+ er(v,4230,V.FTF-V.SL,6770,V.FTF,'hug3');er(v,4230,V.FTF,6770,V.FTF+V.BRH,'thin');for(let u=4430;u<6770;u+=200)el(v,u,V.FTF,u,V.FTF+V.BRH,'far');
+ levelChain(v,7000+700,[[V.GL,0,'PLH'],[0,V.FTF,'FTF'],[V.FTF,V.TR,'FTF'],[V.TR,V.PT,'PH']]);levelChain(v,-450,[[V.TR,V.MT,'MH'],[V.MT,V.TT,'TKH']],'l');
+ [['GL',V.GL],['FFL0',0],['FFL1',V.FTF],['TR',V.TR],['MT',V.MT]].forEach(([l,h])=>lvl(X(-1300),Z(h),l));
+ dimH(X(0),X(7000),Z(V.GL)+24,Z(V.GL)+4,Z(V.GL)+4,'BW',{below:true});nb(X(5500),Z(V.FTF+V.BRH+250),3);nb(X(3200),Z(V.MT+300),4);
+ title(X(3500),Z(V.GL)+62,'East elevation · front','Scale 1:125 @ A3 · road side');}
+/* south side, looking north: u = x − 1500 */
+{const v=E(560,505,k125),X=v.X,Z=v.Z;ground(v,-500,15400);
+ er(v,0,V.GL,13500,0,'thinw');er(v,0,0,13500,V.TR,'obj');el(v,0,V.FTF,13500,V.FTF,'far');er(v,0,V.TR,8770,V.PT,'obj');er(v,8770,V.TR,13500,V.MT,'obj');er(v,9500,V.MT,11000,V.TT,'farw');
+ er(v,13500,V.FTF-V.SL,14700,V.FTF+V.BRH,'far');er(v,13500,V.GL,14400,0,'far');eOps(v,'S',['GF','FF']);
+ [0,13500].forEach(u=>el(v,u+(u?-120:120),V.TR,u+(u?-120:120),V.GL+150,'thin'));tx(X(13380)-4,Z(1500),'RWP','sl',{'text-anchor':'end'});
+ levelChain(v,15200,[[V.GL,0,'PLH'],[0,V.FTF,'FTF'],[V.FTF,V.TR,'FTF'],[V.TR,V.MT,'MH']]);
+ dimH(X(0),X(13500),Z(V.GL)+24,Z(V.GL)+4,Z(V.GL)+4,'BL',{below:true});tx(X(14100),Z(V.FTF+V.BRH)-6,'BALCONY','sl',{'text-anchor':'middle'});
+ title(X(6750),Z(V.GL)+62,'South elevation · side','Scale 1:125 @ A3');}
+/* rear (west), looking east: u = y − 1000 */
+{const v=E(110,945,k125),X=v.X,Z=v.Z;ground(v,-500,7500);
+ er(v,0,V.GL,7000,0,'thinw');er(v,3165,V.PT,7000,V.MT,'farw');er(v,4000,V.MT,5500,V.TT,'farw');er(v,0,0,7000,V.TR,'obj');el(v,0,V.FTF,7000,V.FTF,'far');er(v,0,V.TR,7000,V.PT,'obj');eOps(v,'W',['GF','FF']);
+ [120,6880].forEach(u=>el(v,u,V.TR,u,V.GL+150,'thin'));tx(X(120)+5,Z(1500),'RWP','sl');
+ levelChain(v,7700,[[V.GL,0,'PLH'],[0,V.FTF,'FTF'],[V.FTF,V.TR,'FTF'],[V.TR,V.PT,'PH']]);
+ [['GL',V.GL],['FFL0',0],['FFL1',V.FTF],['TR',V.TR],['PT',V.PT]].forEach(([l,h])=>lvl(X(-1300),Z(h),l));
+ dimH(X(0),X(7000),Z(V.GL)+24,Z(V.GL)+4,Z(V.GL)+4,'BW',{below:true});title(X(3500),Z(V.GL)+62,'West elevation · rear','Scale 1:125 @ A3');}
+/* north side, looking south: u = 15000 − x */
+{const v=E(600,945,k125),X=v.X,Z=v.Z;ground(v,-1700,14000);
+ er(v,0,V.PT,4730,V.MT,'farw');er(v,2500,V.MT,4000,V.TT,'farw');
+ er(v,4500,V.GL,13500,0,'thinw');er(v,0,V.GL,4500,V.PFL,'thinw');er(v,4500,0,13500,V.FTF,'obj');er(v,230,V.PFL,4500,V.FTF,'farf');er(v,0,V.FTF-V.BMD,4500,V.FTF,'hug3');er(v,0,V.PFL,230,V.FTF,'colm');er(v,4500,V.PFL,4730,V.FTF,'colm');
+ er(v,700,V.PFL,4400,V.PFL+1400,'slot');er(v,0,V.FTF,13500,V.TR,'obj');er(v,0,V.TR,13500,V.PT,'obj');er(v,-1200,V.FTF-V.SL,0,V.FTF+V.BRH,'thin');for(let u=-1100;u<0;u+=200)el(v,u,V.FTF,u,V.FTF+V.BRH,'far');
+ eOps(v,'N',['GF','FF']);[120,13380].forEach(u=>el(v,u,V.TR,u,(u<1000?V.FTF:V.GL+150),'thin'));
+ levelChain(v,14200,[[V.GL,0,'PLH'],[0,V.FTF,'FTF'],[V.FTF,V.TR,'FTF'],[V.TR,V.PT,'PH']]);
+ dimH(X(0),X(4500),Z(V.GL)+24,Z(V.PFL)+4,Z(V.GL)+4,'A4 + T1',{below:true});dimV(Z(V.FTF-V.BMD),Z(V.PFL),X(2400),null,null,'PCH',{side:'r'});
+ dimH(X(-1200),X(0),Z(V.FTF+V.BRH)-14,Z(V.FTF+V.BRH),Z(V.FTF+V.BRH),'BP');tx(X(2400),Z(700)+3,'CAR','sl',{'text-anchor':'middle'});
+ title(X(6750),Z(V.GL)+62,'North elevation · side (porch)','Scale 1:125 @ A3');}
+{const y=table(1426,180,'Levels',[['GL','road / ground','−450 [VERIFY]'],['PFL','porch floor','−300'],['FFL0','GF floor','±0'],['FFL1','FF floor','+3060'],['TR','terrace','+6120'],['PT','parapet top','+7120'],['MT','stair-room roof','+8820'],['TT','tank top','+9820']],[40,82,102]);
+ table(1426,y,'Heights',[['PLH','plinth','450'],['FTF','floor-floor','N·R = 3060'],['CH','ceiling','FTF−SL = 2910'],['PH','parapet','1000'],['MH','stair room','2700'],['TKH','tank','1000 [TBD]'],['BRH','railing','1000'],['PCH','porch clear','FTF−BMD−PFL=2910']],[40,82,102]);}
+
+/* =================== SHEET A-301 · SECTIONS (1:100) =================== */
+begin('s5');
+const k100=SC(100);
+function cutw(v,u1,u2,h1,h2){er(v,u1,h1,u2,h2,'hs',{fill:HAT})}
+function sground(v,u1,u2,gaps){mk('rect',{x:v.X(u1),y:v.Z(V.GL),width:(u2-u1)*v.k,height:9,fill:GH,class:'hsn'});el(v,u1,V.GL,u2,V.GL,'cut')}
+/* A–A: y = 6200 looking north; u = x */
+{const v=E(80-1000*k100,150+V.TT*k100,k100),X=v.X,Z=v.Z;sground(v,1000,17000);
+ /* plinth fill + GF slab, footings */
+ mk('rect',{x:X(1500),y:Z(-V.SL),width:13500*v.k,height:(V.PLH-V.SL)*v.k,fill:GH,class:'hsn'});cutw(v,1500,15000,-V.SL,0);
+ [1615,5080,6680,10385,14885].forEach(x=>{er(v,x-600,-1500,x+600,-1200,'slot');el(v,x,-1200,x,V.GL,'ph')});tx(X(3300),Z(-1350)+3,'FOOTINGS [TBD]','sl',{'text-anchor':'middle'});
+ /* far: balcony beyond, partition openings, furniture */
+ er(v,15000,V.FTF-V.SL,16200,V.FTF+V.BRH,'far');er(v,7000,0,8000,V.DH,'farw');
+ [0,V.FTF].forEach(b=>{er(v,1730,b,3730,b+450,'hug');er(v,1730,b,1830,b+1000,'hug3');er(v,6830,b,7630,b+800,'hug');er(v,13500,b,14770,b,'thin')});
+ er(v,7900,750-30,9100,750,'farw');
+ /* walls cut */
+ [0,V.FTF].forEach(b=>{cutw(v,1500,1730,b,b+900);er(v,1500,b+900,1730,b+V.DH,'glz');cutw(v,1500,1730,b+V.DH,b+V.FTF-V.SL);
+  cutw(v,5030,5130,b,b+V.CH);cutw(v,6630,6730,b,b+V.CH);cutw(v,10270,10500,b,b+V.CH);cutw(v,14770,15000,b,b+V.CH);
+  cutw(v,1500,10500,b+V.FTF-V.SL,b+V.FTF);cutw(v,13500,15000,b+V.FTF-V.SL,b+V.FTF)});
+ cutw(v,1500,1730,V.TR,V.PT);cutw(v,10270,10500,V.TR,V.MT);cutw(v,14770,15000,V.TR,V.MT);cutw(v,10270,15000,V.MT-V.SL,V.MT);er(v,11000,V.MT,12500,V.TT,'hs',{fill:HAT,style:'fill-opacity:.5'});
+ /* stair: upper flights (y 5670–6670) cut, mid landings and floor landings */
+ [0,V.FTF].forEach(b=>{const pts=[];for(let i=0;i<9;i++){const x=ST.xM+i*V.T,h=b+V.FTF/2+i*V.R;pts.push([x,h],[x,h+V.R])}pts.push([ST.xF,b+V.FTF]);
+  mk('polyline',{points:pts.map(p=>X(p[0])+','+Z(p[1])).join(' '),class:'thin'});mk('line',{x1:X(ST.xM),y1:Z(b+V.FTF/2-V.WST-60),x2:X(ST.xF),y2:Z(b+V.FTF-V.WST-60),class:'thin'});
+  cutw(v,ST.x0,ST.xM,b+V.FTF/2-V.SL,b+V.FTF/2)});
+ tx(X(1650+1350),Z(1700),'BED 1','rn',{'text-anchor':'middle'});tx(X(5880),Z(1700),'BATH 1','rn',{'text-anchor':'middle'});tx(X(8500),Z(1700),'LIVING','rn',{'text-anchor':'middle'});tx(X(12600),Z(400),'STAIR','rn',{'text-anchor':'middle'});
+ tx(X(3000),Z(V.FTF+1700),'BED 1','rn',{'text-anchor':'middle'});tx(X(8500),Z(V.FTF+1700),'LIVING','rn',{'text-anchor':'middle'});tx(X(12600),Z(V.TR+1600),'STAIR ROOM','rn',{'text-anchor':'middle'});tx(X(11750),Z(V.MT+500)+3,'TANK','sl',{'text-anchor':'middle'});
+ [[-V.SL,0,'SL'],[0,V.CH,'CH'],[V.CH,V.FTF,'SL'],[V.FTF,V.FTF+V.CH,'CH'],[V.FTF+V.CH,V.TR,'SL'],[V.TR,V.PT,'PH']].forEach(([a,b,l])=>dimV(Z(b),Z(a),X(1500)-300*v.k-20,X(1500),X(1500),l,{side:'l'}));
+ [[V.GL,0,'PLH'],[0,V.FTF,'FTF'],[V.FTF,V.TR,'FTF'],[V.TR,V.MT,'MH'],[V.MT,V.TT,'TKH']].forEach(([a,b,l])=>dimV(Z(b),Z(a),X(17000),X(15000),X(15000),l,{side:'r'}));
+ [['FFL0',0],['FFL1',V.FTF],['TR',V.TR]].forEach(([l,h])=>lvl(X(17000)+60,Z(h),l,true));
+ title(X(8500),Z(-1500)+38,'Section A–A · looking north','Scale 1:100 @ A3 · y = 6200: bed 1, bath 1, living, stair');}
+/* B–B: x = 12500 looking west; u = 9000 − y (south left) */
+{const v=E(900,150+V.TT*k100,k100),X=v.X,Z=v.Z,u=y=>9000-y;sground(v,0,9000);
+ mk('rect',{x:X(1000),y:Z(-V.SL),width:3835*v.k,height:(V.PLH-V.SL)*v.k,fill:GH,class:'hsn'});cutw(v,u(8000),u(4165),-V.SL,0);cutw(v,u(4165),u(1000),V.PFL-V.SL,V.PFL);
+ [7885,4280,1115].forEach(y=>{er(v,u(y)-600,-1500,u(y)+600,-1200,'slot');el(v,u(y),-1200,u(y),V.GL,'ph')});
+ /* far: mid landings beyond (west), tank, car */
+ [0,V.FTF].forEach(b=>er(v,u(7770),b+V.FTF/2-V.SL,u(5670),b+V.FTF/2,'farw'));er(v,u(6500),V.MT,u(5000),V.TT,'farw');er(v,u(3400),V.PFL,u(1600),V.PFL+1400,'slot');tx(X(u(2500)),Z(500)+3,'CAR','sl',{'text-anchor':'middle'});
+ /* walls */
+ cutw(v,u(8000),u(7770),0,1800);er(v,u(8000),1800,u(7770),2700,'glz');cutw(v,u(8000),u(7770),2700,V.FTF+1800);er(v,u(8000),V.FTF+1800,u(7770),V.FTF+2700,'glz');cutw(v,u(8000),u(7770),V.FTF+2700,V.MT);
+ cutw(v,u(4395),u(4165),0,V.MT);cutw(v,u(1230),u(1000),V.FTF-V.BMD,V.FTF);cutw(v,u(1230),u(1000),V.FTF,V.PT);cutw(v,u(4395),u(4165),V.FTF-V.BMD,V.FTF-V.SL);
+ /* slabs */
+ cutw(v,u(5670),u(4165),V.FTF-V.SL,V.FTF);cutw(v,u(4165),u(1000),V.FTF-V.SL,V.FTF);cutw(v,u(5670),u(4165),V.TR-V.SL,V.TR);cutw(v,u(4165),u(1000),V.TR-V.SL,V.TR);cutw(v,u(8000),u(4165),V.MT-V.SL,V.MT);
+ er(v,u(1830),V.FTF,u(1230),V.FTF+900,'hug');
+ /* stair flights cut across at x 12500: 4 risers above each flight start */
+ [0,V.FTF].forEach(b=>{const hL=b+4*V.R,hU=b+V.FTF/2+4*V.R;cutw(v,u(7770),u(6770),hL-V.WST,hL);el(v,u(7770),hL,u(6770),hL,'cut');cutw(v,u(6670),u(5670),hU-V.WST,hU);el(v,u(6670),hU,u(5670),hU,'cut')});
+ tx(X(u(6700)),Z(V.TR+1500),'STAIR ROOM','rn',{'text-anchor':'middle'});tx(X(u(2600)),Z(V.FTF+1700),'KITCHEN + DINING','rn',{'text-anchor':'middle'});tx(X(u(2600)),Z(1800),'CAR PORCH','rn',{'text-anchor':'middle'});
+ dimV(Z(V.FTF-V.BMD),Z(V.PFL),X(u(3000)),null,null,'PCH',{side:'r'});
+ [[V.GL,0,'PLH'],[0,V.FTF,'FTF'],[V.FTF,V.TR,'FTF'],[V.TR,V.MT,'MH']].forEach(([a,b,l])=>dimV(Z(b),Z(a),X(9000)+24,X(u(1000)),X(u(1000)),l,{side:'r'}));
+ title(X(4500),Z(-1500)+38,'Section B–B · looking west','Scale 1:100 @ A3 · x = 12500: stair, porch, FF kitchen');}
+/* key plan */
+{const v=P(100,730,SC(250)),X=v.X,Y=v.Y;pr(v,0,0,18000,9000,'thin');WALLS.GF.forEach(w=>pr(v,w.x,w.y,w.w,w.h,'solid'));
+ mk('line',{x1:X(500),y1:Y(6200),x2:X(17500),y2:Y(6200),class:'secl'});mk('line',{x1:X(12500),y1:Y(300),x2:X(12500),y2:Y(8700),class:'secl'});
+ tx(X(0)-8,Y(6200)+4,'A','vt',{'text-anchor':'end'});tx(X(12500),Y(0)-6,'B','vt',{'text-anchor':'middle'});title(X(9000),Y(9000)+28,'Key plan','Scale 1:250 @ A3');}
+notesCol(480,740,[[1,'FLOOR-TO-FLOOR FTF = 18 × R. SLAB SL 150 [VERIFY] STRUCTURE.'],[2,'CLEAR CEILING CH 2910 ON BOTH FLOORS.'],[3,'PORCH CLEAR PCH UNDER BEAM BMD 450 (PRELIMINARY).'],[4,'FOOTINGS, BEAM AND SLAB SIZES: STRUCTURAL ENGINEER [VERIFY].'],[5,'STAIR CUT SHOWN WITH WAIST WST 150 [VERIFY].'],[6,'DAMP-PROOF COURSE AT PLINTH, WATERPROOFING ON TERRACE [TBD].']]);
+table(1426,180,'Section values',[['SL','slab','150 [VERIFY]'],['CH','clear ceiling','2910'],['FTF','floor-floor','3060'],['BMD','beam depth','450 [VERIFY]'],['PFL','porch floor','−300'],['PCH','porch clear','2910'],['WST','stair waist','150 [VERIFY]'],['PLH','plinth','450'],['MH','stair room','2700'],['TKH','tank','1000 [TBD]'],['PH','parapet','1000']],[40,82,102]);
+
+/* =================== SHEET A-401 · STAIRCASE =================== */
+begin('s6');
+function stairBox(ox,f,ttl){const k=SC(50),v=P(ox-10270*k,180-4165*k,k),X=v.X,Y=v.Y;
+ WALLS[f].filter(w=>ov(w,R(10270,4165,4730,3835))).forEach(w=>{const x1=Math.max(w.x,10270),y1=Math.max(w.y,4165),x2=Math.min(w.x+w.w,15000),y2=Math.min(w.y+w.h,8000);pr(v,x1,y1,x2-x1,y2-y1,'hs',{fill:HAT})});
+ OPS.filter(p=>p.fl.includes(f)&&ov(p.rect,R(10270,4165,4730,3835))).forEach(p=>{const r=p.rect,t=TYPES[p.c];pr(v,r.x,r.y,r.w,r.h,'gap');if(t.k==='win'){pr(v,r.x,r.y,r.w,r.h,'winp');p.o==='h'?pl(v,r.x,r.y+r.h/2,r.x+r.w,r.y+r.h/2):pl(v,r.x+r.w/2,r.y,r.x+r.w/2,r.y+r.h)}else if(p.hg&&p.hg[0]>=10500)door(v,p.hg,p.cl,p.op);
+  tx(X((p.a+p.b)/2*(p.o==='h'?1:0)+(p.o==='v'?(p.w[0]>12000?14450:10650):0)),Y(p.o==='v'?(p.a+p.b)/2:p.w[0]-200)+3,p.c,'sl',{'text-anchor':'middle'})});
+ COLS.filter(c=>c.x>=10270).forEach(c=>pr(v,c.x,c.y,c.w,c.h,'colm'));stairPlan(v,f==='TR'?'TR':f,false);
+ const fx=[10500,11500,13500,14770],fl=['ML','FG','FL'];for(let i=0;i<3;i++)dimH(X(fx[i]),X(fx[i+1]),Y(8000)+22,Y(7770),Y(7770),fl[i],{below:true});
+ const fy=[4395,5670,6670,6770,7770],fyl=['LS','SW','GP','SW'];for(let i=0;i<4;i++)dimV(Y(fy[i]),Y(fy[i+1]),X(10270)-20,X(10500),X(10500),fyl[i],{side:'l'});
+ title(X(12635),Y(8000)+62,ttl,'Scale 1:50 @ A3');return v}
+stairBox(80,'GF','Stair plan · ground floor');stairBox(560,'FF','Stair plan · first floor');
+/* section C–C along y 7270 (lower flights) looking north, 1:60 */
+{const k=SC(60),v=E(1010-10270*k,600,k),X=v.X,Z=v.Z;sground(v,10000,15400);
+ cutw(v,10270,10500,0,6400);cutw(v,14770,15000,0,6400);
+ cutw(v,10270,15000,-V.SL,0);
+ [0,V.FTF].forEach(b=>{/* lower flight (cut): rises westward from FL edge xF */const pts=[];for(let i=0;i<9;i++){const x=ST.xF-i*V.T,h=b+i*V.R;pts.push([x,h],[x,h+V.R])}pts.push([ST.xM,b+V.FTF/2]);
+  mk('polygon',{points:pts.concat([[ST.xM,b+V.FTF/2-V.WST-80],[ST.xF,b-V.WST+40]]).map(p=>X(p[0])+','+Z(p[1])).join(' '),class:'hs',fill:HAT});
+  cutw(v,ST.x0,ST.xM,b+V.FTF/2-V.SL,b+V.FTF/2);/* upper flight beyond */const q=[];for(let i=0;i<9;i++){const x=ST.xM+i*V.T,h=b+V.FTF/2+i*V.R;q.push([x,h],[x,h+V.R])}q.push([ST.xF,b+V.FTF]);mk('polyline',{points:q.map(p=>X(p[0])+','+Z(p[1])).join(' '),class:'far'});
+  if(b+V.FTF<=V.TR)cutw(v,ST.xF,14770,b+V.FTF-V.SL,b+V.FTF);
+  /* handrail */mk('line',{x1:X(ST.xF),y1:Z(b+V.HRL),x2:X(ST.xM),y2:Z(b+V.FTF/2+V.HRL),class:'thin'});});
+ el(v,ST.xF-V.T,V.R,ST.xF-V.T,V.R+V.HR,'ph');tx(X(ST.xF-V.T)+5,Z(V.R+V.HR/2),'HR','dt');
+ [[0,V.FTF/2,'N/2 · R'],[V.FTF/2,V.FTF,'N/2 · R'],[V.FTF,V.TR,'FTF']].forEach(([a,b,l])=>dimV(Z(b),Z(a),X(15000)+24,X(15000),X(15000),l,{side:'r'}));
+ lvl(X(10270)-30,Z(0),'FFL0');lvl(X(10270)-30,Z(V.FTF),'FFL1');lvl(X(10270)-30,Z(V.TR),'TR');lvl(X(10270)-30,Z(V.FTF/2),'LDG');
+ title(X(12635),Z(V.GL)+40,'Section C–C · stair','Scale 1:60 @ A3 · along lower flights, looking north');}
+/* tread detail 1:10 */
+{const k=SC(10),v=E(110,860,k),X=v.X,Z=v.Z;const pts=[[0,0]];for(let i=0;i<3;i++){pts.push([i*V.T,(i+1)*V.R],[(i+1)*V.T,(i+1)*V.R])}
+ mk('polygon',{points:pts.concat([[3*V.T,3*V.R-V.WST*1.3],[0,-V.WST*1.3]]).map(p=>X(p[0])+','+Z(p[1])).join(' '),class:'hs',fill:HAT});mk('polyline',{points:pts.map(p=>X(p[0])+','+Z(p[1])).join(' '),class:'cut'});
+ dimH(X(V.T),X(2*V.T),Z(2*V.R)-16,Z(2*V.R),Z(2*V.R),'T');dimV(Z(2*V.R),Z(V.R),X(V.T)-14,X(V.T),X(V.T),'R',{side:'l'});dimV(Z(3*V.R),Z(3*V.R-V.WST*1.3),X(3*V.T)+16,X(3*V.T),X(3*V.T),'WST',{side:'r'});
+ callout(X(2*V.T+40),Z(2*V.R+10),X(2*V.T+140),Z(3*V.R+130),'NOSING [TBD]',1,'dts');title(X(375),Z(-V.WST*1.3)+40,'Detail · tread + riser','Scale 1:10 @ A3');}
+/* handrail detail 1:20 */
+{const k=SC(20),v=E(600,920,k),X=v.X,Z=v.Z;el(v,-100,0,400,0,'cut');er(v,0,0,40,V.HRL,'thinw');er(v,-30,V.HRL,70,V.HRL+50,'solid');er(v,-60,0,100,40,'hs',{fill:HAT});
+ dimV(Z(V.HRL),Z(0),X(-100)-10,X(-30),X(-30),'HRL',{side:'l'});callout(X(20),Z(V.HRL+25),X(180),Z(V.HRL+120),'RAIL [TBD]',1,'dts');title(X(150),Z(0)+40,'Detail · handrail','Scale 1:20 @ A3');}
+notesCol(860,700,[[1,'DOG-LEG STAIR, 2 FLIGHTS × 9 RISERS PER FLOOR.'],[2,'R / T / SW / HEADROOM AGAINST NBC 2016 [VERIFY].'],[3,'WAIST WST, REINFORCEMENT: STRUCTURAL [VERIFY].'],[4,'HANDRAIL HRL BOTH SIDES OF WELL [VERIFY].'],[5,'SPACE UNDER MID LANDING: STORE, 1380 CLEAR.'],[6,'STAIR WINDOW W6 HIGH ON SOUTH WALL.']]);
+table(1426,180,'Stair',[['N','risers / floor','18'],['R','riser','FTF ÷ N = 170'],['T','tread','250'],['2R+T','comfort','590 (550–700)'],['SW','flight width','1000'],['GP','well gap','100'],['ML','mid landing','1000'],['FG','flight going','(N/2−1)·T = 2000'],['FL','floor landing','1270'],['HR','headroom','FTF−SL−R = 2740'],['HRL','handrail h','900 [VERIFY]'],['WST','waist','150 [VERIFY]']],[40,82,102]);
+
+/* =================== SHEET A-501 · DOOR + WINDOW SCHEDULE =================== */
+begin('s7');
+{const rows=Object.keys(TYPES).map(c=>{const t=TYPES[c],q=window.QA.schedule.find(s=>s.c===c);const locs=[...new Set(OPS.filter(o=>o.c===c).map(o=>o.r))].join(', ');
+  return [c,t.d,String(t.w),String(t.h),t.k==='win'?String(t.s):'—',String(t.s+t.h),String(q.GF),String(q.FF),String(q.TR),String(q.GF+q.FF+q.TR),locs]});
+ table(50,90,'Door + window schedule',rows,[40,190,50,50,50,50,34,34,34,44,330],['Code','Type','W','H','Sill','Head','GF','FF','TR','Total','Location']);}
+{const k=SC(50);let x=70;const draw=(c,y0)=>{const t=TYPES[c],v=E(x,y0,k),X=v.X,Z=v.Z;el(v,-100,0,t.w+100,0,'cut');
+  if(t.k==='door'){er(v,0,0,t.w,t.h,c==='FD'?'glz':'thinw');er(v,80,80,t.w-80,t.h-80,'far');el(v,t.w-120,1000,t.w-120,1150,'cut')}else{er(v,0,t.s,t.w,t.s+t.h,'glz');if(t.w>=1200)el(v,t.w/2,t.s,t.w/2,t.s+t.h);if(c==='V1')for(let h=t.s+90;h<t.s+t.h;h+=90)el(v,0,h,t.w,h,'far')}
+  dimH(X(0),X(t.w),Z(0)+18,Z(0)+4,Z(0)+4,String(t.w),{below:true});dimV(Z(t.s+t.h),Z(t.s),X(t.w)+12,X(t.w),X(t.w),String(t.h),{side:'r'});tx(X(t.w/2),Z(2400)-6,c,'vt',{'text-anchor':'middle'});x+=t.w*k+70};
+ ['D1','D2','D3','D4','FD','TD'].forEach(c=>draw(c,640));tx(70,412,'DOOR TYPES · ELEVATION, SCALE 1:50 @ A3','dts');
+ x=70;['W1','W2','W3','W4','W5','W6','V1'].forEach(c=>draw(c,960));tx(70,732,'WINDOW TYPES · ELEVATION, SCALE 1:50 @ A3 · SILL FROM FLOOR','dts');}
+notesCol(1110,440,[[1,'COUNTS ARE TAKEN FROM THE PLANS (SAME DATA).'],[2,'SIZES ARE CLEAR OPENINGS. FRAMES [TBD].'],[3,'BATH DOORS WATER-RESISTANT [TBD] MATERIAL.'],[4,'WINDOW GRILLES / SAFETY BARS [TBD].'],[5,'GLAZING SAFETY IN DOORS FD [VERIFY].'],[6,'OPENINGS O1, O2, O4 HAVE NO SHUTTER.']]);
+
+/* =================== SHEET S-101 · COLUMN GRID (PRELIMINARY) =================== */
+begin('s8');
+{const v=P(400,215,SC(75)),X=v.X,Y=v.Y;planFloor(v,'GF',{far:true,cols:true,site:true});
+ GX.forEach((g,i)=>{mk('line',{x1:X(g),y1:Y(0)-60,x2:X(g),y2:Y(9000)+20,class:'grid'});mk('circle',{cx:X(g),cy:Y(0)-72,r:11,class:'nb'});tx(X(g),Y(0)-68,'X'+(i+1),'nbt',{'text-anchor':'middle'})});
+ GY.forEach((g,i)=>{mk('line',{x1:X(0)-60,y1:Y(g),x2:X(18000)+10,y2:Y(g),class:'grid'});mk('circle',{cx:X(0)-72,cy:Y(g),r:11,class:'nb'});tx(X(0)-72,Y(g)+4,'Y'+(i+1),'nbt',{'text-anchor':'middle'})});
+ /* beams along grid lines between columns */
+ [[1615,1115,14885,1115],[1615,4280,14885,4280],[1615,7885,14885,7885],[1615,1115,1615,7885],[5080,1115,5080,7885],[6680,1115,6680,1580],[6680,7420,6680,7885],[10385,1115,10385,7885],[14885,1115,14885,7885]].forEach(([a,b,c,d])=>pl(v,a,b,c,d,'beam'));
+ COLS.forEach(c=>pr(v,c.x,c.y,c.w,c.h,'colm'));
+ for(let i=0;i<4;i++)dimH(X(GX[i]),X(GX[i+1]),Y(0)-34,Y(0)-60,Y(0)-60,'GX'+(i+1));for(let i=0;i<2;i++)dimV(Y(GY[i]),Y(GY[i+1]),X(0)-34,X(0)-60,X(0)-60,'GY'+(i+1));
+ tx(X(9000),Y(4700),'PRELIMINARY · NOT DESIGNED','stp',{'text-anchor':'middle'});tx(X(9000),Y(4700)+16,'SIZES AND SPANS FOR COORDINATION ONLY','dts',{'text-anchor':'middle'});
+ north(1405,110);title(X(9000),Y(9000)+70,'Column + beam grid · ground floor','Scale 1:75 @ A3 · preliminary concept');scalebar(X(0),Y(9000)+96,v.k,5);}
+notesBand(50,880,880,[[1,'RCC FRAME ASSUMED. ALL SIZES PRELIMINARY [VERIFY] ENGINEER.'],[2,'FF WALLS SIT ON GF WALLS OR ON BEAMS Y1 / X5 OVER THE PORCH.'],[3,'NO COLUMN AT X3 / Y2: PASSAGE OPENING O4 STAYS CLEAR.'],[4,'FOOTINGS, SOIL BEARING, SEISMIC ZONE: NOT ASSESSED [TBD].'],[5,'BEAM X3 ONLY AT WALL ENDS. SLAB SPANS [VERIFY].'],[6,'BALCONY CANTILEVER FROM X5 [VERIFY].']]);
+{let y=table(50,230,'Grid',[['GX1','X1–X2','3465'],['GX2','X2–X3','1600'],['GX3','X3–X4','3705'],['GX4','X4–X5','4500'],['GY1','Y1–Y2','3165'],['GY2','Y2–Y3','3605']],[40,82,102]);legend(y,[['colm','COLUMN 230 × 300'],['beam','BEAM (DASHED)'],['grid','GRID LINE']]);
+ table(1452,90,'Members · preliminary',[['C1','column ×'+COLS.length,'230 × 300 [VERIFY]'],['B1','beam','230 × 450 [VERIFY]'],['SL','slab','150 [VERIFY]'],['F1','footing','[TBD]'],['—','concrete / steel','[TBD]']],[40,82,102]);}
+
+/* =================== SHEET P-101 · PLUMBING CONCEPT =================== */
+const STACK=[['SP1',5830,850,'soil'],['SP2',5830,8150,'soil'],['WP1',8400,850,'waste'],['WP2',13600,850,'waste'],['RW1',1700,900,'rain'],['RW2',1700,8100,'rain'],['RW3',14800,900,'rain'],['RW4',14800,8100,'rain']];
+function mepPlan(id,f,oy,ttl,fn){const v=P(330,oy,SC(100));planFloor(v,f,{far:true,cols:false});fn(v);title(v.X(9000),v.Y(9000)+26,ttl,'Scale 1:100 @ A3 · concept');return v}
+begin('s9');
+function plumb(v,f){const X=v.X,Y=v.Y;
+ STACK.forEach(([c,x,y,t])=>{if(t==='rain'&&f==='GF'||t!=='rain'){mk('circle',{cx:X(x),cy:Y(y),r:t==='rain'?3:4.5,class:t==='rain'?'thinw':'solid'});tx(X(x)+7,Y(y)+3,c,'sl')}});
+ if(f==='GF'){[[5830,350],[8400,350],[13600,350],[5830,8650]].forEach(([x,y],i)=>{pr(v,x-250,y-250,500,500,'thinw');tx(X(x),Y(y)+3,'IC','sl',{'text-anchor':'middle'})});
+  mk('polyline',{points:[[5830,850],[5830,350],[17700,350]].map(p=>X(p[0])+','+Y(p[1])).join(' '),class:'pipe'});mk('polyline',{points:[[5830,8150],[5830,8650],[17700,8650]].map(p=>X(p[0])+','+Y(p[1])).join(' '),class:'pipe'});
+  mk('line',{x1:X(8400),y1:Y(850),x2:X(8400),y2:Y(350),class:'pipe'});mk('line',{x1:X(13600),y1:Y(850),x2:X(13600),y2:Y(350),class:'pipe'});
+  tx(X(17700),Y(350)-6,'SEWER [TBD]','sl',{'text-anchor':'end'});pr(v,SITE.sump.x,SITE.sump.y,SITE.sump.w,SITE.sump.h,'slot');tx(X(16900),Y(8350)+3,'SUMP','sl',{'text-anchor':'middle'});
+  pr(v,200,4000,1000,1000,'slot');tx(X(700),Y(4500)+3,'RWH','sl',{'text-anchor':'middle'});mk('polyline',{points:[[1700,900],[700,900],[700,4000]].map(p=>X(p[0])+','+Y(p[1])).join(' '),class:'wpipe'});mk('polyline',{points:[[1700,8100],[700,8100],[700,5000]].map(p=>X(p[0])+','+Y(p[1])).join(' '),class:'wpipe'});}
+ /* cold water: down-take from tank via stair hall to each flat's wet areas */
+ mk('polyline',{points:[[11750,5300],[10000,5300],[10000,3300],[6600,3300],[6600,2300]].map(p=>X(p[0])+','+Y(p[1])).join(' '),class:'wpipe'});mk('polyline',{points:[[6600,3300],[6600,6300]].map(p=>X(p[0])+','+Y(p[1])).join(' '),class:'wpipe'});
+ mk('polyline',{points:[[10000,3300],[10000,1500],f==='FF'?[13600,1500]:[8400,1500]].map(p=>X(p[0])+','+Y(p[1])).join(' '),class:'wpipe'});mk('circle',{cx:X(11750),cy:Y(5300),r:4,class:'thinw'});tx(X(11750)+7,Y(5300)+3,'DT','sl');}
+mepPlan('s9','GF',120,'Plumbing · ground floor',v=>plumb(v,'GF'));mepPlan('s9','FF',600,'Plumbing · first floor',v=>plumb(v,'FF'));
+{let y=legend(140,[['pipe','SOIL / WASTE DRAIN'],['wpipe','WATER / RAIN PIPE'],['solid','STACK (SP / WP)'],['thinw','IC / RWP / DOWN-TAKE']]);
+ table(1180,140,'Plumbing items',[['SP1–2','soil stacks','bath 2, bath 1'],['WP1–2','waste stacks','GF kit., FF kit.'],['RW1–4','rain pipes','4 roof outlets'],['IC','chambers','4 nos [TBD]'],['DT','down-take','from tank'],['—','sump / pump','[TBD]'],['—','sewer / septic','[TBD]'],['RWH','harvest pit','[TBD]']],[50,96,110]);
+ notesCol(1180,470,[[1,'CONCEPT ONLY. PIPE SIZES, FALLS, VENTS [VERIFY].'],[2,'FF BATHS SIT OVER GF BATHS: SHARED STACKS.'],[3,'FF KITCHEN WASTE WP2 DROPS AT PORCH EDGE.'],[4,'TANK ON STAIR-ROOM ROOF FEEDS BOTH FLATS.'],[5,'SEPARATE METERS / TANKS PER FLAT [TBD].'],[6,'MUNICIPAL CONNECTIONS AND RWH PER BYE-LAWS.']]);}
+
+/* =================== SHEET E-101 · ELECTRICAL CONCEPT =================== */
+begin('s10');
+const ELEC={light:[[3380,2300],[3380,6000],[5880,2100],[5880,4300],[5880,6500],[8500,2400],[8500,5700],[12600,5000]],fan:[[3380,2900],[3380,6600],[8500,5200]],
+ ac:[[1900,1600],[1900,7300]],sock:[[4700,1500],[4700,7500],[7000,7500],[9900,4000],[10000,2000]],sw:[[4800,3350],[4800,5450],[9900,5600],[6400,3400],[14600,4700]],gey:[[5300,2900],[6400,7600]]};
+function elec(v,f){const X=v.X,Y=v.Y;ELEC.light.forEach(([x,y])=>{mk('circle',{cx:X(x),cy:Y(y),r:4,class:'thinw'});mk('line',{x1:X(x)-3,y1:Y(y)-3,x2:X(x)+3,y2:Y(y)+3,class:'thin'});mk('line',{x1:X(x)+3,y1:Y(y)-3,x2:X(x)-3,y2:Y(y)+3,class:'thin'})});
+ ELEC.fan.forEach(([x,y])=>{mk('circle',{cx:X(x),cy:Y(y),r:6,class:'thin'});tx(X(x),Y(y)+3,'F','nbt',{'text-anchor':'middle'})});ELEC.ac.forEach(([x,y])=>{pr(v,x-200,y-120,400,240,'thinw');tx(X(x),Y(y)+3,'AC','nbt',{'text-anchor':'middle'})});
+ ELEC.sock.forEach(([x,y])=>mk('rect',{x:X(x)-3,y:Y(y)-3,width:6,height:6,class:'solid'}));ELEC.sw.forEach(([x,y])=>{mk('rect',{x:X(x)-4,y:Y(y)-2,width:8,height:4,class:'thinw'});tx(X(x)+6,Y(y)+3,'SB','sl')});
+ ELEC.gey.forEach(([x,y])=>{mk('circle',{cx:X(x),cy:Y(y),r:4,class:'solid'});tx(X(x)+6,Y(y)+3,'G','sl')});
+ pr(v,9950,5900,250,500,'solid');tx(X(10075)-6,Y(6150)+3,'DB','sl',{'text-anchor':'end'});if(f==='GF'){pr(v,14400,4450,300,600,'hug3');tx(X(14400)-4,Y(4300),'METERS','sl',{'text-anchor':'end'})}
+ if(f==='FF'){[[12600,2600],[11900,2700]].forEach(([x,y])=>{mk('circle',{cx:X(x),cy:Y(y),r:4,class:'thinw'})});mk('rect',{x:X(14000)-3,y:Y(1900)-3,width:6,height:6,class:'solid'})}
+ if(f==='GF'){mk('circle',{cx:X(12700),cy:Y(2600),r:4,class:'thinw'});mk('rect',{x:X(10600)-3,y:Y(3800)-3,width:6,height:6,class:'solid'});tx(X(10700),Y(3700),'EV [TBD]','sl')}}
+mepPlan('s10','GF',120,'Electrical · ground floor',v=>elec(v,'GF'));mepPlan('s10','FF',600,'Electrical · first floor',v=>elec(v,'FF'));
+{tx(50,132,'LEGEND','vt');[['L','LIGHT POINT'],['F','FAN POINT'],['S','SOCKET 6/16 A'],['SB','SWITCH BOARD'],['G','GEYSER POINT'],['AC','AC POINT'],['DB','DISTRIBUTION BOARD']].forEach(([c,t],i)=>{const x=65,y=150+i*22;
+  if(c==='L'){mk('circle',{cx:x,cy:y,r:4,class:'thinw'});mk('line',{x1:x-3,y1:y-3,x2:x+3,y2:y+3,class:'thin'});mk('line',{x1:x+3,y1:y-3,x2:x-3,y2:y+3,class:'thin'})}else if(c==='F'){mk('circle',{cx:x,cy:y,r:6,class:'thin'});tx(x,y+3,'F','nbt',{'text-anchor':'middle'})}else if(c==='S')mk('rect',{x:x-3,y:y-3,width:6,height:6,class:'solid'});else if(c==='SB')mk('rect',{x:x-4,y:y-2,width:8,height:4,class:'thinw'});else if(c==='G')mk('circle',{cx:x,cy:y,r:4,class:'solid'});else if(c==='AC'){mk('rect',{x:x-11,y:y-6,width:22,height:12,class:'thinw'});tx(x,y+3,'AC','nbt',{'text-anchor':'middle'})}else mk('rect',{x:x-3,y:y-7,width:6,height:14,class:'solid'});tx(90,y+4,t,'dts')});
+ table(1180,140,'Points per flat (concept)',[['L','light points','8'],['F','fan points','3'],['AC','AC points','2 (bedrooms)'],['S','sockets','5 + kitchen [TBD]'],['G','geysers','2 (baths)'],['DB','distribution board','1 per flat'],['M','meters','hall: 2 + common']],[40,110,106]);
+ notesCol(1180,470,[[1,'CONCEPT ONLY. LOADS, CIRCUITS, CABLE SIZES [VERIFY].'],[2,'SEPARATE METER AND DB PER FLAT. COMMON METER FOR STAIR.'],[3,'EARTHING, ELCB / RCCB, LIGHTNING [VERIFY] ELECTRICIAN.'],[4,'KITCHEN POINTS, INVERTER, SOLAR, EV POINT [TBD].'],[5,'SAME LAYOUT REPEATS ON BOTH FLOORS WHERE ROOMS MATCH.'],[6,'SYMBOLS ARE SCHEMATIC, NOT TO SCALE.']]);}
+
+/* =================== SHEET A-601 · AXONOMETRIC =================== */
+begin('s11');
+notesBand(50,880,58,[[1,'AXONOMETRIC IN THE SKILL’S PROJECTION matrix(.94s, .17s, −.34s, .47s).'],[2,'MASSING ONLY: NO MATERIALS, NO RENDERING.'],[3,'SEEN FROM SOUTH-EAST (ROAD CORNER).'],[4,'EXPLODED PLATES: SAME PLAN DATA AS A-101 TO A-103.'],[5,'VERTICAL GAPS IN THE EXPLODED VIEW ARE NOT TO SCALE.'],[6,'COMPOUND WALL AND GATES OMITTED IN THE MASSING.']]);
+{const s=.046,a=.94*s,b=.17*s,c=-.34*s,d=.47*s,TX=330,TY=430,P3=(x,y,z)=>[TX+a*x+c*y,TY+b*x+d*y-s*z];
+ const poly=(pts,cls)=>mk('polygon',{points:pts.map(p=>P3(...p).join(',')).join(' '),class:cls});
+ const box=(x1,y1,z1,x2,y2,z2,top,south,east)=>{poly([[x1,y2,z1],[x2,y2,z1],[x2,y2,z2],[x1,y2,z2]],south||'m1');poly([[x2,y1,z1],[x2,y2,z1],[x2,y2,z2],[x2,y1,z2]],east||'m2');poly([[x1,y1,z2],[x2,y1,z2],[x2,y2,z2],[x1,y2,z2]],top||'thinw')};
+ const winS=(f,face)=>{const F=FACE[face];OPS.filter(o=>F.sel(o)&&o.fl.includes(f)).forEach(o=>{const t=TYPES[o.c],z0=LV[f]+t.s;if(face==='S')poly([[o.a,8000,z0],[o.b,8000,z0],[o.b,8000,z0+t.h],[o.a,8000,z0+t.h]],'m3');else poly([[15000,o.a,z0],[15000,o.b,z0],[15000,o.b,z0+t.h],[15000,o.a,z0+t.h]],'m3')})};
+ poly([[0,0,V.GL],[18000,0,V.GL],[18000,9000,V.GL],[0,9000,V.GL]],'thinw');
+ box(1500,1000,V.GL,10500,8000,0);box(10500,1000,V.GL,15000,4165,V.PFL,'well');box(10500,4165,V.GL,15000,8000,0);
+ box(1500,1000,0,10500,8000,V.FTF);/* porch back wall window */poly([[10500,1800,900],[10500,3000,900],[10500,3000,2100],[10500,1800,2100]],'m3');
+ box(10750,1700,V.PFL,15250,3500,1100,'m1','m1','m2');box(14770,1000,V.PFL,15000,1300,V.FTF,'colm','colm','colm');
+ box(10500,4165,0,15000,8000,V.FTF);winS('GF','S');winS('GF','E');
+ box(1500,1000,V.FTF,15000,8000,V.TR);winS('FF','S');winS('FF','E');
+ box(15000,1230,V.FTF-V.SL,16200,3770,V.FTF,'thinw','m2','m2');box(16150,1230,V.FTF,16200,3770,V.FTF+V.BRH,'m1','m1','m1');
+ box(1500,1000,V.TR,15000,1230,V.PT);box(1500,1230,V.TR,1730,8000,V.PT);box(10270,4165,V.TR,15000,8000,V.MT);winS('TR','E');box(11000,5000,V.MT,12500,6500,V.TT);
+ box(1730,7770,V.TR,10270,8000,V.PT);box(14770,1230,V.TR,15000,4165,V.PT);
+ const lab=(x,y,z,ex,ey,l)=>{const p=P3(x,y,z);callout(p[0],p[1],ex,ey,l,ex>p[0]?1:-1,'dts')};
+ lab(13000,6000,V.MT,700,240,'STAIR ROOM + TANK');lab(15600,2500,V.FTF+V.BRH,900,330,'BALCONY');lab(13000,2600,500,920,610,'CAR PORCH');lab(15000,5000,1000,900,690,'MAIN DOOR D1');lab(3000,8000,600,230,790,'GF FLAT');lab(3000,8000,3700,230,640,'FF FLAT');
+ title(520,1000,'Axonometric · complete house','Projection matrix(.94s, .17s, −.34s, .47s) · massing');}
+/* exploded floor plates */
+{const s=.022,a=.94*s,b=.17*s,c=-.34*s,d=.47*s;const plates=[['GF','L0 · Ground floor','flat · stair · porch'],['FF','L1 · First floor','flat · kitchen over porch'],['TR','L2 · Terrace','parapet · stair room · tank']];
+ plates.forEach(([f,t,st],i)=>{const tx0=1150+i*40,ty0=800-i*250;const g=mk('g',{class:'iso',transform:'matrix('+a+','+b+','+c+','+d+','+tx0+','+ty0+')'});
+  const keep=sv;sv=g;planFloor({k:1,X:x=>x,Y:y=>y},f,{furn:f!=='TR',site:false,iso:true,cols:f!=='TR'});sv=keep;
+  const p=[tx0+a*0+c*9000,ty0+b*0+d*9000];const q=[tx0+a*1500+c*8000,ty0+b*1500+d*8000];mk('circle',{cx:q[0],cy:q[1],r:1.8,class:'dot'});mk('line',{x1:q[0],y1:q[1],x2:q[0]-40,y2:q[1],class:'lead'});
+  tx(q[0]-44,q[1]-2,t,'vt',{'text-anchor':'end'});tx(q[0]-44,q[1]+11,st,'dts',{'text-anchor':'end'})});
+ title(1330,1000,'Exploded floors','Same plan data · gaps not to scale');}
+
+})();
+</script>
+</body>
+</html>

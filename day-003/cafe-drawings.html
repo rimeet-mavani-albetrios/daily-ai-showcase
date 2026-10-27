@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Café · Dimensional Drawings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;600;700&display=swap">
+<style>
+/* Layout: Apple-style dimensional drawing set for a single-storey café (5 sheets), black on white, single light theme by design. */
+:root{--paper:#ececec;--sheet:#ffffff;--ink:#111;--ink2:#444;--ink3:#7a7a7a;--fill:#f3f3f3;--fill2:#e6e6e6;--fill3:#cfcfcf;--f:'Arimo','Helvetica Neue',Helvetica,Arial,sans-serif;color-scheme:light}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f)}
+.wrap{max-width:1760px;margin:0 auto;padding-block:24px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.scroll{overflow-x:auto;background:var(--sheet);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+svg{display:block;width:100%;min-width:1100px;height:auto}
+.tb{background:var(--sheet);display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;margin-bottom:24px;border:1.2px solid var(--ink);border-radius:16px;overflow:hidden}
+.tb>div{border-right:.8px solid var(--ink);border-bottom:.8px solid var(--ink);padding:10px 14px;min-width:0}
+.tb>div:nth-child(4),.tb>div:nth-child(7){border-right:0}
+.tb .big{grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.tb h1{line-height:1;margin:4px 0 0;font-weight:400;letter-spacing:.1em;font-size:clamp(28px,4vw,44px);text-transform:uppercase}
+.lbl{text-transform:uppercase;font-size:9.5px;font-weight:400;letter-spacing:.06em;color:var(--ink2)}
+.tb .v{font-size:13px;margin-top:2px;letter-spacing:.05em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.tb .big .v{font-size:11px;color:var(--ink2);line-height:1.6}
+.tb .stamp{display:inline-block;border:1.2px solid var(--ink);padding:3px 8px;font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--ink)}
+.tb .notes{grid-column:1/-1;border-right:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 24px;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;line-height:1.9}
+.tb .notes ol{margin:4px 0 0;padding-left:20px}
+.tb .nh{font-weight:700;font-size:13px;letter-spacing:.06em}
+.tb .nh span{font-weight:400;font-size:11.5px;margin-left:6px}
+.tb .figs{grid-column:1/-1;border-right:0;border-bottom:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px 18px}
+.tb .figs>div{border-left:.8px solid var(--ink);padding-left:14px}
+.tb .figs>div:first-child{border-left:0;padding-left:0}
+.tb .figs .v{font-size:18px;letter-spacing:.06em;text-transform:none;margin-top:4px}
+@media (max-width:640px){.tb{grid-template-columns:1fr 1fr}.tb .big{grid-column:1/-1;grid-row:auto}.tb>div:nth-child(n){border-right:0}}
+.sheetwrap{margin-bottom:28px}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);padding:10px 2px 0}
+.foot b{font-weight:700;color:var(--ink)}
+/* drawing */
+.border{fill:none;stroke:var(--ink);stroke-width:1.2}
+.obj{fill:var(--sheet);stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+.objn{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+.well{fill:var(--fill);stroke:var(--ink);stroke-width:1}
+.slot{fill:none;stroke:var(--ink2);stroke-width:.8;stroke-dasharray:4 3}
+.hug{fill:var(--fill2);stroke:var(--ink);stroke-width:1}
+.hug3{fill:var(--fill3);stroke:var(--ink);stroke-width:1}
+.thin{fill:none;stroke:var(--ink);stroke-width:.8}
+.thinw{fill:var(--sheet);stroke:var(--ink);stroke-width:.8}
+.far{fill:none;stroke:var(--ink3);stroke-width:.6}
+.farw{fill:var(--sheet);stroke:var(--ink3);stroke-width:.6}
+.glz{fill:var(--fill);stroke:var(--ink);stroke-width:.8}
+.winp{fill:var(--sheet);stroke:var(--ink);stroke-width:.7}
+.swing{fill:none;stroke:var(--ink2);stroke-width:.6;stroke-dasharray:3 2}
+.ph{fill:none;stroke:var(--ink3);stroke-width:.8;stroke-dasharray:14 3 3 3}
+.cl{fill:none;stroke:var(--ink3);stroke-width:.7;stroke-dasharray:16 3 2 3}
+.secl{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:18 4 3 4}
+.route{fill:none;stroke:var(--ink2);stroke-width:1.1;stroke-dasharray:2 3}
+.cut{fill:none;stroke:var(--ink);stroke-width:2.2}
+.solid{fill:var(--ink);stroke:var(--ink);stroke-width:.6}
+.wallp{fill:#5a5a5a;stroke:var(--ink);stroke-width:.5}
+.dl{stroke:var(--ink);stroke-width:.7;fill:none}
+.ext{stroke:var(--ink);stroke-width:.55;fill:none}
+.arrow{fill:var(--ink)}
+.hl{stroke:var(--ink2);stroke-width:.7}
+.gl{stroke:var(--ink3);stroke-width:.6}
+.hs{stroke:var(--ink);stroke-width:.8}
+.hsn{stroke:none}
+.env{fill:none;stroke:var(--ink);stroke-width:.8;stroke-dasharray:10 3 2 3}
+.dt{font:400 11px var(--f);fill:var(--ink);paint-order:stroke;stroke:var(--sheet);stroke-width:4px;stroke-linejoin:round}
+.dts{font:400 9.5px var(--f);fill:var(--ink2);letter-spacing:.06em;text-transform:uppercase;paint-order:stroke;stroke:var(--sheet);stroke-width:3px}
+.sl{font:400 9px var(--f);fill:var(--ink2);letter-spacing:.08em;text-transform:uppercase;paint-order:stroke;stroke:var(--sheet);stroke-width:3px}
+.nt{font:400 11.5px var(--f);fill:var(--ink);letter-spacing:.06em;text-transform:uppercase}
+.nth{font:700 13px var(--f);fill:var(--ink);letter-spacing:.06em}
+.vt{font:400 12px var(--f);fill:var(--ink);letter-spacing:.1em;text-transform:uppercase;paint-order:stroke;stroke:var(--sheet);stroke-width:3px}
+.nb{fill:var(--sheet);stroke:var(--ink);stroke-width:.9}
+.nbt{font:400 9.5px var(--f);fill:var(--ink)}
+.lead{stroke:var(--ink);stroke-width:.7;fill:none}
+.dot{fill:var(--ink)}
+.th{font:400 10.5px var(--f);fill:var(--ink);letter-spacing:.05em;text-transform:uppercase}
+.tc{font:400 10.5px var(--f);fill:var(--ink)}
+.big{font:400 15px var(--f);fill:var(--ink);letter-spacing:.12em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="tb">
+    <div class="big">
+      <div><div class="lbl">Architectural concept · dimensional drawing set</div><h1>Café</h1></div>
+      <div class="v">Single-storey café, 12 × 8 m, 28 seats. Plan, elevations, sections, exploded view and details.<br><span class="stamp">NOT FOR CONSTRUCTION</span></div>
+    </div>
+    <div><div class="lbl">Dwg no.</div><div class="v">AR-CAFE-001 · A-101 – A-501</div></div>
+    <div><div class="lbl">Rev</div><div class="v">A · 2026-10-27</div></div>
+    <div><div class="lbl">Sheets</div><div class="v">5</div></div>
+    <div><div class="lbl">Units</div><div class="v">mm · levels from FFL ±0</div></div>
+    <div><div class="lbl">Scale</div><div class="v">As noted, true only when printed full-width on A3</div></div>
+    <div><div class="lbl">Source</div><div class="v">Design assumptions · no site survey</div></div>
+    <div class="notes">
+      <div><span class="nh">NOTES:<span>(UNLESS OTHERWISE SPECIFIED)</span></span><ol>
+        <li>Do not scale from screen. Read the numbers.</li>
+        <li>All dimensions in mm. Levels relative to finished floor level (FFL ±0).</li>
+        <li>Every value is a design assumption, not a survey. Furniture and equipment are shown as slots.</li>
+        <li>Every dimension is a code (T1, X3, CH…). Values and formulas are in the tables on each sheet.</li></ol></div>
+      <div><span class="nh" aria-hidden="true">&nbsp;</span><ol start="5">
+        <li>[TBD] = not decided yet. [VERIFY] = must be checked against the local building code by a licensed professional.</li>
+        <li>Structure, fire safety, accessibility, plumbing, drainage and ventilation are not designed here.</li>
+        <li>Concept only. Not for permit or construction.</li>
+        <li>Grayscale by design. Materials and colors are out of scope.</li></ol></div>
+    </div>
+    <div class="figs">
+      <div><div class="lbl">L · length</div><div class="v">12000</div></div>
+      <div><div class="lbl">D · depth</div><div class="v">8000</div></div>
+      <div><div class="lbl">T1 · ext-wall</div><div class="v">200</div></div>
+      <div><div class="lbl">CH · ceiling</div><div class="v">3000</div></div>
+      <div><div class="lbl">HT · overall-h</div><div class="v">hr + pp</div></div>
+      <div><div class="lbl">NIA · net area</div><div class="v">il · id</div></div>
+      <div><div class="lbl">Seats</div><div class="v">28</div></div>
+    </div>
+  </header>
+
+  <div class="sheetwrap"><div class="scroll"><svg id="s1" viewBox="0 0 1700 1060" role="img" aria-label="Sheet A-101: dimensioned floor plan with furniture, kitchen, counter, entrance and accessible WC, room and seat schedules, dimension tables"></svg></div>
+  <div class="foot"><span>2026-10-27 &nbsp;|&nbsp; Architectural concept reference</span><span><b>A-101 Floor plan</b> &nbsp;|&nbsp; 1 of 5</span></div></div>
+
+  <div class="sheetwrap"><div class="scroll"><svg id="s2" viewBox="0 0 1700 1060" role="img" aria-label="Sheet A-201: front, rear, west and east elevations with heights, openings table and levels"></svg></div>
+  <div class="foot"><span>2026-10-27 &nbsp;|&nbsp; Architectural concept reference</span><span><b>A-201 Elevations</b> &nbsp;|&nbsp; 2 of 5</span></div></div>
+
+  <div class="sheetwrap"><div class="scroll"><svg id="s3" viewBox="0 0 1700 1060" role="img" aria-label="Sheet A-301: building sections A-A and B-B with floor-to-ceiling heights, key plan and heights table"></svg></div>
+  <div class="foot"><span>2026-10-27 &nbsp;|&nbsp; Architectural concept reference</span><span><b>A-301 Sections</b> &nbsp;|&nbsp; 3 of 5</span></div></div>
+
+  <div class="sheetwrap"><div class="scroll"><svg id="s4" viewBox="0 0 1700 1060" role="img" aria-label="Sheet A-401: exploded axonometric separating floor, walls, fixed fit-out, furniture, ceiling and roof"></svg></div>
+  <div class="foot"><span>2026-10-27 &nbsp;|&nbsp; Architectural concept reference</span><span><b>A-401 Exploded axonometric</b> &nbsp;|&nbsp; 4 of 5</span></div></div>
+
+  <div class="sheetwrap"><div class="scroll"><svg id="s5" viewBox="0 0 1700 1060" role="img" aria-label="Sheet A-501: details of counter, seating booth, entrance and threshold, window ledge; staircase not required"></svg></div>
+  <div class="foot"><span>2026-10-27 &nbsp;|&nbsp; Architectural concept reference</span><span><b>A-501 Details</b> &nbsp;|&nbsp; 5 of 5</span></div></div>
+</div>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';let sv,A,HAT,GH,uid=0;
+function mk(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)if(a[k]!=null)e.setAttribute(k,a[k]);(p||sv).appendChild(e);return e}
+function tx(x,y,s,c,a,p){const t=mk('text',Object.assign({x:x,y:y,class:c||'dt'},a||{}),p);t.textContent=s;return t}
+function begin(id){sv=document.getElementById(id);sv.innerHTML='';const n=uid++;const d=mk('defs',{});const m=mk('marker',{id:'ar'+n,viewBox:'0 0 10 10',refX:10,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse',markerUnits:'userSpaceOnUse'},d);mk('path',{d:'M0,1.7 L10,5 L0,8.3 z',class:'arrow'},m);
+ let pt=mk('pattern',{id:'hat'+n,width:5,height:5,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},d);mk('line',{x1:0,y1:0,x2:0,y2:5,class:'hl'},pt);
+ pt=mk('pattern',{id:'gh'+n,width:9,height:9,patternUnits:'userSpaceOnUse',patternTransform:'rotate(-45)'},d);mk('line',{x1:0,y1:0,x2:0,y2:9,class:'gl'},pt);
+ A='url(#ar'+n+')';HAT='url(#hat'+n+')';GH='url(#gh'+n+')';rr(20,20,1660,1020,16,'border')}
+
+/* ---- kit (from the skill's examples) ---- */
+function dimH(x1,x2,y,e1,e2,l,o){o=o||{};[[x1,e1],[x2,e2]].forEach(([x,e])=>{if(e==null)return;const s=Math.sign(y-e)||1;mk('line',{x1:x,y1:e+s*3,x2:x,y2:y+s*5,class:'ext'})});
+ if(x2-x1>=28)mk('line',{x1:x1,y1:y,x2:x2,y2:y,class:'dl','marker-start':A,'marker-end':A});else{mk('line',{x1:x1-13,y1:y,x2:x1,y2:y,class:'dl','marker-end':A});mk('line',{x1:x2+13,y1:y,x2:x2,y2:y,class:'dl','marker-end':A});mk('line',{x1:x1,y1:y,x2:x2,y2:y,class:'dl'})}
+ tx((x1+x2)/2+(o.dx||0),(o.below?y+13:y-4)+(o.dy||0),l,o.c||'dt',{'text-anchor':'middle'})}
+function dimV(y1,y2,x,e1,e2,l,o){o=o||{};[[y1,e1],[y2,e2]].forEach(([y,e])=>{if(e==null)return;const s=Math.sign(x-e)||1;mk('line',{x1:e+s*3,y1:y,x2:x+s*5,y2:y,class:'ext'})});
+ if(y2-y1>=28)mk('line',{x1:x,y1:y1,x2:x,y2:y2,class:'dl','marker-start':A,'marker-end':A});else{mk('line',{x1:x,y1:y1-13,x2:x,y2:y1,class:'dl','marker-end':A});mk('line',{x1:x,y1:y2+13,x2:x,y2:y2,class:'dl','marker-end':A});mk('line',{x1:x,y1:y1,x2:x,y2:y2,class:'dl'})}
+ const c=(y1+y2)/2+(o.dy||0);if(o.side){const r=o.side==='r';tx(r?x+6:x-6,c+4,l,o.c||'dt',{'text-anchor':r?'start':'end'})}else tx(x-5,c,l,o.c||'dt',{'text-anchor':'middle',transform:'rotate(-90 '+(x-5)+' '+c+')'})}
+function callout(px,py,ex,ey,l,dir,c){const s=dir||(ex>=px?1:-1);mk('circle',{cx:px,cy:py,r:1.8,class:'dot'});mk('polyline',{points:px+','+py+' '+ex+','+ey+' '+(ex+s*10)+','+ey,class:'lead'});tx(ex+s*14,ey+4,l,c||'dt',{'text-anchor':s>0?'start':'end'})}
+function nb(x,y,n){mk('rect',{x:x-6,y:y-6,width:12,height:12,class:'nb'});tx(x,y+3.5,String(n),'nbt',{'text-anchor':'middle'})}
+function rr(x,y,w,h,r,c){return mk('rect',{x:x,y:y,width:w,height:h,rx:r,class:c})}
+function title(x,y,t,s){tx(x,y,t,'vt',{'text-anchor':'middle'});if(s)tx(x,y+14,s,'dts',{'text-anchor':'middle'})}
+function detailRef(cx,cy,r,lbl,lx,ly){mk('circle',{cx:cx,cy:cy,r:r,class:'ph'});const a=Math.atan2(ly-cy,lx-cx);mk('line',{x1:cx+r*Math.cos(a),y1:cy+r*Math.sin(a),x2:lx,y2:ly,class:'lead'});tx(lx+(lx<cx?-4:4),ly+4,lbl,'dts',{'text-anchor':lx<cx?'end':'start'})}
+/* notes anywhere: [n,text]; n=0 → unnumbered, n=null → continuation line */
+function notes(NX,NY,list){tx(NX,NY,'NOTES:','nth');tx(NX+62,NY,'(UNLESS OTHERWISE SPECIFIED)','nt');let y=NY+28;
+ list.forEach(([n,t])=>{if(n)nb(NX+6,y-4,n);tx(n===0?NX:NX+22,y,t,'nt');y+=21});return y}
+function table(x,y,ttl,rows,ws){ws=ws||[36,82,106];const rh=17;tx(x,y-8,ttl,'vt');
+ const all=[['Code','Variable','Value']].concat(rows);all.forEach((r,i)=>{let cx2=x;r.forEach((c,j)=>{mk('rect',{x:cx2,y:y+i*rh,width:ws[j],height:rh,class:'thin'});tx(cx2+(j?ws[j]/2:5),y+i*rh+12,c,i?'tc':'th',{'text-anchor':j?'middle':'start'});cx2+=ws[j]})});return y+all.length*rh+36}
+function lvl(x,y,l,right){mk('path',{d:'M'+x+','+y+' l-5,-7 h10 z',class:'solid'});mk('line',{x1:x-14,y1:y,x2:x+14,y2:y,class:'thin'});tx(right?x+18:x-18,y-2,l,'dts',{'text-anchor':right?'start':'end'})}
+const SC=N=>1700/(420*N);           /* sheet units per mm at 1:N when the 1700-unit sheet prints 420 mm wide (A3) */
+
+/* ---- views in mm ---- */
+function P(ox,oy,k){return {k:k,X:v=>ox+v*k,Y:v=>oy+v*k}}                 /* plan: y down */
+function E(ox,oy,k){return {k:k,X:v=>ox+v*k,Z:h=>oy-h*k}}                 /* elevation/section: h up */
+function pr(v,x,y,w,h,c,ex){return mk('rect',Object.assign({x:v.X(x),y:v.Y(y),width:w*v.k,height:h*v.k,class:c},ex||{}))}
+function er(v,u1,h1,u2,h2,c,ex){return mk('rect',Object.assign({x:v.X(Math.min(u1,u2)),y:v.Z(Math.max(h1,h2)),width:Math.abs(u2-u1)*v.k,height:Math.abs(h2-h1)*v.k,class:c},ex||{}))}
+function el(v,u1,h1,u2,h2,c){return mk('line',{x1:v.X(u1),y1:v.Z(h1),x2:v.X(u2),y2:v.Z(h2),class:c||'thin'})}
+function pl(v,x1,y1,x2,y2,c){return mk('line',{x1:v.X(x1),y1:v.Y(y1),x2:v.X(x2),y2:v.Y(y2),class:c||'thin'})}
+function door(v,h,c,o){mk('line',{x1:v.X(h[0]),y1:v.Y(h[1]),x2:v.X(o[0]),y2:v.Y(o[1]),class:'thin'});const r=Math.hypot(c[0]-h[0],c[1]-h[1])*v.k;
+ const cr=(c[0]-h[0])*(o[1]-h[1])-(c[1]-h[1])*(o[0]-h[0]);mk('path',{d:'M'+v.X(c[0])+','+v.Y(c[1])+' A'+r+','+r+' 0 0 '+(cr>0?1:0)+' '+v.X(o[0])+','+v.Y(o[1]),class:'swing'})}
+
+/* =================== DATA (design assumptions, mm) =================== */
+const V={T1:200,T2:100,L:12000,D:8000,X1:2200,X2:1300,X3:4100,X4:3700,Y1:2800,Y2:4700,
+ SA:1000,C1:3200,C2:600,C3:900,C4:1100,C5:300,C6:100,C7:900,C8:850,KH:100,KD:75,WT:40,SG:900,Y3:3000,AW:900,LD:1500,
+ BG:100,BK:1900,BB:600,BT:700,BD:1200,Y4:1800,SH:450,SD:450,BBK:150,BH:1100,TH:750,TS:700,WL:350,LH:1050,ST:750,
+ P0:600,F1:4350,DO:1100,FR:50,F2:5350,D1:1000,DH:2400,D3:900,D4:800,D5:1000,D6:900,HD2:2100,HD1:2400,
+ G1:450,G2:2700,GH:2250,WB:2800,WK:1500,WW:600,WS:3000,WE:1200,SL1:900,SL2:1300,SL3:1100,SL4:1800,
+ SB:150,CH:3000,CK:2700,SV:400,RS:400,PP:500,HR:3800,HT:4300,FA:1100,CU:2800,CT:150,CW:3000,CP:1200,TQ:15};
+V.IL=V.L-2*V.T1;V.ID=V.D-2*V.T1;
+const R=(x,y,w,h,n)=>({x,y,w,h,n});
+const EXT=[R(0,0,900,200),R(1500,0,2900,200),R(5900,0,500,200),R(7400,0,1200,200),R(11400,0,600,200),R(0,7800,600,200),R(11400,7800,600,200),
+ R(0,200,200,3400),R(0,6600,200,1200),R(11800,200,200,450),R(11800,1850,200,700),R(11800,3750,200,700),R(11800,5650,200,2150)];
+const PART=[R(200,3000,700,100,'P1'),R(1800,3000,3200,100,'P1'),R(5900,3000,2100,100,'P1'),R(2400,200,100,2800,'P2'),R(3800,200,100,1800,'P3'),R(3800,2800,100,200,'P3'),R(8000,200,100,2900,'P4')];
+const WIN=[R(900,0,600,200,'WW'),R(4400,0,1500,200,'WK'),R(8600,0,2800,200,'WB'),R(0,3600,200,3000,'WS'),R(11800,650,200,1200,'WE'),R(11800,2550,200,1200,'WE'),R(11800,4450,200,1200,'WE')];
+const SHOP=[{x:600,w:4350,m:[2050,3500]},{x:6050,w:5350,m:[7387.5,8725,10062.5]}];
+const FIX={counter:R(3900,4100,3200,600,'counter'),ledge:R(3900,4500,2300,300,'ledge'),endPanel:R(3800,3100,100,1700,'end panel'),
+ kN:R(3900,200,2400,600,'kitchen run N'),kE:R(7400,1200,600,1800,'kitchen run E'),hood:R(4400,200,1400,800,'hood'),
+ pan:R(450,200,400,700,'WC pan'),basin:R(1500,200,500,400,'basin'),shelf:R(2500,200,400,2800,'shelving'),
+ ledgeW:R(200,7450,3600,350,'ledge W'),ledgeE:R(8400,7450,3400,350,'ledge E')};
+const FURN=[];const tbl=(x,y,n,cs)=>{FURN.push(R(x,y,700,700,'table '+n));cs.forEach((c,i)=>FURN.push(R(c[0],c[1],400,400,'chair '+n+(i+1))))};
+tbl(700,5050,'A2',[[850,4650],[850,5750]]);tbl(2100,5050,'A3',[[2250,4650],[2250,5750]]);
+tbl(9000,1050,'B1',[[9150,650],[9150,1750]]);tbl(9000,3550,'B2',[[9150,3150],[9150,4250]]);
+const BOOTH=[0,1,2].map(i=>{const y0=V.T1+V.BG+i*V.BK;return {y0,bN:R(10600,y0,1200,600,'booth'+(i+1)+' bench N'),t:R(10600,y0+600,1200,700,'booth'+(i+1)+' table'),bS:R(10600,y0+1300,1200,600,'booth'+(i+1)+' bench S')}});
+const STOOL=[650,1550,2450,3350].map(x=>[x,7225]).concat([8825,9675,10525,11375].map(x=>[x,7225]));
+const SEATS={zoneA:4,ledgeW:4,booths:12,zoneB:4,ledgeE:4};
+const ROOMS={WC:V.X1*V.Y1,STORE:V.X2*V.Y1,KITCHEN:V.X3*V.Y1};
+const PARTF=7800*V.T2+2*(V.Y1*V.T2)+2900*V.T2;
+const m2=a=>(a/1e6).toFixed(2);
+
+/* =================== QA: every chain and formula closes =================== */
+const QA=[];const chk=(n,a,b)=>QA.push({check:n,got:a,expected:b,ok:Math.abs(a-b)<1e-6});
+chk('L = 2·T1 + X1+X2+X3+X4 + 3·T2',2*V.T1+V.X1+V.X2+V.X3+V.X4+3*V.T2,V.L);
+chk('D = 2·T1 + Y1 + T2 + Y2',2*V.T1+V.Y1+V.T2+V.Y2,V.D);
+chk('Y2 = SA + C2 + C6 + Y3',V.SA+V.C2+V.C6+V.Y3,V.Y2);
+chk('L = 2·P0 + F1 + DO + F2 (front)',2*V.P0+V.F1+V.DO+V.F2,V.L);
+chk('DO = D1 + 2·FR',V.D1+2*V.FR,V.DO);
+chk('ID = BG + 3·BK + Y4',V.BG+3*V.BK+V.Y4,V.ID);
+chk('BK = 2·BB + BT',2*V.BB+V.BT,V.BK);
+chk('BB = SD + BBK',V.SD+V.BBK,V.BB);
+chk('X3 = C1 + SG',V.C1+V.SG,V.X3);
+chk('HR = CH + SV + RS',V.CH+V.SV+V.RS,V.HR);
+chk('HT = HR + PP',V.HR+V.PP,V.HT);
+chk('GH = G2 − G1',V.G2-V.G1,V.GH);
+chk('FA = HR − G2',V.HR-V.G2,V.FA);
+chk('C5 = C2 + C6 − upstand position (400)',V.C2+V.C6-400,V.C5);
+chk('Rear: WB+WK+WW+D5 openings inside L',(V.WB+V.WK+V.WW+V.D5)<V.L?1:0,1);
+chk('Seats 25–30',[25,30].every((b,i)=>i?Object.values(SEATS).reduce((a,c)=>a+c,0)<=b:Object.values(SEATS).reduce((a,c)=>a+c,0)>=b)?1:0,1);
+chk('Seats counted on plan = 28',FURN.filter(f=>f.n.startsWith('chair')).length+STOOL.length+BOOTH.length*4,28);
+const NIA=V.IL*V.ID,FOH=NIA-ROOMS.WC-ROOMS.STORE-ROOMS.KITCHEN-PARTF;
+chk('Areas: WC+store+kitchen+partitions+FOH = NIA',ROOMS.WC+ROOMS.STORE+ROOMS.KITCHEN+PARTF+FOH,NIA);
+/* clearances */
+chk('Aisle B table ↔ booth ≥ AW',10600-9700>=V.AW?1:0,1);
+chk('Aisle B table ↔ P4 face ≥ AW',9000-8100>=V.AW?1:0,1);
+chk('Aisle A3 table ↔ counter end panel ≥ AW',3800-2800>=V.AW?1:0,1);
+chk('Aisle A chairs ↔ ledge stools ≥ AW',(7225-175)-(5750+400)>=V.AW?1:0,1);
+chk('WC clear zone ≥ LD × LD in front of D3',(4600-3100)>=V.LD&&(2100-600)>=V.LD?1:0,1);
+chk('WC turning circle Ø LD fits inside WC',(1300-750>=200&&1300+750<=2400&&1900-750>=900&&1900+750<=3000)?1:0,1);
+/* overlaps: fixtures, furniture, door swings and walls never collide */
+const items=[FIX.counter,FIX.endPanel,FIX.kN,FIX.kE,FIX.pan,FIX.basin,FIX.shelf,FIX.ledgeW,FIX.ledgeE].concat(FURN,BOOTH.flatMap(b=>[b.bN,b.t,b.bS]),STOOL.map(([x,y],i)=>R(x-175,y-175,350,350,'stool'+(i+1))),
+ [R(900,3100,900,900,'D3 swing'),R(5000,2100,900,900,'D6 swing'),R(3000,2000,800,800,'D4 swing'),R(550,1150,1500,1500,'WC turning circle')]);
+const ov=(a,b)=>a.x<b.x+b.w-1&&b.x<a.x+a.w-1&&a.y<b.y+b.h-1&&b.y<a.y+a.h-1;
+const hits=[];for(let i=0;i<items.length;i++)for(let j=i+1;j<items.length;j++){const a=items[i],b=items[j];
+ if((a.n==='booth1 bench S'&&b.n==='booth2 bench N')||(a.n==='booth2 bench S'&&b.n==='booth3 bench N'))continue;if(ov(a,b))hits.push(a.n+' × '+b.n)}
+EXT.concat(PART).forEach(w=>items.forEach(it=>{if(ov(w,it))hits.push(it.n+' × wall '+(w.n||'ext'))}));
+items.forEach(it=>{if(it.x<200||it.y<200||it.x+it.w>11800||it.y+it.h>7800)hits.push(it.n+' outside interior')});
+chk('Overlaps (fixtures, furniture, swings, walls)',hits.length,0);
+window.QA={checks:QA,overlaps:hits,areas:{NIA:m2(NIA),WC:m2(ROOMS.WC),STORE:m2(ROOMS.STORE),KITCHEN:m2(ROOMS.KITCHEN),PARTITIONS:m2(PARTF),FOH:m2(FOH),perSeat:(FOH/1e6/28).toFixed(2)}};
+
+/* =================== shared plan drawing =================== */
+function walls(v,cls,ex){EXT.concat(PART).forEach(r=>pr(v,r.x,r.y,r.w,r.h,cls,ex))}
+function windows(v){WIN.forEach(r=>{pr(v,r.x,r.y,r.w,r.h,'winp');if(r.w>r.h)pl(v,r.x,r.y+r.h/2,r.x+r.w,r.y+r.h/2);else pl(v,r.x+r.w/2,r.y,r.x+r.w/2,r.y+r.h)});
+ SHOP.forEach(s=>{pr(v,s.x,7800,s.w,200,'winp');pl(v,s.x,7900,s.x+s.w,7900);s.m.forEach(m=>pr(v,m-25,7800,50,200,'solid'))});
+ pr(v,4950,7800,50,200,'solid');pr(v,6000,7800,50,200,'solid')}
+
+/* =================== SHEET 1 · A-101 FLOOR PLAN =================== */
+begin('s1');
+notes(50,58,[[1,'CONCEPT ONLY. NOT FOR CONSTRUCTION.'],[0,'MM. T1 EXTERNAL WALL · T2 PARTITION.'],[2,'ACCESSIBLE WC · Ø LD TURNING ·'],[null,'GRAB RAILS, FITTINGS [VERIFY]'],[3,'MAIN AISLES ≥ AW · [VERIFY] LOCAL CODE'],[4,'ENTRANCE D1 OPENS OUTWARD ·'],[null,'[VERIFY] SWING OVER PUBLIC WAY'],[5,'SECOND EXIT VIA KITCHEN D5 ·'],[null,'[VERIFY] EXIT COUNT, TRAVEL DISTANCE'],[6,'KITCHEN EQUIPMENT, EXTRACT, GREASE'],[null,'TRAP, FLOOR DRAINS [TBD]'],[7,'COUNTER LOWERED SECTION C7 / C8'],[8,'28 SEATS · SEE SEAT SCHEDULE']]);
+{const v=P(500,230,SC(60)),X=v.X,Y=v.Y,k=v.k;
+ /* floors / zones */
+ pr(v,200,200,7800,2800,'well',{style:'fill:#f7f7f7;stroke:none'});
+ walls(v,'hs',{fill:HAT});windows(v);
+ /* doors: hinge, closed end, open end */
+ door(v,[5000,8000],[6000,8000],[5000,9000]);door(v,[1800,3100],[900,3100],[1800,4000]);door(v,[5000,3000],[5900,3000],[5000,2100]);
+ door(v,[3800,2800],[3800,2000],[3000,2800]);door(v,[7400,0],[6400,0],[7400,-1000]);
+ /* WC */
+ pr(v,450,200,400,700,'thinw');mk('ellipse',{cx:X(650),cy:Y(700),rx:150*k,ry:180*k,class:'thin'});pr(v,1500,200,500,400,'thinw');mk('ellipse',{cx:X(1750),cy:Y(380),rx:170*k,ry:120*k,class:'thin'});
+ pl(v,250,1100,250,1900,'thin');pl(v,950,950,950,1650,'thin');
+ mk('circle',{cx:X(1300),cy:Y(1900),r:750*k,class:'env'});tx(X(1300),Y(1900)+3,'Ø LD','sl',{'text-anchor':'middle'});
+ tx(X(1300),Y(2850),'R1 · WC','sl',{'text-anchor':'middle'});nb(X(2150),Y(2700),2);
+ /* store */
+ pr(v,2500,200,400,2800,'hug');tx(X(3350),Y(1500),'R2 · STORE','sl',{'text-anchor':'middle',transform:'rotate(-90 '+X(3350)+' '+Y(1500)+')'});
+ /* kitchen */
+ pr(v,3900,200,2400,600,'hug');pr(v,7400,1200,600,1800,'hug');pr(v,4400,200,1400,800,'slot');pl(v,4400,200,5800,1000,'far');pl(v,5800,200,4400,1000,'far');
+ pr(v,7480,1700,440,500,'thinw');tx(X(5100),Y(1150),'RANGE + HOOD [TBD]','sl',{'text-anchor':'middle'});tx(X(7700),Y(2500),'SINK','sl',{'text-anchor':'middle'});
+ tx(X(5900),Y(1900),'R3 · KITCHEN','sl',{'text-anchor':'middle'});nb(X(6600),Y(1900),6);
+ /* counter */
+ pr(v,3800,3100,100,1700,'hug3');pr(v,3900,4100,3200,600,'hug');pr(v,3900,4500,2300,300,'thinw');pr(v,6200,4400,900,300,'hug3');
+ pr(v,4250,4160,800,300,'slot');tx(X(4650),Y(4310)+3,'EQUIP','sl',{'text-anchor':'middle'});
+ tx(X(4700),Y(4680)+3,'LEDGE C4','sl',{'text-anchor':'middle'});tx(X(6650),Y(4560)+3,'C7','sl',{'text-anchor':'middle'});nb(X(6650),Y(4900),7);
+ tx(X(6300),Y(3650),'STAFF AISLE · SA','sl',{'text-anchor':'middle'});
+ /* zone A */
+ pr(v,600,3100,1500,1500,'env');tx(X(1350),Y(4480),'CLEAR LD × LD','sl',{'text-anchor':'middle'});
+ /* furniture */
+ FURN.forEach(f=>pr(v,f.x,f.y,f.w,f.h,f.n.startsWith('chair')?'hug':'thinw'));
+ BOOTH.forEach(b=>{pr(v,b.bN.x,b.bN.y,b.bN.w,b.bN.h,'hug');pr(v,b.bS.x,b.bS.y,b.bS.w,b.bS.h,'hug');pl(v,10600,b.bN.y+150,11800,b.bN.y+150,'thin');pl(v,10600,b.bS.y+450,11800,b.bS.y+450,'thin');pr(v,b.t.x,b.t.y,b.t.w,b.t.h,'thinw')});
+ pr(v,200,7450,3600,350,'hug');pr(v,8400,7450,3400,350,'hug');STOOL.forEach(([x,y])=>mk('circle',{cx:X(x),cy:Y(y),r:175*k,class:'thinw'}));
+ tx(X(1750),Y(6600),'SEATING A','sl',{'text-anchor':'middle'});tx(X(9350),Y(5600),'SEATING B','sl',{'text-anchor':'middle'});
+ tx(X(6400),Y(6200),'QUEUE + ENTRY · R4','sl',{'text-anchor':'middle'});tx(X(9350),Y(2400),'ACCESSIBLE PLACE','sl',{'text-anchor':'middle'});
+ /* entrance landing + accessible route */
+ pr(v,4750,6300,1500,1500,'env');
+ mk('polyline',{points:[[5500,7700],[5500,5300],[3350,5300],[3350,4300],[1350,4300],[1350,3200]].map(p=>X(p[0])+','+Y(p[1])).join(' '),class:'route'});
+ tx(X(4400),Y(5200),'ACCESSIBLE ROUTE','sl',{'text-anchor':'middle'});nb(X(5500),Y(8550),4);nb(X(6900),Y(-500),5);nb(X(10150),Y(3900)+16,3);
+ /* centerlines */
+ mk('line',{x1:X(-300),y1:Y(4000),x2:X(12300),y2:Y(4000),class:'cl'});mk('line',{x1:X(6000),y1:Y(-300),x2:X(6000),y2:Y(8300),class:'cl'});
+ /* section cuts A–A (y 5200, looking north) and B–B (x 5500, looking east) */
+ const sec=(x1,y1,x2,y2,ax,ay,l)=>{mk('line',{x1:x1,y1:y1,x2:x2,y2:y2,class:'secl'});mk('circle',{cx:x1,cy:y1,r:11,class:'nb'});tx(x1,y1+4,l,'nbt',{'text-anchor':'middle'});mk('path',{d:'M'+(x1+ax*16)+','+(y1+ay*16)+' l'+(-ay*6-ax*0)+','+(ax*6)+' M'+(x1+ax*16)+','+(y1+ay*16)+' l'+(ay*6)+','+(-ax*6),class:'lead'})};
+ sec(X(-1500),Y(5200),X(-300),Y(5200),0,-1,'A');sec(X(13500),Y(5200),X(12300),Y(5200),0,-1,'A');
+ sec(X(5500),Y(-2250),X(5500),Y(-1900),1,0,'B');sec(X(5500),Y(9700),X(5500),Y(9250),1,0,'B');
+ /* detail references */
+ detailRef(X(4300),Y(4450),30,'1 / A-501',X(3300),Y(3600));detailRef(X(11200),Y(3150),36,'2 / A-501',X(9900),Y(5000));detailRef(X(5500),Y(7900),34,'3 / A-501',X(7300),Y(6900));
+ /* dims: top chain + overall */
+ const xs=[0,200,2400,2500,3800,3900,8000,8100,11800,12000],ls=['T1','X1','T2','X2','T2','X3','T2','X4','T1'],dd=[-14,0,0,0,0,0,0,0,14],dy=[0,0,-12,0,-12,0,-12,0,0];
+ for(let i=0;i<9;i++)dimH(X(xs[i]),X(xs[i+1]),Y(0)-80,Y(0),Y(0),ls[i],{dx:dd[i],dy:dy[i]});
+ dimH(X(0),X(12000),Y(0)-112,Y(0)-84,Y(0)-84,'L');
+ const bx=[0,600,4950,6050,11400,12000],bl=['P0','F1','DO','F2','P0'];
+ for(let i=0;i<5;i++)dimH(X(bx[i]),X(bx[i+1]),Y(8000)+44,Y(8000),Y(8000),bl[i],{below:true});
+ dimH(X(0),X(12000),Y(8000)+76,Y(8000)+48,Y(8000)+48,'L',{below:true});
+ const ly=[0,200,3000,3100,7800,8000],ll=['T1','Y1','T2','Y2','T1'];
+ for(let i=0;i<5;i++)dimV(Y(ly[i]),Y(ly[i+1]),X(0)-40,X(0),X(0),ll[i],{side:(i===0||i===2||i===4)?'l':undefined});
+ dimV(Y(0),Y(8000),X(0)-72,X(0)-44,X(0)-44,'D (REF)');
+ const ry=[200,300,2200,4100,6000,7800],rl=['BG','BK','BK','BK','Y4'];
+ for(let i=0;i<5;i++)dimV(Y(ry[i]),Y(ry[i+1]),X(12000)+40,X(12000),X(12000),rl[i],{side:'r'});
+ /* interior dims */
+ [[3100,4100,'SA'],[4100,4700,'C2'],[4700,4800,'C6'],[4800,7800,'Y3']].forEach(([a,b,l])=>dimV(Y(a),Y(b),X(7600),X(7100),X(7100),l,{side:'r'}));
+ dimH(X(3900),X(7100),Y(3350),Y(4100),Y(4100),'C1');dimH(X(7100),X(8000),Y(3350),Y(4100),null,'SG');
+ dimH(X(10600),X(11800),Y(6250),Y(6000),Y(6000),'BD',{below:true});
+ dimH(X(9700),X(10600),Y(3900),null,null,'AW',{dy:-2});dimH(X(8100),X(9000),Y(3900),null,null,'AW',{dy:-2});
+ dimH(X(4750),X(6250),Y(6450),null,null,'LD');
+ title(X(6000),Y(8000)+150,'Floor plan','Scale 1:60 @ A3 · L × D, FFL ±0');
+ /* scale bar 0–5 m */
+ const sx=X(0),sy=Y(8000)+185;for(let i=0;i<5;i++)mk('rect',{x:sx+i*1000*k,y:sy,width:1000*k,height:5,class:i%2?'thinw':'solid'});
+ [0,1,2,3,4,5].forEach(i=>tx(sx+i*1000*k,sy+16,String(i),'dts',{'text-anchor':'middle'}));tx(sx+5000*k+10,sy+16,'M','dts');
+ /* north arrow */
+ const nx=1350,ny=120;mk('circle',{cx:nx,cy:ny,r:16,class:'thin'});mk('path',{d:'M'+nx+','+(ny-14)+' l6,20 l-6,-5 l-6,5 z',class:'solid'});tx(nx,ny-22,'N','dts',{'text-anchor':'middle'});}
+/* schedules (left) */
+{let y=table(50,400,'Room schedule',[['R1','WC (acc.)',m2(ROOMS.WC)+' m²'],['R2','store',m2(ROOMS.STORE)+' m²'],['R3','kitchen',m2(ROOMS.KITCHEN)+' m²'],['R4','front of house',m2(FOH)+' m²'],['—','partitions',m2(PARTF)+' m²'],['NIA','il · id',m2(NIA)+' m²']]);
+ y=table(50,y,'Seat schedule',[['A','tables 2 × 2','4'],['LW','ledge W','4'],['BTH','booths 3 × 4','12'],['B','tables 2 × 2','4'],['LE','ledge E','4'],['Σ','seats','28']]);
+ tx(50,y-8,'LEGEND','vt');const lg=[['hs','CUT WALL'],['hug','FIXED JOINERY / SEAT'],['env','CLEAR ZONE'],['route','ACCESSIBLE ROUTE']];
+ lg.forEach(([c,t],i)=>{const yy=y+6+i*22;if(c==='route')mk('line',{x1:50,y1:yy+5,x2:80,y2:yy+5,class:'route'});else mk('rect',{x:50,y:yy,width:30,height:11,class:c,fill:c==='hs'?HAT:null});tx(90,yy+9,t,'dts')});}
+/* tables (right) */
+{let y=table(1440,86,'Plan',[['T1','ext-wall','200'],['T2','partition','100'],['X1','wc-w','2200'],['X2','store-w','1300'],['X3','kitchen-w','4100'],['X4','zone-b-w','3700'],['L','length','2·T1+ΣX+3·T2=12000'],['Y1','boh-depth','2800'],['Y2','foh-depth','4700'],['D','depth','2·T1+Y1+T2+Y2=8000']],[36,70,118]);
+ y=table(1440,y,'Counter + aisles',[['SA','staff-aisle','1000'],['C1','counter-l','3200'],['C2','counter-d','600'],['C6','ledge-over','100'],['SG','staff-gap','X3−C1 = 900'],['Y3','queue-d','Y2−SA−C2−C6=3000'],['AW','aisle-min','900 [VERIFY]'],['LD','landing','1500 [VERIFY]']],[36,70,118]);
+ y=table(1440,y,'Booth zone',[['BG','wall-gap','100'],['BK','booth-module','1900'],['Y4','front-zone','ID−BG−3·BK=1800'],['BD','booth-d','1200']],[36,70,118]);
+ table(1440,y,'Front',[['P0','pier','600'],['F1','glazing-w','4350'],['DO','door-opening','D1+2·FR = 1100'],['F2','glazing-e','5350']],[36,70,118]);}
+
+/* =================== SHEET 2 · A-201 ELEVATIONS =================== */
+begin('s2');
+tx(50,58,'NOTES:','nth');tx(112,58,'(UNLESS OTHERWISE SPECIFIED)','nt');
+[[1,'LEVELS FROM FFL ±0. GROUND TAKEN AS LEVEL WITH FFL AT ENTRANCE [VERIFY].'],[2,'STOREFRONT GLAZING SAFETY RATING, LINTEL OVER F1 / F2 [VERIFY].'],[3,'CANOPY CU / CP / CW: CANTILEVER + TIE RODS [VERIFY] STRUCTURE.']].forEach(([n,t],i)=>{nb(56,82+i*21,n);tx(72,86+i*21,t,'nt')});
+[[4,'KITCHEN EXTRACT DISCHARGE HEIGHT AND POSITION [TBD].'],[5,'RAINWATER: ROOF FALLS TO REAR, OUTLETS + RWP [VERIFY].'],[6,'SIGNAGE ZONE ONLY. NO BRAND CONTENT. FACADE MATERIALS [TBD].']].forEach(([n,t],i)=>{nb(846,82+i*21,n);tx(862,86+i*21,t,'nt')});
+function elevBase(v,W){el(v,-700,0,W+700,0,'cut');mk('rect',{x:v.X(-700),y:v.Z(0),width:(W+1400)*v.k,height:8,fill:GH,class:'hsn'});er(v,0,0,W,V.HT,'obj');el(v,0,V.HR,W,V.HR,'ph');}
+function opening(v,u1,u2,h1,h2,glz){er(v,u1,h1,u2,h2,glz?'glz':'thinw')}
+/* front (south) */
+{const v=E(110,422,SC(75)),X=v.X,Z=v.Z;elevBase(v,12000);
+ SHOP.forEach(s=>{opening(v,s.x,s.x+s.w,V.G1,V.G2,1);s.m.forEach(m=>er(v,m-25,V.G1,m+25,V.G2,'solid'))});
+ er(v,4950,0,6050,V.G2,'thinw');er(v,5000,0,6000,V.DH,'glz');el(v,4950,V.DH,6050,V.DH);er(v,5000,V.DH+50,6000,V.G2-50,'glz');el(v,5850,900,5850,1300,'cut');
+ er(v,4000,V.CU,7000,V.CU+V.CT,'hug3');el(v,4100,V.CU+V.CT,4100,3700,'thin');el(v,6900,V.CU+V.CT,6900,3700,'thin');
+ er(v,7600,3000,11000,3600,'slot');tx(X(9300),Z(3300)+3,'SIGNAGE ZONE · [TBD]','sl',{'text-anchor':'middle'});nb(X(11200),Z(3300),6);nb(X(7200),Z(3300),3);nb(X(2300),Z(1600),2);
+ const bx=[0,600,4950,6050,11400,12000],bl=['P0','F1','DO','F2','P0'];for(let i=0;i<5;i++)dimH(X(bx[i]),X(bx[i+1]),Z(0)+30,Z(0)+8,Z(0)+8,bl[i],{below:true});
+ dimH(X(0),X(12000),Z(0)+58,Z(0)+34,Z(0)+34,'L',{below:true});
+ [[0,V.G1,'G1'],[V.G1,V.G2,'GH'],[V.G2,V.HR,'FA'],[V.HR,V.HT,'PP']].forEach(([a,b,l])=>dimV(Z(b),Z(a),X(12000)+28,X(12000),X(12000),l,{side:'r'}));
+ dimV(Z(V.HT),Z(0),X(12000)+64,X(12000)+34,X(12000)+34,'HT');
+ dimV(Z(V.DH),Z(0),X(4950)-12,X(5000),X(5000),'DH');dimV(Z(V.CU),Z(0),X(4000)-14,X(4000),X(4000),'CU');
+ lvl(X(0)-30,Z(0),'FFL ±0');lvl(X(0)-30,Z(V.HR),'HR');lvl(X(0)-30,Z(V.HT),'HT');
+ title(X(6000),Z(0)+92,'South elevation · front','Scale 1:75 @ A3');}
+/* rear (north), seen from north: u = 12000 − x */
+{const v=E(930,422,SC(75)),X=v.X,Z=v.Z,m=(x1,x2)=>[12000-x2,12000-x1];elevBase(v,12000);
+ let [a,b]=m(8600,11400);opening(v,a,b,V.SL1,V.HD1,1);[a,b]=m(6400,7400);er(v,a,0,b,V.HD2,'thinw');el(v,b-120,900,b-120,1200,'cut');
+ [a,b]=m(4400,5900);opening(v,a,b,V.SL3,V.HD2,1);[a,b]=m(900,1500);opening(v,a,b,V.SL4,V.HD1,1);
+ er(v,6850,V.HT,7150,V.HT+600,'slot');er(v,6800,V.HT+600,7200,V.HT+680,'slot');tx(X(7000),Z(V.HT+780),'EXTRACT [TBD]','sl',{'text-anchor':'middle'});nb(X(7400),Z(V.HT+300),4);
+ [300,11700].forEach(u=>{el(v,u,V.HR-100,u,150,'thin');er(v,u-90,V.HR-250,u+90,V.HR-100,'thinw')});tx(X(300)-6,Z(1800),'RWP','sl',{'text-anchor':'end'});nb(X(700),Z(V.HR-180),5);
+ const xs=[0,600,3400,4600,5600,6100,7600,10500,11100,12000],ls=[null,'WB',null,'D5',null,'WK',null,'WW',null];
+ for(let i=0;i<9;i++)if(ls[i])dimH(X(xs[i]),X(xs[i+1]),Z(0)+30,Z(0)+8,Z(0)+8,ls[i],{below:true});
+ dimH(X(0),X(12000),Z(0)+58,Z(0)+34,Z(0)+34,'L',{below:true});
+ dimV(Z(V.SL1),Z(0),X(600)-14,X(600),X(600),'SL1');dimV(Z(V.HD1),Z(0),X(0)-30,X(0),X(0),'HD1');
+ dimV(Z(V.SL3),Z(0),X(7600)+14,X(7600),X(7600),'SL3');dimV(Z(V.HD2),Z(0),X(4600)-14,X(4600),X(4600),'HD2');
+ dimV(Z(V.SL4),Z(0),X(11100)+16,X(11100),X(11100),'SL4');
+ title(X(6000),Z(0)+92,'North elevation · rear','Scale 1:75 @ A3');}
+/* west, seen from west: u = y; canopy profile beyond */
+{const v=E(110,832,SC(75)),X=v.X,Z=v.Z;elevBase(v,8000);
+ opening(v,3600,6600,V.SL1,V.HD1,1);er(v,8000,V.CU,9200,V.CU+V.CT,'hug3');el(v,9100,V.CU+V.CT,8000,3700,'thin');
+ dimH(X(3600),X(6600),Z(0)+30,Z(V.SL1)+8,Z(V.SL1)+8,'WS',{below:true});dimH(X(0),X(8000),Z(0)+58,Z(0)+34,Z(0)+34,'D',{below:true});dimH(X(8000),X(9200),Z(0)+30,Z(V.CU)+8,Z(V.CU)+8,'CP',{below:true});
+ dimV(Z(V.SL1),Z(0),X(3600)-14,X(3600),X(3600),'SL1');dimV(Z(V.HD1),Z(0),X(6600)+14,X(6600),X(6600),'HD1');dimV(Z(V.HT),Z(0),X(0)-30,X(0),X(0),'HT');
+ title(X(4000),Z(0)+92,'West elevation · side','Scale 1:75 @ A3');}
+/* east, seen from east: u = 8000 − y; canopy profile beyond on the left */
+{const v=E(780,832,SC(75)),X=v.X,Z=v.Z;elevBase(v,8000);
+ [[650,1850],[2550,3750],[4450,5650]].forEach(([a,b])=>opening(v,8000-b,8000-a,V.SL2,V.HD1,1));er(v,-1200,V.CU,0,V.CU+V.CT,'hug3');el(v,-1100,V.CU+V.CT,0,3700,'thin');
+ dimH(X(2350),X(3550),Z(0)+30,Z(V.SL2)+8,Z(V.SL2)+8,'WE',{below:true});dimH(X(4250),X(5450),Z(0)+30,Z(V.SL2)+8,Z(V.SL2)+8,'WE',{below:true});dimH(X(6150),X(7350),Z(0)+30,Z(V.SL2)+8,Z(V.SL2)+8,'WE',{below:true});
+ dimH(X(0),X(8000),Z(0)+58,Z(0)+34,Z(0)+34,'D',{below:true});
+ dimV(Z(V.SL2),Z(0),X(8000)+16,X(7350),X(7350),'SL2',{side:'r'});dimV(Z(V.HD1),Z(0),X(8000)+44,X(7350),X(7350),'HD1',{side:'r'});
+ tx(X(4000),Z(900),'BOOTH WINDOWS ABOVE BH','sl',{'text-anchor':'middle'});
+ title(X(4000),Z(0)+92,'East elevation · side','Scale 1:75 @ A3');}
+{let y=table(1426,560,'Openings',[['D1','entrance','1000 × DH 2400'],['D3','wc door','900 × 2100'],['D4','store door','800 × 2100'],['D5','service door','1000 × 2100'],['D6','kitchen door','900 × 2100'],['G1/G2','storefront','sill 450 · 2700'],['WB','rear window','2800 · 900–2400'],['WK','kitchen window','1500 · 1100–2100'],['WW','wc (obscure)','600 · 1800–2400'],['WS','west window','3000 · 900–2400'],['WE','east × 3','1200 · 1300–2400']],[44,74,106]);
+ table(1426,y,'Levels',[['FFL','floor','±0'],['HR','roof','CH+SV+RS = 3800'],['HT','parapet top','HR+PP = 4300'],['FA','fascia','HR−G2 = 1100'],['CU','canopy u/s','2800'],['CP / CW','canopy','1200 / 3000']],[50,68,106]);}
+
+/* =================== SHEET 3 · A-301 SECTIONS =================== */
+begin('s3');
+tx(50,58,'NOTES:','nth');tx(112,58,'(UNLESS OTHERWISE SPECIFIED)','nt');
+[[1,'CEILING HEIGHTS: CH FRONT OF HOUSE, CK KITCHEN / WC / STORE.'],[2,'SERVICES ZONE SV: DUCTS, LIGHTING, SPRINKLERS IF REQUIRED [TBD].'],[3,'ROOF BUILD-UP RS, INSULATION, FALLS, SPANS [VERIFY] STRUCTURE.']].forEach(([n,t],i)=>{nb(56,82+i*21,n);tx(72,86+i*21,t,'nt')});
+[[4,'PARTITIONS TO UNDERSIDE OF ROOF. FIRE SEPARATION [VERIFY].'],[5,'GROUND SLAB SB, FOUNDATIONS, DAMP-PROOFING [VERIFY].'],[6,'KITCHEN EXTRACT DUCT ROUTE THROUGH ROOF [TBD].']].forEach(([n,t],i)=>{nb(846,82+i*21,n);tx(862,86+i*21,t,'nt')});
+function ground(v,W){mk('rect',{x:v.X(-700),y:v.Z(-V.SB),width:(W+1400)*v.k,height:14,fill:GH,class:'hsn'});el(v,-700,0,0,0,'cut');el(v,W,0,W+700,0,'cut');er(v,0,-V.SB,W,0,'hs',{fill:HAT})}
+const cutw=(v,u1,u2,h1,h2)=>er(v,u1,h1,u2,h2,'hs',{fill:HAT});
+/* A–A: cut at y 5200, looking north; u = x */
+{const v=E(200,480,SC(60)),X=v.X,Z=v.Z;ground(v,12000);
+ /* beyond (thin, drawn first) */
+ er(v,200,0,8000,V.CH,'far');er(v,900,0,1800,V.HD2,'farw');er(v,5000,0,5900,V.HD2,'farw');er(v,8000,0,8100,V.CH,'farw');
+ er(v,8100,0,11800,V.CH,'far');er(v,8600,V.SL1,11400,V.HD1,'glz');
+ [[9000,'B1']].forEach(([x])=>{er(v,x,V.TH-30,x+700,V.TH,'farw');el(v,x+350,0,x+350,V.TH-30,'far');er(v,x+150,0,x+550,850,'far')});
+ er(v,10600,0,11800,V.BH,'farw');el(v,10600,V.SH,11800,V.SH,'far');
+ /* counter seen from the front */
+ er(v,3800,0,3900,V.C4,'hug3');er(v,3900,0,7100,V.C3,'hug');er(v,3900,V.C3,6200,V.C4,'thinw');el(v,3900,V.C4-40,6200,V.C4-40);er(v,6200,0,7100,V.C8,'hug3');
+ er(v,4250,V.C4,5050,V.C4+450,'slot');tx(X(4650),Z(V.C4+225)+3,'EQUIP','sl',{'text-anchor':'middle'});
+ /* chairs north of the cut, tables cut */
+ [[700],[2100]].forEach(([x])=>{er(v,x+150,0,x+550,850,'farw');el(v,x+150,V.SH,x+550,V.SH,'far');er(v,x,V.TH-30,x+700,V.TH,'solid');er(v,x+325,0,x+375,V.TH-30,'thin')});
+ er(v,10600,V.TH-30,11800,V.TH,'solid');er(v,11175,0,11225,V.TH-30,'thin');
+ /* cut construction */
+ cutw(v,0,200,0,V.SL1);er(v,0,V.SL1,200,V.HD1,'glz');cutw(v,0,200,V.HD1,V.HT);
+ cutw(v,11800,12000,0,V.SL2);er(v,11800,V.SL2,12000,V.HD1,'glz');cutw(v,11800,12000,V.HD1,V.HT);
+ cutw(v,200,11800,V.HR-V.RS,V.HR);er(v,200,V.CH,11800,V.CH+20,'solid');
+ tx(X(3000),Z(V.CH+200)+3,'SERVICES ZONE SV · [TBD]','sl',{'text-anchor':'middle'});nb(X(4700),Z(V.CH+200),2);nb(X(6000),Z(V.HR-200),3);
+ tx(X(1750),Z(1700),'SEATING A','sl',{'text-anchor':'middle'});tx(X(5500),Z(2400),'COUNTER · QUEUE','sl',{'text-anchor':'middle'});tx(X(9900),Z(2600),'SEATING B','sl',{'text-anchor':'middle'});
+ tx(X(1350),Z(2200),'D3','sl',{'text-anchor':'middle'});tx(X(5450),Z(2200),'D6','sl',{'text-anchor':'middle'});nb(X(8050),Z(1500),4);
+ /* dims */
+ [[-V.SB,0,'SB'],[0,V.CH,'CH'],[V.CH,V.CH+V.SV,'SV'],[V.CH+V.SV,V.HR,'RS'],[V.HR,V.HT,'PP']].forEach(([a,b,l])=>dimV(Z(b),Z(a),X(12000)+28,X(12000),X(12000),l,{side:'r'}));
+ dimV(Z(V.HT),Z(0),X(12000)+66,X(12000)+34,X(12000)+34,'HT');
+ dimV(Z(V.SL1),Z(0),X(0)-24,X(0),X(0),'SL1');dimV(Z(V.HD1),Z(0),X(0)-50,X(0),X(0),'HD1');
+ dimV(Z(V.C4),Z(0),X(7100)+18,X(7100),X(7100),'C4',{side:'r'});dimV(Z(V.TH),Z(0),X(700)-10,X(700),X(700),'TH');
+ lvl(X(0)-80,Z(0),'FFL ±0');lvl(X(0)-80,Z(V.CH),'+CH');lvl(X(0)-80,Z(V.HR),'HR');lvl(X(0)-80,Z(V.HT),'HT');
+ title(X(6000),Z(-V.SB)+40,'Section A–A · looking north','Scale 1:60 @ A3 · cut through seating, counter, booths');}
+/* B–B: cut at x 5500, looking east; u = y */
+{const v=E(200,905,SC(60)),X=v.X,Z=v.Z;ground(v,8000);mk('line',{x1:X(8000),y1:Z(0),x2:X(9400),y2:Z(0),class:'cut'});
+ /* far: zone B booths, east windows, ledge */
+ [[4450,5650]].forEach(([a,b])=>er(v,a,V.SL2,b,V.HD1,'glz'));er(v,3100,0,7800,V.CH,'far');
+ BOOTH.forEach(b=>{er(v,b.y0,0,b.y0+150,V.BH,'far');er(v,b.y0+1750,0,b.y0+1900,V.BH,'far');er(v,b.y0+600,V.TH-30,b.y0+1300,V.TH,'far')});
+ er(v,3550,V.TH-30,4250,V.TH,'farw');er(v,7450,V.LH-40,7800,V.LH,'farw');el(v,7600,0,7600,V.LH-40,'far');
+ /* kitchen beyond: east run, door D6 leaf */
+ er(v,1200,0,3000,V.C3,'farw');
+ /* cut: kitchen north run + hood + duct */
+ er(v,200,0,800,860,'hug');er(v,200,860,800,900,'solid');er(v,200,2000,1000,2600,'thinw');er(v,400,2600,700,V.HT+600,'slot');tx(X(550)+10,Z(V.HT+500),'EXTRACT [TBD]','sl');nb(X(1250),Z(2300),6);
+ /* counter cut */
+ er(v,4175,V.KH,4700,860,'hug');er(v,4100,860,4720,900,'solid');er(v,4500,900,4540,1060,'solid');er(v,4500,1060,4800,1100,'solid');
+ /* walls, partitions, roof, ceilings */
+ cutw(v,0,200,0,V.SL3);er(v,0,V.SL3,200,V.HD2,'glz');cutw(v,0,200,V.HD2,V.HT);
+ cutw(v,3000,3100,V.HD2,V.HR-V.RS);el(v,3000,0,3000,V.HD2,'thin');el(v,3100,0,3100,V.HD2,'thin');
+ er(v,7800,0,8000,V.DH,'glz');er(v,7800,V.DH,8000,V.DH+60,'solid');er(v,7800,V.DH+60,8000,V.G2,'glz');cutw(v,7800,8000,V.G2,V.HT);
+ cutw(v,8000,9200,V.CU,V.CU+V.CT);el(v,9100,V.CU+V.CT,8000,3700,'thin');
+ cutw(v,200,7800,V.HR-V.RS,V.HR);er(v,200,V.CK,3000,V.CK+20,'solid');er(v,3100,V.CH,7800,V.CH+20,'solid');
+ tx(X(1600),Z(1500),'KITCHEN','sl',{'text-anchor':'middle'});tx(X(3600),Z(1700),'STAFF','sl',{'text-anchor':'middle'});tx(X(6300),Z(1700),'QUEUE + ENTRY','sl',{'text-anchor':'middle'});nb(X(3050),Z(2900),4);
+ /* dims */
+ const by=[0,200,3000,3100,4100,4700,4800,7800,8000,9200],bl=['T1','Y1','T2','SA','C2','C6','Y3','T1','CP'],bd=[-10,0,0,0,0,8,0,0,0];
+ for(let i=0;i<9;i++)dimH(X(by[i]),X(by[i+1]),Z(-V.SB)+26,Z(-V.SB)+14,Z(-V.SB)+14,bl[i],{below:true,dx:bd[i]});
+ dimV(Z(V.CK),Z(0),X(0)-24,X(200),X(200),'CK');dimV(Z(V.HD2),Z(0),X(3000)-12,X(3000),X(3000),'HD2');
+ [[0,V.DH,'DH'],[V.DH,V.G2,'+G2']].forEach(([a,b,l])=>dimV(Z(b),Z(a),X(9200)+24,X(8000),X(8000),l,{side:'r'}));
+ dimV(Z(V.CU),Z(0),X(9200)+70,X(9200),X(9200),'CU',{side:'r'});dimV(Z(V.CH),Z(0),X(7300),null,null,'CH',{side:'r'});
+ lvl(X(0)-60,Z(0),'FFL ±0');lvl(X(0)-60,Z(V.CK),'+CK');lvl(X(0)-60,Z(V.HT),'HT');
+ title(X(4000),Z(-V.SB)+68,'Section B–B · looking east','Scale 1:60 @ A3 · cut through kitchen, counter, entrance');}
+/* key plan */
+{const v=P(1130,640,SC(240)),X=v.X,Y=v.Y;pr(v,0,0,12000,8000,'obj');walls(v,'solid');
+ mk('line',{x1:X(-800),y1:Y(5200),x2:X(12800),y2:Y(5200),class:'secl'});mk('line',{x1:X(5500),y1:Y(-800),x2:X(5500),y2:Y(8800),class:'secl'});
+ tx(X(-1300),Y(5200)+4,'A','vt');tx(X(13000),Y(5200)+4,'A','vt');tx(X(5500),Y(-1100),'B','vt',{'text-anchor':'middle'});tx(X(5500),Y(9800),'B','vt',{'text-anchor':'middle'});
+ title(X(6000),Y(8000)+70,'Key plan','Scale 1:240 @ A3');}
+{let y=table(1426,200,'Heights',[['SB','ground slab','150'],['CH','ceiling foh','3000'],['CK','ceiling boh','2700'],['SV','services zone','400 [TBD]'],['RS','roof structure','400 [VERIFY]'],['PP','parapet','500'],['HR','roof level','CH+SV+RS = 3800'],['HT','overall','HR+PP = 4300']],[36,82,106]);
+ table(1426,y,'Seen in sections',[['C3','worktop-h','900'],['C4','ledge-h','1100'],['C8','lowered-h','850'],['TH','table-h','750'],['SH','seat-h','450'],['BH','booth-back','1100'],['LH','ledge-h','1050'],['HD2','door-head','2100'],['DH','entrance-head','2400']],[36,82,106]);}
+
+/* =================== SHEET 4 · A-401 EXPLODED AXONOMETRIC =================== */
+begin('s4');
+notes(50,58,[[1,'LAYERS SEPARATED VERTICALLY. Z GAPS NOT TO SCALE.'],[2,'WALLS SHOWN AS CUT PLAN (T1, T2) WITH OPENINGS.'],[3,'FIXED FIT-OUT = COUNTER, KITCHEN, WC, LEDGES.'],[4,'LIGHTING + DIFFUSER LAYOUT INDICATIVE [TBD].'],[5,'ROOF FALLS, OUTLETS, PLANT ZONE [VERIFY].']]);
+{const s=.03,a=.94*s,b=.17*s,c=-.34*s,d=.47*s,TX0=560,TY0=800,DX=90,DY=150;
+ const T=i=>[TX0+i*DX,TY0-i*DY];const Pp=(i,x,y)=>{const[tx0,ty0]=T(i);return[tx0+a*x+c*y,ty0+b*x+d*y]};
+ const G=i=>{const[tx0,ty0]=T(i);return mk('g',{transform:'matrix('+a+','+b+','+c+','+d+','+tx0+','+ty0+')'})};
+ const gr=(g,r,cls,ex)=>mk('rect',Object.assign({x:r.x,y:r.y,width:r.w,height:r.h,class:cls,'vector-effect':'non-scaling-stroke'},ex||{}),g);
+ const gc=(g,x,y,rad,cls)=>mk('circle',{cx:x,cy:y,r:rad,class:cls,'vector-effect':'non-scaling-stroke'},g);
+ const gl=(g,x1,y1,x2,y2,cls)=>mk('line',{x1,y1,x2,y2,class:cls,'vector-effect':'non-scaling-stroke'},g);
+ /* alignment lines between layers */
+ [[0,0],[12000,0],[0,8000],[12000,8000]].forEach(([x,y])=>{const p=Pp(0,x,y),q=Pp(5,x,y);mk('line',{x1:p[0],y1:p[1],x2:q[0],y2:q[1],class:'ph'})});
+ let g=G(0);gr(g,R(0,0,12000,8000),'obj');gr(g,R(200,200,7800,2800),'hug');gr(g,R(5000,6800,1000,1000),'hs',{fill:HAT});gr(g,R(0,0,12000,8000),'objn');
+ g=G(1);gr(g,R(0,0,12000,8000),'ph');EXT.concat(PART).forEach(r=>gr(g,r,'wallp'));WIN.forEach(r=>gr(g,r,'winp'));SHOP.forEach(s=>gr(g,R(s.x,7800,s.w,200),'winp'));
+ g=G(2);gr(g,R(0,0,12000,8000),'ph');[FIX.counter,FIX.kN,FIX.kE,FIX.shelf,FIX.ledgeW,FIX.ledgeE].forEach(r=>gr(g,r,'hug'));gr(g,FIX.endPanel,'hug3');gr(g,FIX.ledge,'thinw');gr(g,FIX.hood,'slot');gr(g,FIX.pan,'thinw');gr(g,FIX.basin,'thinw');
+ g=G(3);gr(g,R(0,0,12000,8000),'ph');FURN.forEach(f=>gr(g,f,f.n.startsWith('chair')?'hug':'thinw'));BOOTH.forEach(bt=>{gr(g,bt.bN,'hug3');gr(g,bt.bS,'hug3');gr(g,bt.t,'thinw')});STOOL.forEach(([x,y])=>gc(g,x,y,175,'thinw'));
+ g=G(4);gr(g,R(200,200,11600,7600),'obj');gr(g,R(200,200,7800,2800),'well');
+ for(let x=1200;x<=11000;x+=1600)for(let y=3800;y<=7200;y+=1700)gc(g,x,y,120,'thin');[1600,5800].forEach(x=>gc(g,x,1600,120,'thin'));gl(g,4200,4400,6800,4400,'cut');
+ [[9400,1200],[9400,5000],[2000,5800],[6000,1400]].forEach(([x,y])=>gr(g,R(x-250,y-250,500,500),'thin'));
+ g=G(5);gr(g,R(0,0,12000,8000),'obj');gr(g,R(200,200,11600,7600),'thin');gr(g,R(4000,400,4000,2200),'slot');gr(g,R(4800,400,400,400),'hug3');
+ [2500,6000,9500].forEach(x=>{gl(g,x,6800,x,1400,'thin');gl(g,x,1400,x-200,1900,'thin');gl(g,x,1400,x+200,1900,'thin')});[3000,9000].forEach(x=>gr(g,R(x-150,0,300,200),'solid'));
+ const LB=[['L0 · Floor slab','SB · wet-area finish BOH · entry mat'],['L1 · Walls','T1 external · T2 partitions · openings'],['L2 · Fixed fit-out','counter · kitchen · WC · ledges'],['L3 · Furniture','tables · chairs · booths · stools (28)'],['L4 · Ceiling','CH front · CK back · lights [TBD]'],['L5 · Roof + parapet','RS · PP · falls to rear · plant [TBD]']];
+ LB.forEach(([t,st],i)=>{const p=Pp(i,0,8000);mk('circle',{cx:p[0],cy:p[1],r:1.8,class:'dot'});mk('line',{x1:p[0],y1:p[1],x2:p[0]-30,y2:p[1],class:'lead'});tx(p[0]-34,p[1]-2,t,'vt',{'text-anchor':'end'});tx(p[0]-34,p[1]+11,st,'dts',{'text-anchor':'end'})});
+ [[5,4800,600,'EXTRACT'],[5,6000,1500,'PLANT ZONE'],[2,5500,4400,'COUNTER'],[3,11200,3150,'BOOTHS'],[1,5500,7900,'D1']].forEach(([i,x,y,l])=>{const p=Pp(i,x,y);callout(p[0],p[1],p[0]+60,p[1]-26,l,1,'dts')});
+ nb(Pp(1,12000,8000)[0]+20,Pp(1,12000,8000)[1],2);nb(Pp(2,12000,8000)[0]+20,Pp(2,12000,8000)[1],3);nb(Pp(4,12000,8000)[0]+20,Pp(4,12000,8000)[1],4);nb(Pp(5,12000,8000)[0]+20,Pp(5,12000,8000)[1],5);
+ title(740,1012,'Exploded axonometric','Projection matrix(.94s, .17s, −.34s, .47s) · z gaps not to scale');}
+{let y=table(1426,600,'Layers',[['L0','floor slab','FFL −SB … ±0'],['L1','walls','±0 … HT'],['L2','fit-out','±0 … C4 / LH'],['L3','furniture','±0 … BH'],['L4','ceiling','+CK / +CH'],['L5','roof','HR … HT']],[36,82,106]);
+ table(1426,y,'Not in this set',[['—','materials','[TBD]'],['—','structure','[VERIFY]'],['—','MEP services','[TBD]']],[36,82,106]);}
+
+/* =================== SHEET 5 · A-501 DETAILS =================== */
+begin('s5');
+tx(50,58,'NOTES:','nth');tx(112,58,'(UNLESS OTHERWISE SPECIFIED)','nt');
+[[1,'COUNTER: LOWERED SECTION C7 AT C8 FOR WHEELCHAIR USERS [VERIFY].'],[2,'BOOTH: UPHOLSTERY, FIXINGS, FIRE RATING OF FOAM [VERIFY].'],[3,'ENTRANCE: LEVEL THRESHOLD TQ, OUTWARD SWING, LANDINGS LD [VERIFY].']].forEach(([n,t],i)=>{nb(56,82+i*21,n);tx(72,86+i*21,t,'nt')});
+[[4,'STAIR: NOT REQUIRED (SINGLE STOREY). ROOF ACCESS [TBD].'],[5,'ALL MATERIALS, FINISHES AND HARDWARE [TBD].'],[6,'DETAILS ARE DESIGN INTENT, NOT SHOP DRAWINGS.']].forEach(([n,t],i)=>{nb(846,82+i*21,n);tx(862,86+i*21,t,'nt')});
+/* D1 counter section 1:20; u = y − 4100 */
+{const v=E(200,520,SC(20)),X=v.X,Z=v.Z;el(v,-450,0,1200,0,'cut');mk('rect',{x:X(-450),y:Z(0),width:1650*v.k,height:8,fill:GH,class:'hsn'});
+ mk('polygon',{points:[[V.KD,0],[600,0],[600,860],[0,860],[0,V.KH],[V.KD,V.KH]].map(p=>X(p[0])+','+Z(p[1])).join(' '),class:'obj'});
+ er(v,620,0,600,860,'hug3');er(v,40,300,560,320,'slot');er(v,-20,860,620,900,'hs',{fill:HAT});er(v,400,900,440,1060,'hs',{fill:HAT});er(v,400,1060,700,1100,'hs',{fill:HAT});
+ tx(X(-300),Z(500),'STAFF','sl',{'text-anchor':'middle'});tx(X(850),Z(700),'CUSTOMER','sl',{'text-anchor':'middle'});
+ callout(X(150),Z(880),X(-200),Z(1180),'WORKTOP [TBD]',-1,'dts');callout(X(600),Z(1080),X(880),Z(1260),'LEDGE',1,'dts');callout(X(300),Z(310),X(880),Z(180),'SHELF',1,'dts');
+ dimH(X(0),X(600),Z(0)+28,Z(0)+6,Z(0)+6,'C2',{below:true});dimH(X(600),X(700),Z(0)+28,null,Z(1060),'C6',{below:true,dx:10});
+ dimH(X(400),X(700),Z(1100)-22,Z(1100),Z(1100),'C5');
+ dimV(Z(V.C3),Z(0),X(-80),X(0),X(0),'C3');dimV(Z(V.KH),Z(0),X(-40),X(0),X(0),'KH',{side:'l'});dimV(Z(V.C4),Z(0),X(1100),X(700),X(700),'C4',{side:'r'});
+ dimH(X(0),X(V.KD),Z(V.KH)+18,null,null,'KD',{dy:-2,dx:16});
+ title(X(300),Z(0)+70,'Detail 1 · counter section','Scale 1:20 @ A3 · see A-101');}
+/* D1B counter front elevation 1:60 */
+{const v=E(560-3800*SC(60),520,SC(60)),X=v.X,Z=v.Z;el(v,3600,0,8200,0,'cut');
+ er(v,3800,0,3900,V.C4,'hug3');er(v,3900,0,6200,V.C3,'hug');er(v,3900,V.C3,6200,V.C4,'thinw');er(v,6200,0,7100,V.C8,'hug3');er(v,7100,0,8000,1000,'slot');tx(X(7550),Z(500)+3,'GATE','sl',{'text-anchor':'middle'});
+ dimH(X(3900),X(7100),Z(0)+28,Z(0)+6,Z(0)+6,'C1',{below:true});dimH(X(7100),X(8000),Z(0)+28,null,Z(0)+6,'SG',{below:true});dimH(X(6200),X(7100),Z(V.C4)-16,Z(V.C8),null,'C7');
+ dimV(Z(V.C8),Z(0),X(8000)+40,X(7100),X(7100),'C8',{side:'r'});dimV(Z(V.C4),Z(0),X(3800)-16,X(3800),X(3800),'C4');nb(X(6650),Z(V.C8)-28+48,1);
+ title(X(5900),Z(0)+70,'Detail 1B · counter front','Scale 1:60 @ A3');}
+/* D2 booth section 1:20; u = 0..BK */
+{const v=E(960,520,SC(20)),X=v.X,Z=v.Z;el(v,-150,0,2050,0,'cut');mk('rect',{x:X(-150),y:Z(0),width:2200*v.k,height:8,fill:GH,class:'hsn'});
+ const bench=(u0,dir)=>{const u=x=>u0+dir*x;mk('polygon',{points:[[0,0],[V.BBK,0],[V.BBK,400],[V.BB,400],[V.BB,V.SH],[V.BBK,V.SH],[V.BBK,V.BH],[0,V.BH]].map(p=>X(u(p[0]))+','+Z(p[1])).join(' '),class:'hug'});er(v,u(V.BBK+50),0,u(V.BB-50),400,'thinw')};
+ bench(0,1);bench(V.BK,-1);er(v,V.BB,V.TH-30,V.BB+V.BT,V.TH,'hs',{fill:HAT});er(v,925,20,975,V.TH-30,'thin');er(v,750,0,1150,20,'solid');
+ dimH(X(0),X(600),Z(0)+28,Z(0)+6,Z(0)+6,'BB',{below:true});dimH(X(600),X(1300),Z(0)+28,null,null,'BT',{below:true});dimH(X(1300),X(1900),Z(0)+28,Z(0)+6,Z(0)+6,'BB',{below:true});
+ dimH(X(0),X(1900),Z(0)+52,Z(0)+32,Z(0)+32,'BK',{below:true});
+ dimH(X(0),X(V.BBK),Z(V.BH)-16,Z(V.BH),Z(V.BH),'BBK',{dx:-14});dimH(X(V.BBK),X(V.BB),Z(V.SH)+20,Z(V.SH),Z(V.SH),'SD');
+ dimV(Z(V.SH),Z(0),X(0)-20,X(0),X(0),'SH');dimV(Z(V.TH),Z(0),X(0)-46,X(0),X(0),'TH');dimV(Z(V.BH),Z(0),X(0)-72,X(0),X(0),'BH');
+ nb(X(1900)-20,Z(V.BH)-16,2);title(X(950),Z(0)+80,'Detail 2 · booth section','Scale 1:20 @ A3 · see A-101');}
+/* D3 entrance plan 1:50 */
+{const v=P(100-3800*SC(50),640-6100*SC(50),SC(50)),X=v.X,Y=v.Y,k=v.k;
+ pr(v,4750,6300,1500,1500,'env');pr(v,4750,8000,1500,1500,'env');pr(v,5000,6800,1000,1000,'hs',{fill:HAT});
+ [[3800,1150],[6050,1150]].forEach(([x,w])=>{pr(v,x,7800,w,200,'winp');pl(v,x,7900,x+w,7900)});pr(v,4950,7800,50,200,'solid');pr(v,6000,7800,50,200,'solid');
+ door(v,[5000,8000],[6000,8000],[5000,9000]);pr(v,4000,8000,3000,1200,'ph');
+ tx(X(5500),Y(7300),'MAT WELL [TBD]','sl',{'text-anchor':'middle'});tx(X(6650),Y(9100),'CANOPY OVER','sl',{'text-anchor':'middle'});tx(X(5500),Y(9420),'LANDING LD','sl',{'text-anchor':'middle'});
+ dimH(X(5000),X(6000),Y(7800)-14,Y(7800),Y(7800),'D1');dimH(X(4950),X(5000),Y(7800)-14,null,null,'FR',{dx:-16});
+ dimH(X(4000),X(7000),Y(9200)+26,Y(9200),Y(9200),'CW',{below:true});dimV(Y(8000),Y(9200),X(7000)+20,X(7000),X(7000),'CP',{side:'r'});
+ dimV(Y(6300),Y(7800),X(4750)-16,X(4750),X(4750),'LD');nb(X(6600),Y(6500),3);
+ title(X(5500),Y(9600)+28,'Detail 3 · entrance plan','Scale 1:50 @ A3');}
+/* D3B threshold section 1:10; u = y */
+{const v=E(500-7500*SC(10),830,SC(10)),X=v.X,Z=v.Z;
+ mk('rect',{x:X(7500),y:Z(-V.SB),width:800*v.k,height:40,fill:GH,class:'hsn'});er(v,7500,-V.SB,8000,0,'hs',{fill:HAT});el(v,7500,0,7800,0,'cut');
+ er(v,7820,0,7980,V.TQ,'solid');er(v,7880,V.TQ+5,7930,300,'glz');er(v,8000,-150,8160,-V.TQ,'slot');el(v,8160,-V.TQ,8300,-V.TQ-4,'cut');el(v,7980,V.TQ,8000,-V.TQ,'thin');
+ tx(X(7650),Z(150),'INSIDE','sl',{'text-anchor':'middle'});tx(X(8230),Z(150),'OUTSIDE','sl',{'text-anchor':'middle'});callout(X(8080),Z(-80),X(8200),Z(-260),'CHANNEL [TBD]',1,'dts');callout(X(7905),Z(200),X(7700),Z(280),'DOOR LEAF',-1,'dts');
+ dimV(Z(V.TQ),Z(0),X(7800)-20,X(7820),X(7820),'TQ',{side:'l'});dimV(Z(0),Z(-V.SB),X(7500)-16,X(7500),X(7500),'SB',{side:'l'});
+ title(X(7900),Z(-V.SB)+70,'Detail 3B · threshold','Scale 1:10 @ A3');}
+/* D5 window ledge 1:25; u from glazing inward */
+{const v=E(1000,960,SC(25)),X=v.X,Z=v.Z;el(v,-100,0,900,0,'cut');er(v,-100,0,0,V.G1,'hs',{fill:HAT});er(v,-60,V.G1,-40,1300,'glz');
+ er(v,0,V.LH-40,V.WL,V.LH,'hs',{fill:HAT});el(v,V.WL-50,V.LH-40,40,V.LH-300,'thin');er(v,350,V.ST-30,700,V.ST,'hug');er(v,515,0,535,V.ST-30,'thin');el(v,430,300,620,300,'thin');er(v,440,0,610,15,'solid');
+ dimH(X(0),X(V.WL),Z(V.LH)-16,Z(V.LH),Z(V.LH),'WL');dimV(Z(V.LH),Z(0),X(860),X(V.WL),X(V.WL),'LH',{side:'r'});dimV(Z(V.ST),Z(0),X(760),X(700),X(700),'ST',{side:'r'});dimV(Z(V.G1),Z(0),X(-100)-14,X(-100),X(-100),'G1');
+ title(X(400),Z(0)+40,'Detail 5 · window ledge','Scale 1:25 @ A3');}
+/* stair statement */
+{rr(1100,650,290,120,0,'slot');['DETAIL 4 · STAIR','NOT REQUIRED: SINGLE STOREY,','NO MEZZANINE. ROOF ACCESS','HATCH OR LADDER [TBD].'].forEach((t,i)=>tx(1116,676+i*21,t,i?'dts':'vt'));nb(1376,664,4);}
+{let y=table(1426,200,'Counter',[['C1','length','3200'],['C2','depth','600'],['C3','worktop-h','900'],['C4','ledge-h','1100'],['C5','ledge-d','300'],['C6','ledge-over','100'],['C7','lowered-w','900 [VERIFY]'],['C8','lowered-h','850 [VERIFY]'],['KH / KD','kick','100 / 75'],['WT','worktop-t','40']],[52,66,106]);
+ y=table(1426,y,'Booth',[['BB','bench-d','SD+BBK = 600'],['BT','table-w','700'],['BK','module','2·BB+BT = 1900'],['SH','seat-h','450'],['SD','seat-d','450'],['BBK','back-t','150'],['BH','back-h','1100'],['TH','table-h','750']],[52,66,106]);
+ table(1426,y,'Entrance + ledge',[['D1','clear-w','1000 [VERIFY]'],['FR','frame','50'],['CW / CP','canopy','3000 / 1200'],['TQ','threshold','≤ 15 [VERIFY]'],['WL / LH','ledge','350 / 1050'],['ST','stool-h','750']],[52,66,106]);}
+
+})();
+</script>
+</body>
+</html>

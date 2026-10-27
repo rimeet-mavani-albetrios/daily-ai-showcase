@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 003 · Drawing Sets</title>
+<meta name="description" content="Two architectural drawing sets made with the dimensional-drawing skill: a 28-seat café and a G+1 house with two 2 BHK flats.">
+<meta property="og:image" content="shots/01-floor-plan.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="meta mono"><b>DAY 003</b><span>2026-10-27</span><span>dimensional-drawing skill</span></div>
+    <h1>Architectural drawing sets for a café and a G+1 house</h1>
+  </header>
+
+  <main class="day">
+    <div class="stage">
+      <div class="stage-bar" role="tablist" aria-label="Drawing sets">
+        <button class="tab" role="tab" aria-selected="true" data-src="cafe-drawings.html">Café · 5 sheets</button>
+        <button class="tab" role="tab" aria-selected="false" data-src="house-drawings.html">G+1 house · 12 sheets</button>
+        <span class="spacer"></span>
+        <button class="tool" id="fullscreen" type="button">Full screen</button>
+        <a class="tool" id="open-alone" href="cafe-drawings.html" target="_blank" rel="noopener">Open alone</a>
+      </div>
+      <div class="frame" id="frame">
+        <iframe id="demo" src="cafe-drawings.html" title="Café · 5 sheets" allow="fullscreen" allowfullscreen></iframe>
+      </div>
+      <p class="stage-note">Scroll inside the frame through every sheet. Concepts only, not for construction.</p>
+    </div>
+
+    <div class="cols">
+      <div class="notes">
+        <h3>What I tried</h3>
+        <p>The dimensional-drawing skill draws UI components the way Apple draws its devices for accessory makers. I pushed it past its scope: a full drawing set for a modern 12 × 8 m café, using only this skill.</p>
+        <ul>
+          <li>Floor plan with 28 seats, kitchen, store, accessible WC, counter with a lowered section, and an accessible route.</li>
+          <li>Four elevations, two building sections, an exploded axonometric in six layers, and counter, booth, entrance and threshold details.</li>
+          <li>Every dimension is a code with its value in a table. The page checks itself: 25 checks that chains add up, seats are counted, aisles are wide enough and nothing overlaps.</li>
+          <li>Open code, accessibility, structure, plumbing and fire items are flagged [VERIFY] for a licensed professional.</li>
+        </ul>
+        <p>Then a harder one: an Indian G+1 house on a 9 × 18 m plot with two 2 BHK flats, a shared stair and a car porch, in 12 sheets.</p>
+        <ul>
+          <li>Site plan with area statement, both floor plans, terrace, four elevations, two sections and a stair detail.</li>
+          <li>Door and window schedule counted from the plans, plus a preliminary column grid and plumbing and electrical concepts.</li>
+          <li>41 checks: stair 2R+T and headroom, car porch clearances, reference room sizes, upper walls standing on lower walls or beams.</li>
+          <li>The checks caught an undersized first-floor lounge, which was then merged into the living room.</li>
+        </ul>
+      </div>
+      <aside class="backup">
+        <h3>Skill used</h3>
+        <span class="saved">Backed up</span>
+        <dl>
+          <dt>Skill</dt><dd><a href="https://github.com/enesozturk/dimensional-drawing" target="_blank" rel="noopener">enesozturk/dimensional-drawing</a></dd>
+          <dt>Commit</dt><dd class="mono">5c45743</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <section aria-label="Sheets">
+      <h3 class="stills-head">Sheets</h3>
+      <div class="stills">
+        <figure><img src="shots/01-floor-plan.jpg" alt="Floor plan sheet" loading="lazy"><figcaption>A-101 Floor plan</figcaption></figure>
+        <figure><img src="shots/02-elevations.jpg" alt="Elevations sheet" loading="lazy"><figcaption>A-201 Elevations</figcaption></figure>
+        <figure><img src="shots/03-sections.jpg" alt="Sections sheet" loading="lazy"><figcaption>A-301 Sections</figcaption></figure>
+        <figure><img src="shots/04-exploded-axonometric.jpg" alt="Exploded axonometric sheet" loading="lazy"><figcaption>A-401 Exploded view</figcaption></figure>
+        <figure><img src="shots/05-details.jpg" alt="Details sheet" loading="lazy"><figcaption>A-501 Details</figcaption></figure>
+        <figure><img src="house-shots/02-ground-floor-plan.jpg" alt="House ground floor plan" loading="lazy"><figcaption>House · ground floor</figcaption></figure>
+        <figure><img src="house-shots/03-first-floor-plan.jpg" alt="House first floor plan" loading="lazy"><figcaption>House · first floor</figcaption></figure>
+        <figure><img src="house-shots/05-elevations.jpg" alt="House elevations" loading="lazy"><figcaption>House · elevations</figcaption></figure>
+        <figure><img src="house-shots/06-sections.jpg" alt="House sections" loading="lazy"><figcaption>House · sections</figcaption></figure>
+        <figure><img src="house-shots/12-axonometric.jpg" alt="House axonometric" loading="lazy"><figcaption>House · axonometric</figcaption></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>Built by Rimeet Mavani on 2026-10-27 as part of a daily AI experiment.</footer>
+</div>
+<script>
+(function () {
+  var iframe = document.getElementById('demo'), open = document.getElementById('open-alone'), tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', t === tab ? 'true' : 'false'); });
+      iframe.src = tab.dataset.src; iframe.title = tab.textContent; open.href = tab.dataset.src;
+    });
+  });
+})();
+document.getElementById('fullscreen').addEventListener('click', function () {
+  var el = document.getElementById('frame');
+  var req = el.requestFullscreen || el.webkitRequestFullscreen;
+  if (req) { try { var p = req.call(el); if (p && p.catch) p.catch(function () {}); } catch (e) {} }
+});
+</script>
+</body>
+</html>
