@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 001 · IG flow in 3D</title>
+<meta name="description" content="How an Instagram comment turns into a DM, shown as a live 3D machine. Built with the Anatomy skill and three.js.">
+<meta property="og:image" content="shots/08-whole-system.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="meta mono"><b>DAY 001</b><span>2026-10-25</span><span>Anatomy skill + three.js</span></div>
+    <h1>How an Instagram comment turns into a DM, as a 3D machine</h1>
+  </header>
+
+  <main class="day">
+    <div class="stage">
+      <div class="stage-bar" role="tablist" aria-label="Versions">
+        <button class="tab" id="tab-3d" role="tab" aria-selected="true" data-src="ig-flow-3d.html">3D film · 84 s</button>
+        <button class="tab" id="tab-v1" role="tab" aria-selected="false" data-src="ig-flow.html">Anatomy figure (v1)</button>
+        <span class="spacer"></span>
+        <button class="tool" id="fullscreen" type="button">Full screen</button>
+        <a class="tool" id="open-alone" href="ig-flow-3d.html" target="_blank" rel="noopener">Open alone</a>
+      </div>
+      <div class="frame" id="frame">
+        <iframe id="demo" src="ig-flow-3d.html" title="IG automation flow, 3D film" allow="fullscreen" allowfullscreen></iframe>
+      </div>
+      <p class="stage-note">Press play, use ← → to jump between shots, or pause and drag to orbit the scene.</p>
+    </div>
+
+    <div class="cols">
+      <div class="notes">
+        <h3>What I tried</h3>
+        <p>The Anatomy skill explains a technical idea by drawing it as a real machine. I pointed it at my <span class="mono">ig-automation</span> project and asked what happens when someone comments “price” on a post.</p>
+        <ul>
+          <li>v1: an interactive isometric figure, a loop conveyor past ten stations (Meta, webhook gate, Redis, worker, keyword lock, Postgres, Graph API).</li>
+          <li>v2: a three.js camera fly-through in 11 shots. The comment travels from the phone, through each check, and comes back as a DM.</li>
+          <li>The steps, files and API routes are real. The shop, product and price are made up for the story.</li>
+        </ul>
+      </div>
+      <aside class="backup">
+        <h3>Skill used</h3>
+        <span class="saved">Backed up</span>
+        <dl>
+          <dt>Skill</dt><dd><a href="https://github.com/wheresryan22/anatomy" target="_blank" rel="noopener">wheresryan22/anatomy</a></dd>
+          <dt>Version</dt><dd class="mono">v1.1.0+53 · 1482e84</dd>
+          <dt>Also uses</dt><dd class="mono">three.js 0.160.0</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <section aria-label="Stills">
+      <h3 class="stills-head">Stills</h3>
+      <div class="stills">
+        <figure><img src="shots/01-comment-on-phone.jpg" alt="Phone close-up: Ria types price under the post" loading="lazy"><figcaption>Ria comments “price”</figcaption></figure>
+        <figure><img src="shots/03-webhook-gate.jpg" alt="Webhook gate press stamps the comment" loading="lazy"><figcaption>Webhook gate checks HMAC</figcaption></figure>
+        <figure><img src="shots/04-worker-robot-arm.jpg" alt="Robot arm lifts the job card" loading="lazy"><figcaption>Worker takes the job from Redis</figcaption></figure>
+        <figure><img src="shots/05-keyword-lock.jpg" alt="Keyword lock with PRICE lit" loading="lazy"><figcaption>Keyword lock matches “price”</figcaption></figure>
+        <figure><img src="shots/07-final-dm-delivered.jpg" alt="Phone shows the final DM" loading="lazy"><figcaption>Final DM delivered</figcaption></figure>
+        <figure><img src="shots/09-anatomy-version.jpg" alt="Isometric Anatomy figure" loading="lazy"><figcaption>v1 Anatomy figure</figcaption></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>Built by Rimeet Mavani on 2026-10-25 as part of a daily AI experiment.</footer>
+</div>
+
+<script>
+(function () {
+  var iframe = document.getElementById('demo');
+  var open = document.getElementById('open-alone');
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', t === tab ? 'true' : 'false'); });
+      iframe.src = tab.dataset.src;
+      iframe.title = tab.textContent;
+      open.href = tab.dataset.src;
+    });
+  });
+  document.getElementById('fullscreen').addEventListener('click', function () {
+    var el = document.getElementById('frame');
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if (req) { try { var p = req.call(el); if (p && p.catch) p.catch(function () {}); } catch (e) {} }
+  });
+})();
+</script>
+</body>
+</html>
