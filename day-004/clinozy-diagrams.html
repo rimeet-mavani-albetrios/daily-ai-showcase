@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinozy Engineering Diagrams</title>
+<meta name="description" content="Clinozy FE + BE explained with 14 engineering diagrams, built from Understand Anything scans and the real code.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --ink:#14171f; --muted:#5d6676; --line:#e3e6ec;
+  --accent:#0f766e; --accent-soft:#e6f4f2; --chip:#eef1f5; --code:#f1f3f6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1116; --panel:#161b22; --ink:#e6e9ef; --muted:#9aa4b2; --line:#2a313c;
+    --accent:#2dd4bf; --accent-soft:#12302d; --chip:#1f2630; --code:#1c222b;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1116; --panel:#161b22; --ink:#e6e9ef; --muted:#9aa4b2; --line:#2a313c;
+  --accent:#2dd4bf; --accent-soft:#12302d; --chip:#1f2630; --code:#1c222b;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+code{font-family:"JetBrains Mono",monospace;font-size:.86em;background:var(--code);padding:1px 5px;border-radius:4px}
+.wrap{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+nav{position:sticky;top:0;height:100vh;overflow:auto;border-right:1px solid var(--line);padding:24px 16px;background:var(--panel)}
+nav h1{font-size:16px;margin:0 0 4px}
+nav .sub{color:var(--muted);font-size:12.5px;margin:0 0 18px}
+nav .grp{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 8px 6px}
+nav a{display:block;padding:6px 10px;border-radius:7px;color:var(--ink);text-decoration:none;font-size:13.5px}
+nav a:hover{background:var(--chip)}
+nav a.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+main{padding:32px clamp(16px,4vw,48px) 80px;max-width:1280px;min-width:0}
+header.hero{margin-bottom:28px}
+header.hero h2{font-size:clamp(24px,3vw,32px);margin:0 0 8px;letter-spacing:-.01em}
+header.hero p{color:var(--muted);margin:0 0 14px;max-width:760px}
+.stats{display:flex;flex-wrap:wrap;gap:10px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:120px}
+.stat b{display:block;font-size:20px}
+.stat span{color:var(--muted);font-size:12px}
+section.d{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:0 0 22px;scroll-margin-top:16px}
+section.d h3{margin:0 0 4px;font-size:18px}
+section.d .tag{display:inline-block;font-size:11px;background:var(--chip);color:var(--muted);border-radius:99px;padding:2px 9px;margin-left:8px;vertical-align:middle;font-weight:500}
+section.d p.lead{color:var(--muted);margin:0 0 12px;max-width:820px}
+section.d ol{margin:0 0 14px;padding-left:20px;color:var(--ink)}
+section.d ol li{margin:2px 0}
+.dia{overflow:auto;border:1px dashed var(--line);border-radius:10px;padding:14px;background:var(--bg);text-align:center}
+.dia .mermaid{margin:0}
+.dia svg{display:block;margin:0 auto;max-width:none!important;height:auto}
+.dia.zoomed svg{width:auto!important}
+.src{font-size:12px;color:var(--muted);margin-top:10px}
+.toolbar{display:flex;gap:8px;justify-content:flex-end;margin:-6px 0 8px}
+.toolbar button{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:7px;padding:4px 10px;cursor:pointer}
+.toolbar button:hover{background:var(--chip)}
+.note{background:var(--accent-soft);border-radius:10px;padding:12px 14px;font-size:13.5px;margin:0 0 22px}
+.menu-btn{display:none}
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr}
+  nav{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+  nav .links{display:none}
+  nav.open .links{display:block}
+  .menu-btn{display:inline-block;font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:7px;padding:5px 10px;cursor:pointer}
+}
+.zoomed{position:fixed;inset:0;z-index:50;background:var(--bg);overflow:auto;padding:56px 24px 24px;border-radius:0}
+.close-z{display:none;position:fixed;top:12px;right:16px;z-index:51}
+.zoomed + .close-z{display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav id="nav">
+  <h1>Clinozy, explained</h1>
+  <p class="sub">FE + BE · 14 diagrams<br>Built from Understand Anything scans + the real code</p>
+  <button class="menu-btn" onclick="document.getElementById('nav').classList.toggle('open')">☰ Diagrams</button>
+  <div class="links">
+    <div class="grp">Big picture</div>
+    <a href="#d1">1. System overview</a>
+    <a href="#d2">2. Frontend layers</a>
+    <a href="#d3">3. Backend domains</a>
+    <a href="#d4">4. Frontend route map</a>
+    <div class="grp">Database</div>
+    <a href="#d5">5. Users &amp; clinics</a>
+    <a href="#d6">6. Patients &amp; visits</a>
+    <a href="#d7">7. Money, pharmacy, stock</a>
+    <div class="grp">Login &amp; security</div>
+    <a href="#d8">8. Login flow</a>
+    <a href="#d9">9. Token refresh</a>
+    <a href="#d10">10. One API request</a>
+    <div class="grp">Business flows</div>
+    <a href="#d11">11. Book appointment</a>
+    <a href="#d12">12. Appointment states</a>
+    <a href="#d13">13. Prescription → pharmacy sale</a>
+    <a href="#d14">14. Background jobs</a>
+  </div>
+</nav>
+
+<main>
+<header class="hero">
+  <h2>Clinozy: how the whole system works</h2>
+  <p>Clinozy is a clinic management app. Many clinics share one system, and each clinic only sees its own data. The <b>frontend</b> is a React website. The <b>backend</b> is a Fastify API with a Postgres database, plus a worker for background jobs.</p>
+  <div class="stats">
+    <div class="stat"><b>5,157</b><span>FE files scanned</span></div>
+    <div class="stat"><b>3,941</b><span>BE files scanned</span></div>
+    <div class="stat"><b>17,353</b><span>import links mapped</span></div>
+    <div class="stat"><b>103</b><span>database tables</span></div>
+    <div class="stat"><b>449</b><span>API routes</span></div>
+    <div class="stat"><b>39</b><span>background queues</span></div>
+  </div>
+</header>
+
+<div class="note"><b>How this was made:</b> the Understand Anything scripts scanned every file and import, with no AI and no tokens. That showed where the important code is. Then the key files were read (database schema, login code, routes, services), and every diagram was drawn from those real files. The file names under each diagram show where the facts came from.</div>
+
+<!-- 1 -->
+<section class="d" id="d1">
+  <h3>1. System overview <span class="tag">architecture</span></h3>
+  <p class="lead">All the pieces and how they talk. The browser only talks to the API. The API and the worker share the same Postgres and Redis.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+flowchart LR
+  user(["👩‍⚕️ Clinic staff<br/>browser"])
+  subgraph FE["Frontend · clinozy-fe"]
+    spa["React 19 SPA<br/>Vite · TanStack Router/Query"]
+  end
+  netlify["Netlify<br/>static hosting"]
+  subgraph BE["Backend · clinozy-be (Railway)"]
+    api["Fastify API<br/>port 3000 · /api/v1"]
+    worker["BullMQ Worker<br/>+ cron scheduler"]
+  end
+  pg[("PostgreSQL 17<br/>7 schemas · RLS")]
+  redis[("Redis<br/>cache + queues")]
+  s3[("S3 storage<br/>images, reports")]
+  resend["Resend<br/>email"]
+  stripe["Stripe<br/>SaaS billing"]
+  oauth["Google / GitHub<br/>OAuth"]
+  turn["Cloudflare<br/>Turnstile"]
+  obs["Sentry · PostHog<br/>Prometheus"]
+  hooks["Customer<br/>webhooks"]
+
+  user --> spa
+  netlify -. serves .-> spa
+  spa -- "HTTPS + Bearer JWT" --> api
+  spa -. captcha .-> turn
+  api --> pg
+  api --> redis
+  api -- presigned URLs --> s3
+  api -- login --> oauth
+  api -- verify --> turn
+  stripe -- webhook --> api
+  api -- jobs --> redis
+  redis -- jobs --> worker
+  worker --> pg
+  worker --> resend
+  worker --> stripe
+  worker --> hooks
+  worker --> s3
+  api -.-> obs
+  worker -.-> obs
+  </pre></div>
+  <p class="src">From: <code>src/server.ts</code>, <code>src/worker.ts</code>, <code>docker-compose.yml</code>, <code>env-schema.ts</code> (BE) · <code>netlify.toml</code>, <code>vite.config.ts</code> (FE)</p>
+</section>
+
+<!-- 2 -->
+<section class="d" id="d2">
+  <h3>2. Frontend layers <span class="tag">clinozy-fe</span></h3>
+  <p class="lead">How the website starts, and which folder does what. Pages use hooks, hooks use the API clients, and the API clients use one shared fetch client.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+flowchart TB
+  main["main.tsx<br/>read org from subdomain → mount React<br/>→ silent refresh in background"]
+  subgraph P["Providers (App.tsx)"]
+    direction LR
+    i18n["I18nProvider<br/>11 languages"] --> qp["QueryProvider<br/>TanStack Query"] --> eb["ErrorBoundary<br/>+ Turnstile"] --> rp["RouterProvider"]
+  end
+  subgraph L["Layouts"]
+    direction LR
+    al["AuthLayout<br/>/login /mfa"]
+    pl["PublicLayout<br/>/callback /onboarding"]
+    ol["OrganizationShell → AppLayout<br/>/organization/$slug/*"]
+  end
+  pages["src/pages/*<br/>rooms: today, patients, medical,<br/>stock, payments, invoices, tasks…"]
+  hooks["src/shared/hooks<br/>usePatients · usePayments · usePrescriptions…"]
+  apis["src/shared/api<br/>typed API clients + Zod contracts"]
+  stores["src/shared/store<br/>Zustand: auth, org, UI…"]
+  http["src/core/http/fetch-client.ts<br/>Bearer · idempotency key · retry · 401 refresh"]
+  be(["clinozy-be<br/>/api/v1"])
+
+  main --> P --> L --> pages
+  pages --> hooks --> apis --> http --> be
+  pages --> stores
+  http --> stores
+  </pre></div>
+  <p class="src">From: <code>src/main.tsx</code>, <code>src/App.tsx</code>, <code>src/app/routes/routeTree.tsx</code>, <code>src/core/http/fetch-client.ts</code></p>
+</section>
+
+<!-- 3 -->
+<section class="d" id="d3">
+  <h3>3. Backend domains <span class="tag">clinozy-be</span></h3>
+  <p class="lead">The backend is split into domains. One domain may call another domain's <i>service</i>, but never its database code directly. The big <code>app</code> domain is the clinic product itself.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+flowchart LR
+  subgraph PLAT["Platform domains"]
+    auth["auth<br/>login, MFA, sessions, JWT"]
+    user["user<br/>profile, settings, GDPR export"]
+    ten["tenancy<br/>clinics, members, roles, permissions"]
+    bill["billing<br/>Stripe plans + subscriptions"]
+    notify["notify<br/>in-app notices + webhooks"]
+    audit["audit<br/>who did what"]
+    up["upload<br/>S3 presign → confirm"]
+  end
+  subgraph APP["app domain · the clinic product"]
+    br["branches<br/>rooms, machines, holidays"]
+    ct["contacts + leads<br/>CRM"]
+    ap["appointments"]
+    pt["patients<br/>prescriptions, treatments,<br/>notes, images, reports"]
+    of["offerings<br/>services, packages, offers"]
+    money["clinic billing<br/>invoices, payments, day close"]
+    med["medical<br/>pharmacy: medicines, batches, sales"]
+    st["stock<br/>consumables"]
+    tk["tasks<br/>auto task rules"]
+  end
+  auth --> ten
+  auth --> user
+  auth --> bill
+  user --> ten
+  ten --> audit
+  notify --> ten
+  bill --> ten
+  APP --> ten
+  ap --> ct
+  ap --> br
+  ap --> of
+  ap --> pt
+  pt --> ap
+  pt --> of
+  money --> pt
+  money --> med
+  money --> st
+  med --> money
+  st --> pt
+  tk --> ap
+  tk --> ct
+  tk --> money
+  </pre></div>
+  <p class="src">From: <code>src/routes.ts</code>, <code>src/OVERVIEW.md</code>, cross-domain imports counted from the Understand Anything import map</p>
+</section>
+
+<!-- 4 -->
+<section class="d" id="d4">
+  <h3>4. Frontend route map <span class="tag">clinozy-fe</span></h3>
+  <p class="lead">Every main page and the guards in front of it. Inside a clinic, each "room" also checks that its module is on and that the user has permission.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+flowchart LR
+  root["/"] -->|signed in| pick{"where to go?"}
+  pick --> onb["/onboarding"]
+  pick --> orgs["/organization<br/>clinic picker"]
+  pick --> home
+  guest["guest only"] --> login["/login"]
+  guest --> mfa["/mfa"]
+  pub["public"] --> cb["/callback/$provider"]
+  pub --> inv["/accept-invite/$id"]
+  orgs --> home
+  subgraph ORG["/organization/$organizationSlug · guards: auth → workspace → active clinic"]
+    home["role home"] --> today["today"]
+    home --> leads["leads"]
+    home --> appts["appointments"]
+    home --> pats["patients"]
+    pats --> pfile["patients/$patientId<br/>13 sections: timeline, visits,<br/>prescriptions, treatments, images,<br/>reports, invoices, payments…"]
+    home --> medical["medical<br/>sales · medicines · purchases ·<br/>suppliers · reps · credits"]
+    home --> stock["stock<br/>items · purchases · movements · vendors"]
+    home --> pay["payments<br/>receive · pay · day-close · pending"]
+    home --> invc["invoices"]
+    home --> tasks["tasks"]
+    home --> offer["offerings + offers"]
+    home --> users["users + roles"]
+    home --> branches["branches"]
+  end
+  </pre></div>
+  <p class="src">From: <code>src/app/routes/routeTree.tsx</code>, <code>src/app/guards/route-guards.ts</code>. Child pages like <code>create</code> and <code>edit</code> open drawers, not new pages.</p>
+</section>
+
+<!-- 5 -->
+<section class="d" id="d5">
+  <h3>5. Database: users &amp; clinics <span class="tag">ER diagram</span></h3>
+  <p class="lead">Who can log in, which clinic they belong to, and what they're allowed to do. A <b>membership</b> links a user to a clinic with a role. Every clinic row is protected by Postgres row-level security (RLS).</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+erDiagram
+  auth_users ||--o{ auth_sessions : "has"
+  auth_users ||--o{ auth_methods : "logs in with"
+  auth_users ||--o{ mfa_methods : "2nd factor"
+  auth_users ||--o{ webauthn_credentials : "passkeys"
+  auth_users ||--|| user_settings : "settings"
+  auth_users ||--o{ memberships : "member of"
+  organizations ||--o{ memberships : "has staff"
+  organizations ||--|| organization_settings : "settings"
+  organizations ||--o{ roles : "defines"
+  roles ||--o{ memberships : "given to"
+  roles ||--o{ role_permissions : "grants"
+  permissions ||--o{ role_permissions : "in"
+  organizations ||--o{ api_keys : "has"
+  organizations ||--o{ subscriptions : "pays for"
+  plans ||--o{ subscriptions : "plan"
+  memberships ||--o{ membership_invitations : "invite"
+
+  auth_users {
+    bigint id PK
+    varchar public_id UK
+    varchar email
+    varchar password_hash "null = passwordless"
+    bool is_mfa_enabled
+    int failed_login_count
+    timestamp account_locked_until
+  }
+  auth_sessions {
+    bigint id PK
+    bigint user_id FK
+    bigint organization_id FK
+    varchar token_hash UK "sha256 of JWT"
+    varchar refresh_token_hash
+    timestamp expires_at
+    bool is_revoked
+  }
+  organizations {
+    bigint id PK
+    varchar public_id UK
+    varchar name
+    varchar slug
+    varchar type "PERSONAL or TEAM"
+    bigint owner_user_id FK
+    varchar timezone
+  }
+  memberships {
+    bigint id PK
+    bigint user_id FK
+    bigint organization_id FK
+    bigint role_id FK
+    varchar status
+    text working_days
+    time work_starts_at
+  }
+  roles {
+    bigint id PK
+    bigint organization_id FK
+    varchar name
+    bool is_system
+  }
+  permissions {
+    varchar code PK "e.g. patient:read"
+  }
+  subscriptions {
+    bigint id PK
+    bigint organization_id FK
+    bigint plan_id FK
+    varchar status
+    int seats
+  }
+  </pre></div>
+  <p class="src">From: <code>user.schema.ts</code>, <code>auth-session.schema.ts</code>, <code>organization.schema.ts</code>, <code>membership.schema.ts</code>, <code>pg-schemas.ts</code> · schemas <code>auth</code>, <code>tenancy</code>, <code>billing</code></p>
+</section>
+
+<!-- 6 -->
+<section class="d" id="d6">
+  <h3>6. Database: patients &amp; visits <span class="tag">ER diagram</span></h3>
+  <p class="lead">A <b>contact</b> is any person (lead or patient). When they visit, they get a <b>patient</b> file. Appointments link the patient, branch, room, machine and doctor. Postgres blocks double booking with exclusion constraints.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+erDiagram
+  organizations ||--o{ branches : "has"
+  branches ||--o{ branch_rooms : "has"
+  branches ||--o{ branch_machines : "has"
+  branches ||--o{ branch_holidays : "closed on"
+  contacts ||--o{ leads : "enquiry"
+  contacts ||--o| patients : "becomes"
+  contacts ||--o{ appointments : "books"
+  leads |o--o{ patients : "converted to"
+  branches ||--o{ appointments : "at"
+  branch_rooms |o--o{ appointments : "in room"
+  branch_machines |o--o{ appointments : "uses"
+  offerings |o--o{ appointments : "for service"
+  memberships ||--o{ appointments : "doctor / therapist"
+  patients ||--o{ patient_prescriptions : "gets"
+  appointments |o--o{ patient_prescriptions : "during"
+  patients ||--o{ patient_treatments : "gets"
+  offerings |o--o{ patient_treatments : "of"
+  patients ||--o{ patient_offerings : "bought package"
+  offerings ||--o{ patient_offerings : "package"
+  patients ||--o{ patient_clinical_notes : "notes"
+  patients ||--o{ patient_images : "photos"
+  patients ||--o{ patient_reports : "reports"
+
+  contacts {
+    bigint id PK
+    bigint organization_id FK
+    varchar contact_number
+    varchar first_name
+    varchar primary_phone
+    bigint household_contact_id FK
+  }
+  patients {
+    bigint id PK
+    bigint organization_id FK
+    varchar patient_number "PT-0412"
+    bigint contact_id FK
+    bigint home_branch_id FK
+    bigint lead_id FK
+    text allergies
+  }
+  appointments {
+    bigint id PK
+    bigint organization_id FK
+    varchar appointment_number
+    bigint contact_id FK
+    bigint branch_id FK
+    bigint doctor_membership_id FK
+    date appointment_date
+    time start_time
+    int duration_minutes
+    tsrange time_range "no overlaps"
+    varchar status
+    bool is_walk_in
+  }
+  patient_prescriptions {
+    bigint id PK
+    varchar prescription_number
+    bigint patient_id FK
+    bigint appointment_id FK
+    jsonb items
+    varchar status "draft / approved"
+  }
+  patient_treatments {
+    bigint id PK
+    bigint patient_id FK
+    bigint offering_id FK
+    int session_number
+    varchar status
+  }
+  offerings {
+    bigint id PK
+    varchar name
+    int price "paise"
+    int duration_minutes
+    int sessions
+  }
+  </pre></div>
+  <p class="src">From: <code>patients.schema.ts</code>, <code>appointments.schema.ts</code>, <code>migrations/00000000000000_init.sql</code> (exclusion constraints) · schema <code>app</code></p>
+</section>
+
+<!-- 7 -->
+<section class="d" id="d7">
+  <h3>7. Database: money, pharmacy &amp; stock <span class="tag">ER diagram</span></h3>
+  <p class="lead">Invoices hold items (services or medicine batches). Payments raise the invoice's paid amount. Medicines are sold from <b>batches</b>, earliest expiry first. Stock items are consumables used in treatments.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+erDiagram
+  contacts ||--o{ invoices : "billed"
+  branches ||--o{ invoices : "at"
+  invoices ||--o{ invoice_items : "lines"
+  offerings |o--o{ invoice_items : "service"
+  medicines |o--o{ invoice_items : "medicine"
+  medicine_batches |o--o{ invoice_items : "from batch"
+  invoices |o--o{ payments : "paid by"
+  invoices ||--o{ invoice_credit_notes : "refunds"
+  payments |o--o{ payments : "reverses"
+  branches ||--o{ day_closes : "cash day"
+  manufacturers ||--o{ medicines : "makes"
+  medicines ||--o{ medicine_batches : "stock in"
+  suppliers ||--o{ medicine_batches : "supplied"
+  suppliers ||--o{ medical_purchase_orders : "orders"
+  invoices ||--o| medical_sales : "one per sale"
+  patient_prescriptions |o--o| medical_sales : "filled once"
+  stock_vendors ||--o{ stock_items : "supplies"
+  stock_items ||--o{ stock_item_movements : "in / out"
+  patient_treatments |o--o{ stock_item_movements : "used in"
+
+  invoices {
+    bigint id PK
+    varchar invoice_number
+    varchar type
+    int total
+    int paid_amount
+    int due_amount "generated"
+    varchar payment_status "generated"
+  }
+  payments {
+    bigint id PK
+    varchar payment_number
+    varchar kind "receipt / expense"
+    int amount
+    int cash_amount
+    int upi_amount
+    int card_amount
+    bigint invoice_id FK
+  }
+  medicines {
+    bigint id PK
+    varchar name
+    bool is_prescription_only
+    int mrp
+    int min_stock
+  }
+  medicine_batches {
+    bigint id PK
+    bigint medicine_id FK
+    varchar batch_number
+    date expiry_month
+    int quantity
+  }
+  medical_sales {
+    bigint id PK
+    varchar sale_number
+    bigint invoice_id FK
+    bigint patient_prescription_id FK "unique"
+  }
+  day_closes {
+    bigint id PK
+    bigint branch_id FK
+    date close_date
+    varchar status
+    int counted_cash
+  }
+  stock_item_movements {
+    bigint id PK
+    bigint stock_item_id FK
+    varchar type
+    numeric quantity_change
+  }
+  </pre></div>
+  <p class="src">From: <code>invoices.schema.ts</code>, <code>payments.schema.ts</code>, medical + stock schemas, <code>schema-dump</code> of all 103 Drizzle tables. Money is stored in paise (integers).</p>
+</section>
+
+<!-- 8 -->
+<section class="d" id="d8">
+  <h3>8. Login flow (email code + MFA) <span class="tag">sequence</span></h3>
+  <p class="lead">The main login uses an email code. Sign-up works the same way: a new email simply creates a new user. If MFA is on, there's one more step. The access token lives only in memory, and the refresh token is a secure cookie.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+sequenceDiagram
+  autonumber
+  actor U as Staff
+  participant FE as Frontend
+  participant API as API /auth
+  participant R as Redis
+  participant DB as Postgres
+  participant W as Worker → Resend
+  U->>FE: type email on /login
+  FE->>API: POST /email/send-code + captcha
+  API->>DB: user (create if new) + verification_tokens
+  API-->>W: mail_outbox → mail queue
+  W-->>U: email with 6-digit code
+  API-->>FE: 200 (always same answer)
+  U->>FE: type code
+  FE->>API: POST /email/login {email, code}
+  API->>DB: mark code used · is_email_verified
+  alt MFA needed (user or clinic policy)
+    API->>R: mfa:session (5 min)
+    API-->>FE: mfa_required + mfa_session_token
+    FE->>FE: go to /mfa
+    U->>FE: type TOTP / recovery code
+    FE->>API: POST /mfa/login
+    API->>DB: check mfa_methods
+  end
+  API->>DB: pick active clinic · INSERT auth.sessions
+  API-->>FE: access_token (JWT, 15 min) + session_id cookie (HttpOnly)
+  FE->>API: GET /me/context + GET /users/me/organizations
+  FE->>FE: token in memory · refresh timer · go to /organization/$slug/today
+  </pre></div>
+  <p class="src">From: BE <code>auth.service.ts</code>, <code>complete-first-factor-auth.ts</code>, <code>src/FLOWS.md</code> · FE <code>AuthForm</code>, <code>MfaForm.tsx</code>, <code>src/shared/auth/service.ts</code>. Google/GitHub OAuth and password login also exist.</p>
+</section>
+
+<!-- 9 -->
+<section class="d" id="d9">
+  <h3>9. Token refresh on 401 <span class="tag">sequence</span></h3>
+  <p class="lead">When the 15-minute token expires, the frontend quietly gets a new one and tries again. Only one refresh runs at a time, even across tabs. Each refresh secret works only once: reusing an old one logs out all of that user's sessions.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+sequenceDiagram
+  autonumber
+  participant P as Page
+  participant H as fetch-client
+  participant API as API
+  participant DB as Postgres
+  P->>H: GET /app/patients
+  H->>API: request + old Bearer token
+  API-->>H: 401
+  H->>H: lock (navigator.locks · one refresh for all tabs)
+  H->>API: POST /auth/refresh (session_id cookie)
+  API->>DB: load session · check expiry · user active
+  alt refresh secret is current
+    API->>DB: rotate refresh hash · new token_hash
+    API-->>H: new access_token + new cookie
+    H->>API: replay GET /app/patients
+    API-->>H: 200 data
+    H-->>P: data
+  else old secret reused (stolen?)
+    API->>DB: revoke whole session family
+    API-->>H: 401
+    H->>H: forceLogout() → tell other tabs → /login
+  end
+  </pre></div>
+  <p class="src">From: FE <code>src/core/http/fetch-client.ts</code> (<code>handleUnauthorized</code>) · BE <code>auth-session.handlers.ts</code>, <code>refreshSessionCredentials</code></p>
+</section>
+
+<!-- 10 -->
+<section class="d" id="d10">
+  <h3>10. Life of one API request <span class="tag">pipeline</span></h3>
+  <p class="lead">What happens inside the backend for a write like "create patient". Each step can stop the request. The database work runs in one transaction that is locked to the current clinic by RLS.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+flowchart TB
+  req(["POST /api/v1/app/patients"]) --> g1["overload guard<br/>503 if busy"]
+  g1 --> g2["idempotency<br/>X-Idempotency-Key<br/>replay if seen"]
+  g2 --> g3["authenticate<br/>JWT → session check<br/>(Redis, else DB)"]
+  g3 --> g4["rate limit<br/>Redis"]
+  g4 --> g5["Zod validation<br/>body, query"]
+  g5 --> g6["plan guard<br/>read-only if unpaid"]
+  g6 --> g7["permission<br/>patient:create<br/>+ clinic MFA rule"]
+  g7 --> c["Controller"]
+  c --> s["Service<br/>one transaction<br/>set clinic id for RLS"]
+  s --> r["Repository<br/>Drizzle"]
+  r --> db[("Postgres<br/>RLS filters rows")]
+  s --> au["audit.outbox row"]
+  c --> res(["200 {data, request_id}"])
+  res --> after["after response:<br/>save idempotency ·<br/>enqueue jobs"]
+  g3 -. "401" .-> x1(["stop"])
+  g4 -. "429" .-> x1
+  g5 -. "400" .-> x1
+  g6 -. "403" .-> x1
+  g7 -. "403" .-> x1
+  </pre></div>
+  <p class="src">From: <code>src/shared/middlewares/index.ts</code>, <code>auth.middleware.ts</code>, <code>authorization.util.ts</code>, <code>base-record.controller.ts</code>, <code>base-record.service.ts</code>, <code>request-lifecycle.middleware.ts</code></p>
+</section>
+
+<!-- 11 -->
+<section class="d" id="d11">
+  <h3>11. Book an appointment <span class="tag">business flow</span></h3>
+  <p class="lead">From the booking drawer to the database. The backend checks branch hours, holidays and doctor hours. Postgres itself blocks two bookings for the same doctor, room or machine at the same time.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+sequenceDiagram
+  autonumber
+  actor S as Front desk
+  participant FE as appointments page
+  participant API as API /app/appointments
+  participant DB as Postgres
+  participant Q as task-rules queue
+  S->>FE: open appointments/create drawer
+  FE->>API: GET /slots (free times)
+  S->>FE: pick patient, service, doctor, time
+  FE->>API: POST /appointments + idempotency key
+  API->>API: auth · permission appointment:create
+  API->>DB: room + machine belong to branch?
+  alt walk-in
+    API->>API: today, now, status = checked_in
+  else normal booking
+    API->>DB: not past? branch open? holiday? doctor hours?
+  end
+  API->>DB: INSERT appointment (number by trigger)
+  alt same doctor/room/machine overlaps
+    DB-->>API: exclusion constraint error
+    API-->>FE: 409 slot_taken
+  else ok
+    API->>DB: add doctor to contact team · lead involve
+    API->>DB: audit.outbox
+    API-->>FE: 200 appointment
+    API--)Q: run-task-rules (after commit)
+    Q->>DB: create / resolve tasks
+  end
+  </pre></div>
+  <p class="src">From: <code>appointments.routes.ts</code>, <code>appointments.rules.ts</code>, <code>appointments.service.ts</code>, <code>task-rules.queue.ts</code> · FE <code>appointments-api.ts</code></p>
+</section>
+
+<!-- 12 -->
+<section class="d" id="d12">
+  <h3>12. Appointment states <span class="tag">state diagram</span></h3>
+  <p class="lead">Every status an appointment can have, and the button (API call) that moves it.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+stateDiagram-v2
+  direction LR
+  [*] --> scheduled: book
+  [*] --> checked_in: walk-in
+  scheduled --> confirmed: confirm
+  scheduled --> checked_in: check-in
+  confirmed --> checked_in: check-in
+  checked_in --> scheduled: undo-check-in
+  checked_in --> checked_in: stage / pause / resume
+  checked_in --> completed: complete
+  scheduled --> no_show: no-show
+  confirmed --> no_show: no-show
+  scheduled --> cancelled: cancel
+  confirmed --> cancelled: cancel
+  cancelled --> scheduled: reinstate
+  no_show --> scheduled: reinstate
+  completed --> [*]
+  note right of checked_in
+    first check-in can open a
+    patient file and mark the lead visited
+  end note
+  </pre></div>
+  <p class="src">From: <code>appointments.service.ts</code> (<code>transitions</code>), <code>appointments.schema.ts</code> (status values)</p>
+</section>
+
+<!-- 13 -->
+<section class="d" id="d13">
+  <h3>13. Prescription → pharmacy sale → payment <span class="tag">end-to-end</span></h3>
+  <p class="lead">The doctor writes and approves a prescription. The pharmacy sells it: medicine is taken from the batches that expire first (FEFO), an invoice is made, and the payment is recorded if the cash day is still open. A prescription can be filled only once.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+sequenceDiagram
+  autonumber
+  actor D as Doctor
+  actor Ph as Pharmacist
+  participant FE as Frontend
+  participant API as API /app
+  participant DB as Postgres
+  D->>FE: patient file → prescriptions → New
+  FE->>API: GET /prescription-kits, /medicines
+  D->>FE: fill form (Zod check) → Save + approve
+  FE->>API: POST /patients/{id}/prescriptions
+  API->>DB: INSERT prescription (draft)
+  FE->>API: POST …/prescriptions/{id}/approve
+  API->>DB: status approved, approved_by
+  Ph->>FE: pharmacy queue
+  FE->>API: GET /patient-prescriptions
+  Ph->>FE: sell + take payment
+  FE->>API: POST /medical-sales {prescription, payment}
+  API->>DB: prescription approved + same patient?
+  loop each medicine
+    API->>DB: SELECT batches not expired ORDER BY expiry FOR UPDATE
+    API->>DB: lower batch quantity (FEFO)
+  end
+  API->>DB: INSERT invoice (type medical) + items
+  API->>DB: day_closes: is today open?
+  alt day open
+    API->>DB: INSERT payment (cash / UPI / card) · raise paid_amount
+  else day closed
+    API-->>FE: 409 day_closed
+  end
+  API->>DB: INSERT medical_sale (unique per prescription)
+  API-->>FE: 200 sale + invoice
+  </pre></div>
+  <p class="src">From: FE <code>PrescriptionDrawer</code>, <code>usePrescriptions.ts</code> · BE <code>medical-sales.service.ts</code>, <code>medicines.stock.ts</code>, <code>payments.ledger.ts</code>, <code>invoices.rules.ts</code></p>
+</section>
+
+<!-- 14 -->
+<section class="d" id="d14">
+  <h3>14. Background jobs <span class="tag">queues</span></h3>
+  <p class="lead">Slow or outside work runs in the worker, not in the request. The API writes an "outbox" row and adds a job to Redis, and the worker does the job. If a job fails for good, it goes to a dead-letter list.</p>
+  <div class="toolbar"><button onclick="zoom(this)">⤢ Full screen</button></div>
+  <div class="dia"><pre class="mermaid">
+flowchart LR
+  subgraph API["API (after commit)"]
+    a1["auth / invites<br/>→ auth.mail_outbox"]
+    a2["new notification"]
+    a3["clinic webhook event"]
+    a4["Stripe webhook in"]
+    a5["seat change"]
+    a6["GDPR export request"]
+    a7["appointment / contact change"]
+  end
+  subgraph Q["Redis · BullMQ"]
+    q1[["mail"]]
+    q2[["notification"]]
+    q3[["webhook-delivery"]]
+    q4[["stripe-webhook"]]
+    q5[["subscription-seat-sync"]]
+    q6[["user-data-export"]]
+    q7[["task-rules"]]
+    cron[["31 cron sweeps<br/>audit drain · retention ·<br/>day-close · purge…"]]
+  end
+  subgraph W["Worker"]
+    w1["send via Resend"]
+    w2["in-app + email"]
+    w3["POST signed payload<br/>retry + circuit breaker"]
+    w4["update subscription"]
+    w5["push seats to Stripe"]
+    w6["zip → S3"]
+    w7["create / resolve tasks"]
+    w8["cleanups"]
+  end
+  dlq[("dead-letter<br/>audit.dead_letter_jobs<br/>+ Sentry")]
+  a1 --> q1 --> w1
+  a2 --> q2 --> w2
+  a3 --> q3 --> w3
+  a4 --> q4 --> w4
+  a5 --> q5 --> w5
+  a6 --> q6 --> w6
+  a7 --> q7 --> w7
+  cron --> w8
+  W -. "final failure" .-> dlq
+  </pre></div>
+  <p class="src">From: <code>src/infrastructure/queue/queue-catalog.ts</code>, <code>scheduler.ts</code>, <code>queue.overview.md</code> (39 queues in total)</p>
+</section>
+
+<p class="src" style="text-align:center;margin-top:30px">Code scanned on 29 Oct 2026 · clinozy-fe @ a8d7d42 · clinozy-be @ 3d567da · Understand Anything v2.9.8</p>
+</main>
+</div>
+
+<button class="toolbar close-z" id="closeZ" onclick="unzoom()" style="font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:7px;padding:6px 12px;cursor:pointer">✕ Close</button>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+<script>
+const dark = document.documentElement.dataset.theme === 'dark' ||
+  (document.documentElement.dataset.theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+mermaid.initialize({
+  startOnLoad: false,
+  theme: dark ? 'dark' : 'neutral',
+  securityLevel: 'loose',
+  fontFamily: 'Inter, system-ui, sans-serif',
+  flowchart: { curve: 'basis', htmlLabels: true, useMaxWidth: false },
+  er: { layoutDirection: 'TB', useMaxWidth: false },
+  sequence: { mirrorActors: false, showSequenceNumbers: true, useMaxWidth: false },
+  state: { useMaxWidth: false }
+});
+// Fit each diagram: shrink big ones toward the box, but never below ~60% so text stays readable (the box scrolls).
+function fit(){
+  document.querySelectorAll('.dia svg').forEach(svg => {
+    const nat = svg.viewBox.baseVal.width || svg.getBBox().width;
+    const box = svg.closest('.dia').clientWidth - 30;
+    svg.style.width = Math.min(nat, Math.max(box, nat * 0.6)) + 'px';
+  });
+}
+mermaid.run().then(fit);
+addEventListener('resize', fit);
+let zoomed = null;
+function zoom(btn){
+  const dia = btn.closest('section').querySelector('.dia');
+  unzoom(); dia.classList.add('zoomed'); dia.after(document.getElementById('closeZ')); zoomed = dia;
+}
+function unzoom(){ if(zoomed){ zoomed.classList.remove('zoomed'); zoomed = null; } }
+document.addEventListener('keydown', e => { if(e.key === 'Escape') unzoom(); });
+const links = [...document.querySelectorAll('nav a')];
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), { rootMargin: '-30% 0px -60% 0px' });
+document.querySelectorAll('section.d').forEach(s => io.observe(s));
+</script>
+</body>
+</html>

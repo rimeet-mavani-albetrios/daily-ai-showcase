@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 004 · Clinozy Diagrams</title>
+<meta name="description" content="A real clinic app (FE + BE, about 9,000 files) mapped with Understand Anything and explained in 14 engineering diagrams.">
+<meta property="og:image" content="shots/01-system-overview.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="meta mono"><b>DAY 004</b><span>2026-10-29</span><span>Understand Anything + Mermaid</span></div>
+    <h1>A real clinic app, explained in 14 engineering diagrams</h1>
+  </header>
+
+  <main class="day">
+    <div class="stage">
+      <div class="stage-bar">
+        <span class="tab" aria-selected="true">Clinozy · 14 diagrams</span>
+        <span class="spacer"></span>
+        <button class="tool" id="fullscreen" type="button">Full screen</button>
+        <a class="tool" href="clinozy-diagrams.html" target="_blank" rel="noopener">Open alone</a>
+      </div>
+      <div class="frame" id="frame">
+        <iframe id="demo" src="clinozy-diagrams.html" title="Clinozy engineering diagrams" allow="fullscreen" allowfullscreen></iframe>
+      </div>
+      <p class="stage-note">Use the menu inside the frame to jump between diagrams. Each one has its own Full screen button.</p>
+    </div>
+
+    <div class="cols">
+      <div class="notes">
+        <h3>What I tried</h3>
+        <p>Understand Anything is a Claude Code plugin that maps a codebase into a knowledge graph. I pointed it at Clinozy, our clinic management app: a React frontend and a Fastify + Postgres backend, about 9,000 files in total.</p>
+        <ul>
+          <li>The plugin's own scan scripts mapped every file and 17,353 import links for free, with no AI and no tokens, and found the hub files everything depends on.</li>
+          <li>That map pointed to the key code: database schemas, login, routes, middlewares and queues. Only those files were then read in detail.</li>
+          <li>Every diagram was drawn from those real facts, with the source files listed under it.</li>
+        </ul>
+        <p>The result is 14 Mermaid diagrams:</p>
+        <ul>
+          <li>Big picture: system overview, frontend layers, backend domains, route map.</li>
+          <li>Database: three ER diagrams (users and clinics, patients and visits, money, pharmacy and stock).</li>
+          <li>Security: login with email code and MFA, token refresh, the life of one API request.</li>
+          <li>Business flows: booking an appointment, appointment states, prescription to pharmacy sale to payment, background jobs.</li>
+        </ul>
+      </div>
+      <aside class="backup">
+        <h3>Skill used</h3>
+        <span class="saved">Backed up</span>
+        <dl>
+          <dt>Plugin</dt><dd><a href="https://github.com/Egonex-AI/Understand-Anything" target="_blank" rel="noopener">Egonex-AI/Understand-Anything</a></dd>
+          <dt>Version</dt><dd class="mono">2.9.8 · 4e6d329</dd>
+          <dt>Diagrams</dt><dd><a href="https://mermaid.js.org" target="_blank" rel="noopener">Mermaid</a> <span class="mono">11.4.1</span></dd>
+        </dl>
+      </aside>
+    </div>
+
+    <section aria-label="Diagrams">
+      <h3 class="stills-head">Diagrams</h3>
+      <div class="stills">
+        <figure><img src="shots/01-system-overview.jpg" alt="System overview diagram" loading="lazy"><figcaption>System overview</figcaption></figure>
+        <figure><img src="shots/02-backend-domains.jpg" alt="Backend domains diagram" loading="lazy"><figcaption>Backend domains</figcaption></figure>
+        <figure><img src="shots/03-db-users-clinics.jpg" alt="Database ER diagram for users and clinics" loading="lazy"><figcaption>DB · users &amp; clinics</figcaption></figure>
+        <figure><img src="shots/04-db-patients-visits.jpg" alt="Database ER diagram for patients and visits" loading="lazy"><figcaption>DB · patients &amp; visits</figcaption></figure>
+        <figure><img src="shots/05-db-money-pharmacy.jpg" alt="Database ER diagram for money, pharmacy and stock" loading="lazy"><figcaption>DB · money &amp; pharmacy</figcaption></figure>
+        <figure><img src="shots/06-login-flow.jpg" alt="Login flow sequence diagram" loading="lazy"><figcaption>Login flow</figcaption></figure>
+        <figure><img src="shots/07-book-appointment.jpg" alt="Book appointment sequence diagram" loading="lazy"><figcaption>Book appointment</figcaption></figure>
+        <figure><img src="shots/08-prescription-to-sale.jpg" alt="Prescription to pharmacy sale sequence diagram" loading="lazy"><figcaption>Prescription → sale</figcaption></figure>
+        <figure><img src="shots/09-route-map.jpg" alt="Frontend route map" loading="lazy"><figcaption>Route map</figcaption></figure>
+        <figure><img src="shots/10-background-jobs.jpg" alt="Background jobs diagram" loading="lazy"><figcaption>Background jobs</figcaption></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>Built by Rimeet Mavani on 2026-10-29 as part of a daily AI experiment.</footer>
+</div>
+<script>
+document.getElementById('fullscreen').addEventListener('click', function () {
+  var el = document.getElementById('frame');
+  var req = el.requestFullscreen || el.webkitRequestFullscreen;
+  if (req) { try { var p = req.call(el); if (p && p.catch) p.catch(function () {}); } catch (e) {} }
+});
+</script>
+</body>
+</html>
