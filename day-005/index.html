@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 005 · INFANS</title>
+<meta name="description" content="A small AI that starts as random numbers and learns to speak inside your browser tab. You can hear it, cut it, and watch it heal.">
+<meta property="og:image" content="shots/05-cut-sheet-e.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>main.day { grid-template-columns: minmax(0, 1fr); }</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="meta mono"><b>DAY 005</b><span>2026-11-01</span><span>Hand-written, no libraries</span></div>
+    <h1>A small AI learns to speak in your tab, and you can cut it</h1>
+  </header>
+
+  <main class="day">
+    <div class="stage">
+      <div class="stage-bar">
+        <span class="tab" aria-selected="true">INFANS · live</span>
+        <span class="spacer"></span>
+        <button class="tool" id="fullscreen" type="button">Full screen</button>
+        <a class="tool" href="infans.html" target="_blank" rel="noopener">Open alone</a>
+      </div>
+      <div class="frame" id="frame">
+        <iframe id="demo" src="infans.html" title="INFANS, a small AI learning to speak live" allow="fullscreen" allowfullscreen></iframe>
+      </div>
+      <p class="stage-note">Made for Chrome on a laptop. Click inside the frame for sound. Your fan may spin, because the training is real. Full screen or Open alone gives the best view.</p>
+    </div>
+
+    <div class="cols">
+      <div class="notes">
+        <h3>What I tried</h3>
+        <p>I asked for something unexpected, built from the full potential of my starred GitHub repos. After research across those repos and experimental websites, this idea beat five others.</p>
+        <p>INFANS is Latin for "one who cannot yet speak". It starts as 29,440 random numbers and trains live in your tab, with no server and no download.</p>
+        <ul>
+          <li><b>Listen.</b> Noise turns into syllables, then its first real word.</li>
+          <li><b>Cut.</b> Drag across a sheet. Those numbers really become zero. A wide cut on sheet E hurts it most.</li>
+          <li><b>Cut one letter.</b> Double-click sheet U and cut the column under "e". It loses that letter for a while.</li>
+          <li><b>Watch Scar.</b> An uncut copy reads the same lessons. Without your cut, the number stays exactly 0.</li>
+          <li><b>Teach it.</b> Type your name. It may say it back.</li>
+          <li><b>Keep it.</b> It is gone when you close the tab. This saves one file that goes on learning.</li>
+        </ul>
+        <p><b>It feels nothing.</b> It only guesses the next letter. The voice is a fixed formula, its book was written by hand, and most sentences are stitched from that book. The page shows how much was copied.</p>
+        <p>Its book has one original verse for each of my 49 starred repos, in the order I starred them.</p>
+      </div>
+      <aside class="backup">
+        <h3>Built with</h3>
+        <span class="saved">No libraries</span>
+        <dl>
+          <dt>Model</dt><dd class="mono">29,440 numbers</dd>
+          <dt>Graphics</dt><dd>WebGL 2</dd>
+          <dt>Voice</dt><dd>Web Audio, math only</dd>
+          <dt>Ideas from</dt><dd><a href="https://github.com/wheresryan22/anatomy" target="_blank" rel="noopener">anatomy</a>, <a href="https://github.com/enesozturk/dimensional-drawing" target="_blank" rel="noopener">dimensional-drawing</a>, <a href="https://github.com/feitangyuan/onetake" target="_blank" rel="noopener">onetake</a></dd>
+        </dl>
+      </aside>
+    </div>
+
+    <section aria-label="Stills">
+      <h3 class="stills-head">Stills</h3>
+      <div class="stills">
+        <figure><img src="shots/01-one-number.jpg" alt="One number on a dark screen" loading="lazy"><figcaption>One number</figcaption></figure>
+        <figure><img src="shots/02-pull-back.jpg" alt="Camera pulling back across the numbers" loading="lazy"><figcaption>Pulling back</figcaption></figure>
+        <figure><img src="shots/03-babble.jpg" alt="The model drawn as sheets while it babbles" loading="lazy"><figcaption>Babble</figcaption></figure>
+        <figure><img src="shots/04-first-word.jpg" alt="First word shown large" loading="lazy"><figcaption>First word</figcaption></figure>
+        <figure><img src="shots/05-cut-sheet-e.jpg" alt="A red cut on sheet E" loading="lazy"><figcaption>A real cut</figcaption></figure>
+        <figure><img src="shots/06-scar-spreads.jpg" alt="Red tint spreading through the sheets" loading="lazy"><figcaption>The scar spreads</figcaption></figure>
+        <figure><img src="shots/07-cut-letter-e.jpg" alt="One column cut from sheet U" loading="lazy"><figcaption>Cutting out "e"</figcaption></figure>
+        <figure><img src="shots/08-what-is-real.jpg" alt="Panel explaining what is real" loading="lazy"><figcaption>What is real</figcaption></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>Built by Rimeet Mavani with Claude Code on 2026-11-01 as part of a daily AI experiment.</footer>
+</div>
+<script>
+document.getElementById('fullscreen').addEventListener('click', function () {
+  var el = document.getElementById('frame');
+  var req = el.requestFullscreen || el.webkitRequestFullscreen;
+  if (req) { try { var p = req.call(el); if (p && p.catch) p.catch(function () {}); } catch (e) {} }
+});
+</script>
+</body>
+</html>
