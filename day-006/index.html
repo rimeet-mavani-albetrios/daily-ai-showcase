@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 006 · F1 Teardown</title>
+<meta name="description" content="Four impossible questions about an F1 car, each one a live physics model running in the browser.">
+<meta property="og:image" content="shots/01-ceiling.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  /* This day's models have their controls at the bottom, so the page keeps them on screen. */
+  header.site { padding-block: 24px 16px; gap: 8px; }
+  header.site h1 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); }
+  .frame { aspect-ratio: auto; height: clamp(480px, calc(100dvh - 180px), 665px); }
+  @media (max-width: 640px) { .frame { height: clamp(520px, calc(100dvh - 110px), 720px); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="meta mono"><b>DAY 006</b><span>2026-11-01</span><span>Teardown</span></div>
+    <h1>Four impossible questions about an F1 car</h1>
+  </header>
+
+  <main class="day">
+    <div class="stage">
+      <div class="stage-bar">
+        <button class="tab" role="tab" aria-selected="true" data-src="ceiling.html">Ceiling</button>
+        <button class="tab" role="tab" aria-selected="false" data-src="bounce.html">Bounce</button>
+        <button class="tab" role="tab" aria-selected="false" data-src="glass.html">Glass Road</button>
+        <button class="tab" role="tab" aria-selected="false" data-src="wind.html">Wind</button>
+        <span class="spacer"></span>
+        <button class="tool" id="fullscreen" type="button">Full screen</button>
+        <a class="tool" id="open-alone" href="ceiling.html" target="_blank" rel="noopener">Open alone</a>
+      </div>
+      <div class="frame" id="frame">
+        <iframe id="demo" src="ceiling.html" title="Ceiling" allow="fullscreen" allowfullscreen></iframe>
+      </div>
+      <p class="stage-note">Each model tours itself. Touch anything to take over. Full screen works best, and a phone works upright.</p>
+    </div>
+
+    <div class="cols">
+      <div class="notes">
+        <h3>What I tried</h3>
+        <p>Teardown is a Claude Code skill that turns a machine into a 3D simulator you can take apart. I built one original car from code, using the 2026 limits, then asked it four questions. Every number on screen comes from the same maths that moves the car.</p>
+        <ul>
+          <li><b>Ceiling.</b> Can it drive on the ceiling? On Earth it needs 188 km/h. On Titan just 33. On Venus 25, but drag stops it at 99. On the Moon, never.</li>
+          <li><b>Bounce.</b> Nothing is animated by hand. The floor stalls, the air reacts late, and the car starts to shake by itself at about 245 km/h. Raise it or stiffen it and the shake goes away.</li>
+          <li><b>Glass Road.</b> You look up through a glass track at the four patches of rubber holding the car. Brake from 340 km/h and watch the load move.</li>
+          <li><b>Wind.</b> A real fluid solver runs on a sheet through the car. Draw on it and the air goes around your drawing. With no wings the car lifts. One drawn line took it from +0.11 to +0.77.</li>
+        </ul>
+        <p>Downforce, grip and damping are estimates, since teams do not publish them, and each page says so. Wind is a 2D slice for comparing shapes, not for reading real downforce. On Mars the speed needed is faster than sound there, so that sum stops being reliable.</p>
+      </div>
+      <aside class="backup">
+        <h3>Skill used</h3>
+        <span class="saved">Backed up</span>
+        <dl>
+          <dt>Skill</dt><dd><a href="https://github.com/elvarofficial/teardown" target="_blank" rel="noopener">elvarofficial/teardown</a></dd>
+          <dt>Version</dt><dd class="mono">a91262a</dd>
+          <dt>3D</dt><dd><a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> <span class="mono">0.186.1</span></dd>
+        </dl>
+      </aside>
+    </div>
+
+    <section aria-label="Film">
+      <h3 class="stills-head">Short film, no sound</h3>
+      <video src="f1-teardown.mp4" poster="shots/01-ceiling.jpg" controls playsinline preload="none" style="width:100%;display:block"></video>
+    </section>
+
+    <section aria-label="Pictures">
+      <h3 class="stills-head">Pictures</h3>
+      <div class="stills">
+        <figure><img src="shots/01-ceiling.jpg" alt="F1 car hanging from a tunnel roof with force arrows" loading="lazy"><figcaption>Ceiling</figcaption></figure>
+        <figure><img src="shots/02-ceiling-titan.jpg" alt="The car on a roof on Titan" loading="lazy"><figcaption>Ceiling on Titan</figcaption></figure>
+        <figure><img src="shots/03-bounce-side.jpg" alt="Side view of the car with live bounce charts" loading="lazy"><figcaption>Bounce</figcaption></figure>
+        <figure><img src="shots/04-bounce-driver.jpg" alt="Driver's view past the halo" loading="lazy"><figcaption>Driver's view</figcaption></figure>
+        <figure><img src="shots/05-glass-below.jpg" alt="The car from under a glass road with glowing tyre patches" loading="lazy"><figcaption>Glass Road</figcaption></figure>
+        <figure><img src="shots/06-glass-apart.jpg" alt="The car taken apart" loading="lazy"><figcaption>Taken apart</figcaption></figure>
+        <figure><img src="shots/07-wind-pressure.jpg" alt="Live pressure on a sheet through the car" loading="lazy"><figcaption>Wind</figcaption></figure>
+        <figure><img src="shots/08-wind-drawn.jpg" alt="A drawn wing changing the airflow" loading="lazy"><figcaption>Your own wing</figcaption></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>Built by Rimeet Mavani on 2026-11-01 as part of a daily AI experiment.</footer>
+</div>
+<script>
+(function () {
+  var iframe = document.getElementById('demo'), open = document.getElementById('open-alone'), tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', t === tab ? 'true' : 'false'); });
+      iframe.src = tab.dataset.src; iframe.title = tab.textContent; open.href = tab.dataset.src;
+    });
+  });
+})();
+document.getElementById('fullscreen').addEventListener('click', function () {
+  var el = document.getElementById('frame');
+  var req = el.requestFullscreen || el.webkitRequestFullscreen;
+  if (req) { try { var p = req.call(el); if (p && p.catch) p.catch(function () {}); } catch (e) {} }
+});
+</script>
+</body>
+</html>
